@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 import datetime
 from django.utils import timezone
@@ -137,5 +138,3 @@ class Enfant(models.Model):
 
 	def __str__(self):
 		return self.PartVendredi
-
-

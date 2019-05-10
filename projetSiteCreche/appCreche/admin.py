@@ -6,6 +6,6 @@ from .models import Enfant
 
 class DetailsEnfant(admin.ModelAdmin):
 	list_display = ('nom_Enfant','Prenom_Enfant')
+	fields = ('nom_Enfant', 'Prenom_Enfant')
 
-
-admin.site.register(Enfant) 
+admin.site.register(Enfant, DetailsEnfant)
