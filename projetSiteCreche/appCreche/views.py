@@ -15,13 +15,13 @@ def recrutement(request):
 	return render(request, 'appCreche/recrutement.html')
 
 def inscription(request):
-	return render(request, 'appCreche/inscription/html')
+	return render(request, 'appCreche/inscription.html')
 
 def inscriptionEnfant(request):
 	return render(request, 'appCreche/inscriptionEnfant.html')
 
-def authentification(request):
-	return render(request, 'appCreche/authentification.html')
+def connexion(request):
+	return render(request, 'appCreche/connexion.html')
 
 def deconnexion(request):
 	return render(request, 'appCreche/deconnexion.html')
