@@ -5,5 +5,34 @@ from django.shortcuts import get_object_or_404, render
 def index(request):
 	return render(request, 'appCreche/index.html')
 	
+def equipe(request):
+	return render(request, 'appCreche/equipe.html')
+
+def contribuer(request):
+	return render(request, 'appCreche/contribuer.html')
+
+def recrutement(request):
+	return render(request, 'appCreche/recrutement.html')
+
+def inscription(request):
+	return render(request, 'appCreche/inscription/html')
+
+def inscriptionEnfant(request):
+	return render(request, 'appCreche/inscriptionEnfant.html')
+
+def authentification(request):
+	return render(request, 'appCreche/authentification.html')
+
+def deconnexion(request):
+	return render(request, 'appCreche/deconnexion.html')
+
+def petitesAnnonces(request):
+	return render(request, 'appCreche/petitesAnnonces.html')
+
+def modificationEnfantPonctuel(request):
+	return render(request, 'appCreche/modificationEnfantPonctuel.html')
+
+def tableauEmploye():
+	return render(request, 'appCreche/tableauEmploye.html')
 
 
