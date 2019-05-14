@@ -32,7 +32,10 @@ def petitesAnnonces(request):
 def modificationEnfantPonctuel(request):
 	return render(request, 'appCreche/modificationEnfantPonctuel.html')
 
-def tableauEmploye():
+def tableauEmploye(request):
 	return render(request, 'appCreche/tableauEmploye.html')
+
+def monCompte(request):
+	return render(request, 'appCreche/monCompte.html')
 
 
