@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load i18n staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+<style type="text/css">
+    body{
+        background: #efefef;
+    }
+    .section h5 {
+        font-size: 1.2rem;
+        padding-bottom: 0.2rem;
+        border-bottom: 3px solid black;
+    }
+    .topbar{
+        overflow:hidden;
+    	font-family: Roboto,sans-serif;
+        font-size:2.5em;
+        font-weight: 100;
+    }
+    .submit-btn{min-width:103px;}
+    .subheader{font-size:20px;}
+    .anatologo{width:40px;height:85px;margin-left: 20px;}
+    .collapsible-body{ padding:0px; }
+
+    {% if not version %}
+    .maincontent{
+        max-width: -webkit-calc(100% - 305px);
+        max-width:    -moz-calc(100% - 305px);
+        max-width:         calc(100% - 305px);
+        margin-left:305px;
+        padding:0px;
+    }
+
+    .side-nav {
+    transform: translateX(0%) !important;
+    }
+    {% endif %}
+
+</style>
+</head>
+<div>
+    <div id="maincontent">
+        <nav class="topbar headbar"> <!--indigo darken-4">-->
+            <div class="nav-wrapper ">
+            <ul style="width:100%;" class="left">
+                <li><div class="title">
+                	<a style="font-size:28px;" href="/">Anatolog</a>
+                </div></li>
+            </ul>
+        	</div>
+        </nav>
+    </div>
+    <div class="maincontent">{% block content%}{% endblock %}</div></div>
+</div>
+</html>

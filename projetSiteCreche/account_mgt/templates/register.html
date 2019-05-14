@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load i18n staticfiles %}
+{% load material_form %}
+
+
+
+{% block title %}Register{% endblock %}
+
+{% block content%}
+<div class="card-panel form-card " style="width:30%;margin:2% 33%;min-width:400px;">
+    <form method="POST" class="viewform" action="/account/register/">
+				 {% csrf_token %}
+				 {% form form=form %}
+				 {% part form.email prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
+				 {% part form.password prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
+				 {% part form.confirm_password prefix %}<i class="material-icons prefix">check</i>{% endpart %}
+         {% endform %}
+				<div class="center"><button style="width:30%;min-width:200px;" type="submit" name="_submit" class="center btn btn-primary btn-lg">Register</button></div>
+		</form>
+{% endblock %}

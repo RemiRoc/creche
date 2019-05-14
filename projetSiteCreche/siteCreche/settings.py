@@ -31,7 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
 	'appCreche',
+    'account_mgt',
+    'material',
+    'material_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'siteCreche.urls'
-
+AUTH_USER_MODEL = 'account_mgt.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
