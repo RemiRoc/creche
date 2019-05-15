@@ -32,16 +32,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
-	'appCreche',
-    'account_mgt',
-    'material',
-    'material_admin',
+	'appCreche',  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,11 +53,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'siteCreche.urls'
-AUTH_USER_MODEL = 'account_mgt.User'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,11 +103,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+DEFAULT_FROM_EMAIL = "remi.rochet34@gmail.com"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 # Internationalization
+
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Europe/Paris'
 

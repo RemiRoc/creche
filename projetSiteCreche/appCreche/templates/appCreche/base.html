@@ -1,13 +1,18 @@
+
+<!-- templates/base.html -->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Home </title>
-	</head>
-	
-	<body>
- 		<div id="pageindex">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %} Menu d'accueil{% endblock %}</title>
+</head>
+<body>
+  <main>
+    {% block content %}
+    <div id="pageindex">
 		<div id="header"><a href="../index"><img src="logo.png" alt="le logo" id="logo"></a>  
 
-			<div id="Inscription"><a href="../inscription"> S'inscrire à la crèche </a></div> 
+			<div id="Inscription"><a href="../../accounts/signup.html"> S'inscrire à la crèche </a></div> 
 
 			<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
 
@@ -18,5 +23,7 @@
 			<div id="Connexion"><a href="../connexion"> Se Connecter </a></div>
 
 		</div>
-	</body>
+    {% endblock %}
+  </main>
+</body>
 </html>
