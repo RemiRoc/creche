@@ -8,21 +8,21 @@
   <div id="pageindex">
 		<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
 
-			<div id="Inscription"><a href="accounts/signup"> S'inscrire à la crèche </a></div> 
-
 			<div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
-
+			
 			<div id="recrutement"><a href="appCreche/recrutement"> Recrutement </a></div>
 
 			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
-
-			<div id="Connexion"><a href="appCreche/connexion"> Se Connecter </a></div>
 
 			 <p><a href="{% url 'password_reset' %}">reset password</a></p>
 		</div>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
+<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
+<div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
+
   <p>You are not logged in</p>
+  <div id="Inscription"><a href="accounts/signup"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}
 {% endblock %}

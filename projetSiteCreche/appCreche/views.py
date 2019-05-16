@@ -1,5 +1,8 @@
 
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 # Create your views here.
 def index(request):
@@ -14,8 +17,10 @@ def contribuer(request):
 def recrutement(request):
 	return render(request, 'appCreche/recrutement.html')
 
-def inscription(request):
-	return render(request, 'appCreche/inscription.html')
+class inscription(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
 
 def inscriptionEnfant(request):
 	return render(request, 'appCreche/inscriptionEnfant.html')
@@ -37,5 +42,4 @@ def tableauEmploye(request):
 
 def monCompte(request):
 	return render(request, 'appCreche/monCompte.html')
-
 
