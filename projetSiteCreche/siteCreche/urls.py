@@ -19,8 +19,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-	path('accounts/', include('django.contrib.auth.urls')),
-	path('accounts/', include('accounts.urls')),
+	path('appCreche/', include('django.contrib.auth.urls')),
 	path('appCreche/', include('appCreche.urls')),
     path('', TemplateView.as_view(template_name='appCreche/home.html'), name='home'),
 ]

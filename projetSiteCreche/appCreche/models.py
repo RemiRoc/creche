@@ -1,11 +1,14 @@
 import datetime
-
+from django.contrib.auth.models import AbstractUser
 from appCreche.horaires import *
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator
 from django.contrib import admin
 from django.db import models
+
+
+
 
 class Parent(models.Model):
 	
@@ -212,3 +215,9 @@ class Employe(models.Model):
 
 	def get_hs_rose(self):
 		return self.horaireSemaineRose
+
+class CustomUser(AbstractUser):
+    # add additional fields in here
+
+    def __str__(self):
+        return self.email

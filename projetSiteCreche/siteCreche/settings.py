@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = '-z6ec2%pt^tc3ap$zj1wg95%$57hfz2%^^p^*4z*)-t&)n_8#z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,7 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 DEFAULT_FROM_EMAIL = "remi.rochet34@gmail.com"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
+AUTH_USER_MODEL = 'appCreche.CustomUser'
 # Internationalization
 
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
