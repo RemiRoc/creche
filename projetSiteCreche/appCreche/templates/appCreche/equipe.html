@@ -1,18 +1,26 @@
-<html>
-	<head>
-	<title>Notre Equipe</title>
-	</head>
 
-	<body>
-		<div id="pageEquipe">
-		<div id="header"><a href="../../"><img src="../logo2.png" alt="le logo" id="logo"></a> </div>
+{% extends 'appCreche/base.html' %}
 
-			<div id="Inscription"><a href="../inscriptionEnfant"> Inscrire son enfant </a></div> 
+{% block title %}Home{% endblock %}
 
-			<div id="Contributeur"><a href="../contribuer"> Contribuer </a></div>
+{% block content %}
+{% if user.is_authenticated %}
+  <div id="pageindex">
+		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a></div>
 
-			<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
+			<div id=""><a href="appCreche/contribuer"> Contribuer </a></div>
+			
+			<div id="recrutement"><a href="appCreche/recrutement"> Recrutement </a></div>
 
-		</div>
-	</body>
-</html>
+			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
+		<p><a href="{% url 'logout' %}">logout</a></p>
+	</div>
+{% else %}
+<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
+
+  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+
+
+{% endblock %}

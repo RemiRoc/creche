@@ -4,10 +4,24 @@
 	</head>
 
 	<body>
-		<div id="pageinscriptionEnfant">
-			<div id="header"><a href="../index"><img src="../logo2.png" alt="le logo" id="logo"></a> </div>
+		{% if user.is_authenticated %}
+	  		<div id="pageindex">
+				<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a></div>
+				<p><a href="{% url 'logout' %}">logout</a></p>
+			</div>
+			<fieldset>
+				<form method="post">
+  					{% csrf_token %}
+ 					{{ form.as_p }}
+ 					<button type="submit">Login</button>
+				</form>
+			</fieldset>
 
-			<p id="header"> Bonjour, vous pouvez accéder a votre compte ici : <a href="../monCompte" >Mon Compte </a>
-		</div>
+  
+{% else %}
+  <p>You are not logged in</p>
+  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 	</body>
 </html>

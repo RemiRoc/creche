@@ -7,20 +7,26 @@ from django.core.validators import MaxValueValidator
 from django.contrib import admin
 from django.db import models
 
-
-
-
+class CustomUser(AbstractUser):
+    # add additional fields in here
+	def getMailUser(self):
+		return self.email
+	is_Parent = models.BooleanField(default=False)
+	is_Employe = models.BooleanField(default=False)
+	is_Contrib = models.BooleanField(default=False)
+		
 class Parent(models.Model):
 	
 	nom				= models.CharField(_('nom'),max_length=20)
 	prenom			= models.CharField(_('prenom'),max_length=20)
-	adresseMail		= models.EmailField(_('email'), max_length=254)
+	adresseMail 	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
 	num				= models.DecimalField(_('telephone'), max_digits=10, decimal_places=0)
 	telEmployeur	= models.DecimalField(_('telephone de l\'employeur'), max_digits=10, decimal_places=0)
 	profession 		= models.CharField(_("profession"), max_length=64)
 	adresse			= models.CharField(_("adresse"), max_length=256)
-	secondeAdresse	= models.CharField(_("seconde adresse"), max_length=256, null=True)
+	secondeAdresse	= models.CharField(_("seconde adresse"), max_length=256, blank=True)
 	nbEnfantAuFoyer	= models.PositiveIntegerField(_("nb enfant au foyer"), validators=[MaxValueValidator(20)])
+	
 
 	class Meta:
 		verbose_name = _('Parent')
@@ -142,12 +148,12 @@ class Enfant(models.Model):
 		reverse	= Parent.objects.filter(person1 = self.person2, person2 = self.person1) 
 
 		if direct.exists() or reverse.exists():
-			raise ValidationError(_('C\'est pas bien de mettre deux fois le même parent'))
+			raise ValidationError(_('Une personne ne peux pas être doublement parent. Si ? '))
 
 class Contributeur(models.Model):
 	nom			= models.CharField(_('nom'),max_length=20)
 	prenom		= models.CharField(_('prenom'),max_length=20)
-	adresseMail	= models.EmailField(_('email'), max_length=254)
+	adresseMail	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
 	num			= models.DecimalField(_('telephone'), max_digits=10, decimal_places=0)
 
 	def __str__(self):
@@ -171,7 +177,7 @@ class Employe(models.Model):
 	#INFO PERSONEL
 	nom			= models.CharField(_('nom'),max_length=20)
 	prenom		= models.CharField(_('prenom'),max_length=20)
-	adresseMail	= models.EmailField(_('email'), max_length=254)
+	adresseMail	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
 	num			= models.DecimalField(_('telephone'), max_digits=10, decimal_places=0)
 	#HORAIRES PERSONEL
 	horaireSemaineJaune = models.CharField(_("Horaires semaine Jaune"), max_length=4, choices=semaineJaune, default='')
@@ -216,8 +222,19 @@ class Employe(models.Model):
 	def get_hs_rose(self):
 		return self.horaireSemaineRose
 
-class CustomUser(AbstractUser):
-    # add additional fields in here
 
-    def __str__(self):
-        return self.email
+class OffreEmploi(models.Model):
+
+	intituleDuPoste = models.CharField(verbose_name="Saisissez l'intitulé du poste", max_length=100, default='')
+	DescriptionDuPoste = models.CharField(verbose_name="Décrivez le poste", max_length=999, default='')
+	diplomesRequis = models.CharField(verbose_name="Saisissez quels dîplômes sont requis pour ce poste", max_length=100, default='')
+	Contact = models.EmailField(default='asso.gros.calin@gmail.com')
+
+
+class ListeDAttente(models.Model):
+
+	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
+
+class EnfantPresent(models.Model):
+
+	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
