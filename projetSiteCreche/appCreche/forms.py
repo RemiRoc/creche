@@ -1,8 +1,9 @@
 # users/forms.py
 from django import forms
+from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Enfant, Parent, ListeDAttente
+from .models import CustomUser, Famille
 from . import horaires
 
 class CustomUserCreationForm(UserCreationForm):
@@ -21,10 +22,6 @@ class CustomUserChangeForm(UserChangeForm):
 
 class EnfantCreationForm(ModelForm):
 	class Meta:
-		model = Enfant
+		model = Famille
 		fields = '__all__'
 
-class ParentCreationForm(ModelForm):
-	class Meta: 
-		model= Parent
-		fields= '__all__'

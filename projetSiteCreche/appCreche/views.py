@@ -24,7 +24,7 @@ class inscription(generic.CreateView):
 
 class inscriptionEnfant(generic.CreateView):
 	form_class = EnfantCreationForm
-	success_url = reverse_lazy('appCreche/home')
+	success_url = reverse_lazy('home')
 	template_name = 'AppCreche/inscriptionEnfant.html'
 
 def connexion(request):
