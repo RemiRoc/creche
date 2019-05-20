@@ -1,12 +1,12 @@
-{% extends 'appCreche/base.html' %}
+<html>
+	<head>
+	<title> Recrutement </title>
+	</head>
 
-{% block title %}Home{% endblock %}
-
-{% block content %}
-{% if user.is_authenticated %}
+	<body>
 		<div id="pagerecrutement">
 
-			<div id="index"><a href="../../"><img src="../logo.png" alt="le logo" id="logo"></a> 
+			<div id="index"><a href="../index"><img src="../logo.png" alt="le logo" id="logo"></a> 
 
 			<div id="Inscription"><a href="../inscriptionEnfant"> Inscrire son enfant </a></div> 
 
@@ -16,16 +16,9 @@
 
 		<p id="header"> Bonjour, vous pouvez accéder a votre compte ici : <a href="../monCompte." > Mon Compte </a>  
 		</div>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-<div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
+	</body>
+</html>
 
-  <p>You are not logged in</p>
-  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
-{% endblock %}
 	
 	<!--	<a href="">Déconnexion</a>   -->
 
