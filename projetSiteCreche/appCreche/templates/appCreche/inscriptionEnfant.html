@@ -1,27 +1,24 @@
-<html>
-	<head>
-	<title> Inscription Enfant</title>
-	</head>
-
-	<body>
+{% extends 'appCreche/base.html' %}
+{% block title %}Inscription Enfant{% endblock %}
+{% block content %}
 		{% if user.is_authenticated %}
-	  		<div id="pageindex">
-				<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a></div>
-				<p><a href="{% url 'logout' %}">logout</a></p>
-			</div>
+	  		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
+
+			<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
+			
+			<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
+
+			<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
 			<fieldset>
 				<form method="post">
   					{% csrf_token %}
  					{{ form.as_p }}
- 					<button type="submit">Login</button>
+ 					<button type="submit"> Valider </button>
 				</form>
 			</fieldset>
-
-  
 {% else %}
   <p>You are not logged in</p>
   <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}
-	</body>
-</html>
+{% endblock %}

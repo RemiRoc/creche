@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import *
 from .models import CustomUser, Enfant, Parent, Contributeur, Employe, OffreEmploi, ListeDAttente, EnfantPresent
 #class DetailsEnfant(admin.ModelAdmin):
 #	list_display = ('nom_Enfant','Prenom_Enfant')

@@ -2,7 +2,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, EnfantCreationForm
 
 # Create your views here.
 def index(request):
@@ -22,8 +22,10 @@ class inscription(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
-def inscriptionEnfant(request):
-	return render(request, 'appCreche/inscriptionEnfant.html')
+class inscriptionEnfant(generic.CreateView):
+	form_class = EnfantCreationForm
+	success_url = reverse_lazy('appCreche/home')
+	template_name = 'AppCreche/inscriptionEnfant.html'
 
 def connexion(request):
 	return render(request, 'appCreche/connexion.html')
