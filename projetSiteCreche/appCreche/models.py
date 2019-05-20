@@ -17,15 +17,22 @@ class CustomUser(AbstractUser):
 		
 class Parent(models.Model):
 	
-	nom				= models.CharField(_('nom'),max_length=20)
-	prenom			= models.CharField(_('prenom'),max_length=20)
-	adresseMail 	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
-	num				= models.DecimalField(_('telephone'), max_digits=10, decimal_places=0)
-	telEmployeur	= models.DecimalField(_('telephone de l\'employeur'), max_digits=10, decimal_places=0)
-	profession 		= models.CharField(_("profession"), max_length=64)
-	adresse			= models.CharField(_("adresse"), max_length=256)
-	secondeAdresse	= models.CharField(_("seconde adresse"), max_length=256, blank=True)
-	nbEnfantAuFoyer	= models.PositiveIntegerField(_("nb enfant au foyer"), validators=[MaxValueValidator(20)])
+	parentUser			= models.OneToOneField( CustomUser ,related_name="login+",on_delete=models.CASCADE, null=True)
+	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20)
+	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20)
+	adresseMail_Mere 	= models.EmailField(_('Email de la Mère'))
+	num_Mere			= models.DecimalField(_('télephone de la Mère'), max_digits=10, decimal_places=0)
+	profession_Mere 	= models.CharField(_("Profession de la Mère"), max_length=64)
+	telEmployeur_Mere	= models.DecimalField(_('telephone de l\'employeur de la Mère'), max_digits=10, decimal_places=0)
+	nom_Pere			= models.CharField(_('Nom du Père'),max_length=20)
+	prenom_Pere			= models.CharField(_('Prénom du Père'),max_length=20)
+	adresseMail_Pere 	= models.EmailField(_('Email du Père'))	
+	num_Pere			= models.DecimalField(_('télephone du Père'), max_digits=10, decimal_places=0)	
+	telEmployeur_Pere	= models.DecimalField(_('telephone de l\'employeur du Père'), max_digits=10, decimal_places=0)	
+	profession_Pere 	= models.CharField(_("Profession du Père"), max_length=64)
+	adresse				= models.CharField(_("Adresse"), max_length=256)
+	secondeAdresse		= models.CharField(_("Seconde Adresse"), max_length=256, blank=True)
+	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)])
 	
 
 	class Meta:
@@ -66,12 +73,11 @@ class Parent(models.Model):
 
 class Enfant(models.Model):
 	#INFO PERSO
-	nom		= models.CharField(_('nom'),max_length=20)
-	prenom	= models.CharField(_('prenom'),max_length=20)
-	dateDeNaissance = models.DateField(_('Date de Naissance'))
+	nom_Enfant		= models.CharField(_('nom'),max_length=20)
+	prenom_Enfant	= models.CharField(_('prenom'),max_length=20)
+	dateDeNaissance_Enfant = models.DateField(_('Date de Naissance'))
 	#WALLAH C'EST LA DOC QUI M'A DIT DE METTRE + A LA FIN
-	parent1 = models.ForeignKey(Parent, on_delete=models.CASCADE, related_name=_('Parent 1+'))
-	parent2 = models.ForeignKey(Parent, on_delete=models.CASCADE, related_name=_('Parent 2+'))
+	
 	
 	#HORAIRES DU GAMIN
 	#LUNDI

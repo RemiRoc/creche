@@ -22,10 +22,8 @@ class inscription(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
-class inscriptionEnfant(generic.CreateView):
-	form_class = EnfantCreationForm
-	success_url = reverse_lazy('appCreche/home')
-	template_name = 'AppCreche/inscriptionEnfant.html'
+def inscriptionEnfant(request):
+	return render(request, 'AppCreche/inscriptionEnfant.html')
 
 def connexion(request):
 	return render(request, 'appCreche/connexion.html')

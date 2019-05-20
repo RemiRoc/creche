@@ -23,7 +23,6 @@ class EnfantCreationForm(ModelForm):
 	class Meta:
 		model = Enfant
 		fields = '__all__'
-
 class ParentCreationForm(ModelForm):
 	class Meta: 
 		model= Parent
