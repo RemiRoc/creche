@@ -17,13 +17,3 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('username', 'email','is_Parent', 'is_Employe')
 
-
-
-class EnfantCreationForm(ModelForm):
-	class Meta:
-		model = Enfant
-		fields = '__all__'
-class ParentCreationForm(ModelForm):
-	class Meta: 
-		model= Parent
-		fields= '__all__'

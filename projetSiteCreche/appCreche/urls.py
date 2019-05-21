@@ -10,6 +10,7 @@ urlpatterns = [
     path('recrutement/', views.recrutement, name='recrutement'),
     path('inscription/', views.inscription.as_view(), name='inscription'),
     path('inscriptionEnfant/', views.inscriptionEnfant, name='inscriptionEnfant'),
+    path('InscrireEnfant/',views.InscrireEnfant, name='InscrireEnfant'),
     path('petitesAnnonces/',views.petitesAnnonces, name='petitesAnnonces'),
     path('modificationEnfantPonctuel/',views.modificationEnfantPonctuel, name='modificationEnfantPonctuel'),
     path('tableauEmploye/', views.tableauEmploye, name='tableauEmploye'),
