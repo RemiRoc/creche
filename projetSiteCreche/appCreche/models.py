@@ -15,86 +15,32 @@ class CustomUser(AbstractUser):
 	is_Employe = models.BooleanField(default=False)
 	is_Contrib = models.BooleanField(default=False)
 		
-class Parent(models.Model):
-	
-	parentUser			= models.OneToOneField( CustomUser ,related_name="login+",on_delete=models.CASCADE, null=True)
-	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20)
-	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20)
-	adresseMail_Mere 	= models.EmailField(_('Email de la Mère'))
-	num_Mere			= models.DecimalField(_('télephone de la Mère'), max_digits=10, decimal_places=0)
-	profession_Mere 	= models.CharField(_("Profession de la Mère"), max_length=64)
-	telEmployeur_Mere	= models.DecimalField(_('telephone de l\'employeur de la Mère'), max_digits=10, decimal_places=0)
-	nom_Pere			= models.CharField(_('Nom du Père'),max_length=20)
-	prenom_Pere			= models.CharField(_('Prénom du Père'),max_length=20)
-	adresseMail_Pere 	= models.EmailField(_('Email du Père'))	
-	num_Pere			= models.DecimalField(_('télephone du Père'), max_digits=10, decimal_places=0)	
-	telEmployeur_Pere	= models.DecimalField(_('telephone de l\'employeur du Père'), max_digits=10, decimal_places=0)	
-	profession_Pere 	= models.CharField(_("Profession du Père"), max_length=64)
-	adresse				= models.CharField(_("Adresse"), max_length=256)
-	secondeAdresse		= models.CharField(_("Seconde Adresse"), max_length=256, blank=True)
-	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)])
-	
 
-	class Meta:
-		verbose_name = _('Parent')
-		verbose_name_plural = _('Parents')
-
-	def __str__(self):
-		full_name = '%s %s' % (self.nom, self.prenom)
-		return full_name.strip()
-
-	#GETTERS
-	def get_nom(self):
-		return self.nom
-
-	def get_prenom(self):
-		return self.prenom
-
-	def get_adresse_mail(self):
-		return self.adresseMail
-
-	def get_num(self):
-		return self.num
-
-	def get_tel_employeur(self):
-		return self.telEmployeur
-
-	def get_profession(self):
-		return self.profession
-
-	def get_adresse(self):
-		return self.adresse
-
-	def get_seconde_adresse(self):
-		return self.secondeAdresse or "Il n'y a pas de seconde adresse"
-
-	def get_nb_enfant_au_foyer(self):
-		return self.nbEnfantAuFoyer
 
 class Enfant(models.Model):
 	#INFO PERSO
-	nom_Enfant		= models.CharField(_('nom'),max_length=20)
-	prenom_Enfant	= models.CharField(_('prenom'),max_length=20)
-	dateDeNaissance_Enfant = models.DateField(_('Date de Naissance'))
+	nom				= models.CharField(_('nom'),max_length=20, null=True)
+	prenom			= models.CharField(_('prenom'),max_length=20, null=True)
+	dateDeNaissance = models.DateField(_('Date de Naissance'), null=True)
 	#WALLAH C'EST LA DOC QUI M'A DIT DE METTRE + A LA FIN
 	
 	
 	#HORAIRES DU GAMIN
 	#LUNDI
-	arriveLundi		= models.CharField(max_length=3, choices=DebutFrequentationLundi, default='')
-	partLundi		= models.CharField(max_length=4, choices=FinFrequentationLundi, default='')
+	arriveLundi		= models.CharField(max_length=3, choices=DebutFrequentationLundi, default='', null=True)
+	partLundi		= models.CharField(max_length=4, choices=FinFrequentationLundi, default='', null=True)
 	#MARDI
-	arriveMardi		= models.CharField(max_length=3, choices=DebutFrequentationMardi, default='')
-	partMardi		= models.CharField(max_length=4, choices=FinFrequentationMardi, default='')
+	arriveMardi		= models.CharField(max_length=3, choices=DebutFrequentationMardi, default='', null=True)
+	partMardi		= models.CharField(max_length=4, choices=FinFrequentationMardi, default='', null=True)
 	#MERCREDI
-	arriveMercredi	= models.CharField(max_length=3, choices=DebutFrequentationMercredi, default='')
-	partMercredi	= models.CharField(max_length=4, choices=FinFrequentationMercredi, default='')
+	arriveMercredi	= models.CharField(max_length=3, choices=DebutFrequentationMercredi, default='', null=True)
+	partMercredi	= models.CharField(max_length=4, choices=FinFrequentationMercredi, default='', null=True)
 	#JEUDI
-	arriveJeudi		= models.CharField(max_length=3, choices=DebutFrequentationJeudi, default='')
-	partJeudi		= models.CharField(max_length=4, choices=FinFrequentationJeudi, default='')
+	arriveJeudi		= models.CharField(max_length=3, choices=DebutFrequentationJeudi, default='', null=True)
+	partJeudi		= models.CharField(max_length=4, choices=FinFrequentationJeudi, default='', null=True)
 	#VENDREDI
-	arriveVendredi	= models.CharField(max_length=3, choices=DebutFrequentationVendredi, default='')
-	partVendredi	= models.CharField(max_length=4, choices=FinFrequentationVendredi, default='')
+	arriveVendredi	= models.CharField(max_length=3, choices=DebutFrequentationVendredi, default='', null=True)
+	partVendredi	= models.CharField(max_length=4, choices=FinFrequentationVendredi, default='', null=True)
 
 	def __str__(self):
 		full_name = '%s %s' % (self.nom, self.prenom)
@@ -155,6 +101,62 @@ class Enfant(models.Model):
 
 		if direct.exists() or reverse.exists():
 			raise ValidationError(_('Une personne ne peux pas être doublement parent. Si ? '))
+
+
+class Parent(models.Model):
+	
+	parentUser			= models.ForeignKey( CustomUser ,on_delete=models.CASCADE, null=True)
+	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20, null=True)
+	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20, null=True)
+	adresseMail_Mere 	= models.EmailField(_('Email de la Mère'), null=True)
+	num_Mere			= models.DecimalField(_('télephone de la Mère'), max_digits=10, decimal_places=0, null=True)
+	profession_Mere 	= models.CharField(_("Profession de la Mère"), max_length=64, null=True)
+	telEmployeur_Mere	= models.DecimalField(_('telephone de l\'employeur de la Mère'), max_digits=10, decimal_places=0, null=True)
+	nom_Pere			= models.CharField(_('Nom du Père'),max_length=20, null=True)
+	prenom_Pere			= models.CharField(_('Prénom du Père'),max_length=20, null=True)
+	adresseMail_Pere 	= models.EmailField(_('Email du Père'), null=True)	
+	num_Pere			= models.DecimalField(_('télephone du Père'), max_digits=10, decimal_places=0, null=True)	
+	telEmployeur_Pere	= models.DecimalField(_('telephone de l\'employeur du Père'), max_digits=10, decimal_places=0, null=True)	
+	profession_Pere 	= models.CharField(_("Profession du Père"), max_length=64, null=True)
+	adresse				= models.CharField(_("Adresse"), max_length=256, null=True)
+	secondeAdresse		= models.CharField(_("Seconde Adresse"), max_length=256, blank=True)
+	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)], null=True)
+	prenom_Enfant		= models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
+
+	class Meta:
+		verbose_name = _('Parent')
+		verbose_name_plural = _('Parents')
+
+	
+
+	#GETTERS
+	def get_nom(self):
+		return self.nom
+
+	def get_prenom(self):
+		return self.prenom
+
+	def get_adresse_mail(self):
+		return self.adresseMail
+
+	def get_num(self):
+		return self.num
+
+	def get_tel_employeur(self):
+		return self.telEmployeur
+
+	def get_profession(self):
+		return self.profession
+
+	def get_adresse(self):
+		return self.adresse
+
+	def get_seconde_adresse(self):
+		return self.secondeAdresse or "Il n'y a pas de seconde adresse"
+
+	def get_nb_enfant_au_foyer(self):
+		return self.nbEnfantAuFoyer
+
 
 class Contributeur(models.Model):
 	nom			= models.CharField(_('nom'),max_length=20)

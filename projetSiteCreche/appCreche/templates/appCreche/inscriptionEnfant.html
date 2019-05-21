@@ -16,13 +16,13 @@
 			<legend> Formulaire D'inscription </legend>
 			<form method="post" action="InscrireEnfant">
 
-				<label for="prenom_Enfant"> Entrez le prénom de votre Enfant : 
+				<label for="prenomEnfant"> Entrez le prénom de votre Enfant : 
 					<input type="text" name="prenomEnfant" id="prenomEnfant" required />	
 	
-				<label for="nom_Enfant"> Entrez le nom de famille : 
+				<label for="nomEnfant"> Entrez le nom de famille : 
 					<input type="text" name="nomEnfant" id="nomEnfant" required />
 		
-				<label for="DateDeNaissance"> Selectionnez la Date de naissance de l'enfant 
+				<label for="dateDeNaissance"> Selectionnez la Date de naissance de l'enfant 
 					<input type="date" name="dateDeNaissance" id="dateDeNaissance" required />
 
 				<label for="nomMere"> Entrez le nom de la mère : 
@@ -36,9 +36,6 @@
 
 				<label for="mailMere"> Entrez l'email de la mère : 
 					<input type="email" name="mailMere" id="mailMere" required />
-
-			    <label for="ageMere"> Selectionnez la Date de naissance de la mère 
-			 	   <input type="date" name="ageMere" id="ageMere" required />
 
 			 	<label for="ProfessionMere"> Saisissez la Profession de la mère : 
 					<input type="text" name="ProfessionMere" id="ProfessionMere" required />
@@ -64,24 +61,22 @@
 				<label for="ProfessionPere"> Saisissez la Profession du père : 
 					<input type="text" name="ProfessionPere" id="ProfessionPere" required />
 
-			    <label for="agePere"> Selectionnez la Date de naissance du Père 
-			    	<input type="date" name="agePere" id="agePere" required />
+				<label for="adresse"> Saisissez l'adresse où habite l'enfant:
+					<input type="text" name="adresse" id="adresse" required />
 
-				<label for="adresseParentUn"> Saisissez l'adresse où habite l'enfant:
-					<input type="text" name="adresseParentUn" id="adresseParentUn" required />
+				<label for="adresseDeux"> Saisissez la seconde adresse : (facultatif) 
+					<input type="text" name="adresseDeux" id="adresseDeux" />
 
-				<label for="adresseParentDeux"> Saisissez la seconde adresse : (facultatif) 
-					<input type="text" name="adresseParentDeux" id="adresseParentDeux" />
-
-
+				<label for="NbEnfantFoyer"> Nombre d'enfants au Foyer : </label>
+					<input type="int" name="NbEnfantFoyer" id="NbEnfantFoyer" required />
 	<label for="FrequentationLundiDepos"> À quelle heure souhaitez vous déposer votre enfant le Lundi : 
 
 	<select id="FrequentationLundiDepos" name="FrequentationLundiDepos" required>
-                <option value="Non" selected> Ne viens pas </option>
+                <option value="no" selected> Ne viens pas </option>
                 <option value="730"> 7h30 </option>
-                <option value="8"> 8h </option>
+                <option value="800"> 8h </option>
                 <option value="830"> 8h30 </option>      
-                <option value="9"> 9h </option>
+                <option value="900"> 9h </option>
                 <option value="930"> 9h30 </option>
             </select>
 
@@ -91,11 +86,11 @@
 	<label for="FrequentationLundiRepris"> À quelle heure souhaitez vous récupérer votre enfant le Lundi : 
 
 	<select id="FrequentationLundiRepris" name="FrequentationLundiRepris" required>
-                <option value="Non" selected> </option>
+                <option value="no" selected> </option>
                 <option value="1630"> 16h30 </option>
-                <option value="17"> 17h </option>
+                <option value="1700"> 17h </option>
                 <option value="1730"> 17h30 </option>      
-                <option value="18"> 18h </option>
+                <option value="1800"> 18h </option>
                 <option value="1830"> 18h30 </option>
             </select>
 
@@ -106,11 +101,11 @@
 	<label for="FrequentationMardiDepos"> À quelle heure souhaitez vous déposer votre enfant le Mardi : 
 
 	<select id="FrequentationMardiDepos" name="FrequentationMardiDepos" required>
-                <option value="Non" selected> Ne viens pas </option>
+                <option value="no" selected> Ne viens pas </option>
                 <option value="730"> 7h30 </option>
-                <option value="8"> 8h </option>
+                <option value="800"> 8h </option>
                 <option value="830"> 8h30 </option>      
-                <option value="9"> 9h </option>
+                <option value="900"> 9h </option>
                 <option value="930"> 9h30 </option>
             </select>
 
@@ -122,11 +117,11 @@
 	<label for="FrequentationMardiRepris"> À quelle heure souhaitez vous récupérer votre enfant le Mardi : 
 	
 	<select id="FrequentationMardiRepris" name="FrequentationMardiRepris" required>
-                <option value="Non" selected> </option>
+                <option value="no" selected> </option>
                 <option value="1630"> 16h30 </option>
-                <option value="17"> 17h </option>
+                <option value="1700"> 17h </option>
                 <option value="1730"> 17h30 </option>      
-                <option value="18"> 18h </option>
+                <option value="1800"> 18h </option>
                 <option value="1830"> 18h30 </option>
             </select>
 
@@ -139,11 +134,11 @@
 	<label for="FrequentationMercrediDepos"> À quelle heure souhaitez vous déposer votre enfant le Mercredi : 
 
 	<select id="FrequentationMercrediDepos" name="FrequentationMercrediDepos" required>
-                <option value="Non" selected> Ne viens pas </option>
+                <option value="no" selected> Ne viens pas </option>
                 <option value="730"> 7h30 </option>
-                <option value="8"> 8h </option>
+                <option value="800"> 8h </option>
                 <option value="830"> 8h30 </option>      
-                <option value="9"> 9h </option>
+                <option value="900"> 9h </option>
                 <option value="930"> 9h30 </option>
             </select>
 
@@ -155,11 +150,11 @@
 	<label for="FrequentationMercrediRepris"> À quelle heure souhaitez vous récupérer votre enfant le Mercredi : 
 	
 	<select id="FrequentationMercrediRepris" name="FrequentationMercrediRepris" required>
-                <option value="Non" selected> </option>
+                <option value="no" selected> </option>
                 <option value="1630" > 16h30 </option>
-                <option value="17"> 17h </option>
+                <option value="1700"> 17h </option>
                 <option value="1730"> 17h30 </option>      
-                <option value="18"> 18h </option>
+                <option value="1800"> 18h </option>
                 <option value="1830"> 18h30 </option>
             </select>
 
@@ -171,11 +166,11 @@
 	<label for="FrequentationJeudiDepos"> À quelle heure souhaitez vous déposer votre enfant le Jeudi : 
 
 	<select id="FrequentationJeudiDepos" name="FrequentationJeudiDepos" required>
-                <option value="Non" selected> Ne viens pas </option>
+                <option value="no" selected> Ne viens pas </option>
                 <option value="730"> 7h30 </option>
-                <option value="8"> 8h </option>
+                <option value="800"> 8h </option>
                 <option value="830"> 8h30 </option>      
-                <option value="9"> 9h </option>
+                <option value="900"> 9h </option>
                 <option value="930"> 9h30 </option>
             </select>
 
@@ -186,11 +181,11 @@
 	<label for="FrequentationJeudiRepris"> À quelle heure souhaitez vous récupérer votre enfant le Jeudi : 
 	
 	<select id="FrequentationJeudiRepris" name="FrequentationJeudiRepris" required>
-                <option value="Non" selected> </option>
+                <option value="no" selected> </option>
                 <option value="1630"> 16h30 </option>
-                <option value="17"> 17h </option>
+                <option value="1700"> 17h </option>
                 <option value="1730"> 17h30 </option>      
-                <option value="18"> 18h </option>
+                <option value="1800"> 18h </option>
                 <option value="1830"> 18h30 </option>
             </select>
 
@@ -201,28 +196,23 @@
 	<label for="FrequentationVendrediDepos"> À quelle heure souhaitez vous déposer votre enfant le Vendredi : 
 
 	<select id="FrequentationVendrediDepos" name="FrequentationVendrediDepos" required>
-                <option value="Non" selected> Ne viens pas </option>
+                <option value="no" selected> Ne viens pas </option>
                 <option value="730"> 7h30 </option>
-                <option value="8"> 8h </option>
+                <option value="800"> 8h </option>
                 <option value="830"> 8h30 </option>      
-                <option value="9"> 9h </option>
+                <option value="900"> 9h </option>
                 <option value="930"> 9h30 </option>
             </select>
-
-
-
-
-
 
 	<label for="FrequentationVendrediRepris"> À quelle heure souhaitez vous récupérer votre enfant le Vendredi : 
 	
 	<select id="FrequentationVendrediRepris" name="FrequentationVendrediRepris" required>
 
-                <option value="Non" selected> </option>
+                <option value="no" selected> </option>
                 <option value="1630"> 16h30 </option>
-                <option value="17"> 17h </option>
+                <option value="1700"> 17h </option>
                 <option value="1730"> 17h30 </option>      
-                <option value="18"> 18h </option>
+                <option value="1800"> 18h </option>
                 <option value="1830"> 18h30 </option>
             </select>
 
@@ -231,7 +221,7 @@
 				</form>
 			</fieldset>
 {% else %}
-  <p>You are not logged in</p>
+  <p>Vous n'êtes pas connecté</p>
   <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}

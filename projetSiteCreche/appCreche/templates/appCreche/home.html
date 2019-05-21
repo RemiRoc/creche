@@ -15,14 +15,14 @@
 			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
 
 			<div id="inscriptionEnfant"><a href="appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
-			 <p><a href="{% url 'password_reset' %}">reset password</a></p>
+			 <p><a href="{% url 'password_reset' %}"> Changer le mot de passe </a></p>
 		</div>
-  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'logout' %}">Deconnexion</a></p>
 {% else %}
 <div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
 <div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
 
-  <p>You are not logged in</p>
+  <p>Vous n'êtes pas connecté</p>
   <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}
