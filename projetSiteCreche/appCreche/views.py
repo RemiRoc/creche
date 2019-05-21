@@ -23,10 +23,6 @@ class inscription(generic.CreateView):
     template_name = 'signup.html'
 
 def inscriptionEnfant(request):
-
-	return render(request, 'AppCreche/inscriptionEnfant.html')
-
-def InscrireEnfant(request):
 	enfant = Enfant()
 	parent = Parent()
 	print('soleil')
@@ -64,12 +60,16 @@ def InscrireEnfant(request):
 	enfant.Parents 				 = parent
 	request.user.is_Parent		 = True
 	
-	if((enfant.nom == Enfant.objects.filter(request.POST.get(enfant.nom)).first() is None or enfant.prenom == Enfant.objects.filter(request.POST.get(enfant.prenom)).first()) and (parent.parentUser == Parent.objects.filter(request.POST.get(parentUser).first()))):
+	if( Enfant.objects.filter(nom = request.POST.get(enfant.nom), prenom = request.POST.get(enfant.prenom)).first() is None and (Parent.objects.filter(parentUser = request.user).first() is None)):
 		print('lune')
 		parent.save()
 		enfant.save()		
 		return render(request, 'AppCreche/InscrireEnfant.html')
-	else:
+	return render(request, 'AppCreche/inscriptionEnfant.html')
+
+def InscrireEnfant(request):
+	
+
 		return render(request, 'AppCreche/PasInscrireEnfant.html')
 
 def connexion(request):
