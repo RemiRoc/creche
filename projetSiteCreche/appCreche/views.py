@@ -27,7 +27,7 @@ def inscriptionEnfant(request):
 	enfant = Enfant()
 	parent = Parent()
 	print('soleil')
-	if(	(enfant == Enfant.objects.filter(nom =  request.POST.get("nomEnfant"), prenom =  request.POST.get("prenomEnfant")).first() is None ) and (parent == Parent.objects.filter(parentUser = request.user).first() is None)):
+	if(	(enfant == Enfant.objects.filter(nom =  request.POST.get("nomEnfant")).filter(prenom =  request.POST.get("prenomEnfant")).first() is None ) and (parent == Parent.objects.filter(parentUser = request.user).first() is None)):
 		print('lune')
 
 		enfant.nom 				= request.POST.get("nomEnfant")
