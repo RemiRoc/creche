@@ -2,8 +2,8 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .forms import *
-from .models import CustomUser, Enfant, Parent, Contributeur, Employe, OffreEmploi, ListeDAttente, EnfantPresent
+from .forms import CustomUserChangeForm, CustomUserCreationForm
+from .models import CustomUser, Enfant, Parent, Contributeur, Employe, OffreEmploi, EnfantEnAttente, EnfantPresent
 
 class DetailsEnfant(admin.ModelAdmin):
 
@@ -27,5 +27,5 @@ admin.site.register(Contributeur)
 admin.site.register(Employe)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(OffreEmploi)
-admin.site.register(ListeDAttente)
+admin.site.register(EnfantEnAttente)
 admin.site.register(EnfantPresent)
