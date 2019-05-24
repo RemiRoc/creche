@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator
 from django.contrib import admin
 from django.db import models
-import re
+from .validateurs import *
 
 class CustomUser(AbstractUser):
 	# add additional fields in here
@@ -18,93 +18,31 @@ class CustomUser(AbstractUser):
 	is_Contrib = models.BooleanField(default=False)
 		
 
-def validate_tel(value):
-	telVal = re.match("(?:(?:\+|00)|0)[6-7](\d{2}){4}", str(value))
-	if(telVal is None):
-		raise ValidationError(
-			_('%(value)s n\'est pas un numéro de téléphone valide'),
-			params={'value': value},
-		)
-	else:
-		return value
-
-def validate_nom(value):
-	nom = re.match("((?:[A-Z])([a-z |é|è|ê|\s|-]){1,50}([A-Z]{0,1})([a-z | é|è|ê|\s|-]){1,50})", str(value))
-	if(nom is None):
-		raise ValidationError(
-			_('%(value)s n\'est pas un nom valide'),
-			params={'value': value},
-		)
-	else:
-		return value
-
-def validate_prenom(value):
-	prenom = re.match("((?:[A-Z])([a-z |é|è|ê|\s|-]){1,50}([A-Z]{0,1})([a-z | é|è|ê|\s|-]){1,50})", str(value))
-	if(prenom is None ):
-		raise ValidationError(
-			_('%(value)s n\'est pas un prénom valide'),
-			params={'value': value},
-		)
-	else:
-		return value
-
-def validate_ville(value):
-	ville = re.match("((?:[A-Z])([a-z |é|è|ê|\s|-]){1,50}([A-Z]{0,1})([a-z | é|è|ê|\s|-]){1,50})", str(value))
-	if(ville is None):
-		raise ValidationError(
-			_('%(value)s n\'est pas une ville valide (Exemple : Toulouse ) '),
-			params={'value': value},
-		)
-	else:
-		return value
-
-
-def validate_adresse(value):
-	adresse = re.match("(?:[1-9]{1,4}|[A-Z]*)([a-z |é|è|ê|\s|-]){1,50}(([A-Z]{0,1})([a-z|é|è|ê|\s|-]){1,50})*", str(value))
-	if(adresse is None):
-		raise ValidationError(
-			_('%(value)s n\'est pas une adresse valide (Exemple : 1248 bis route du Soleil )'),
-			params={'value': value},
-		)
-	else:
-		return value
-
-def validate_profession(value):
-	profession = re.match("((?:[A-Z])([a-z |é|è|ê|\s|-]){1,50}([A-Z]{0,1})([a-z | é|è|ê|\s|-]){1,50})", str(value))
-	if(profession is None):
-		raise ValidationError(
-			_('%(value)s n\'est pas une profession valide (Exemple : Auxiliaire Puericultrice )'),
-			params={'value': value},
-		)
-	else:
-		return value
 
 class Parent(models.Model):
 
 	
 	
 	parentUser			= models.ForeignKey( CustomUser ,on_delete=models.CASCADE, null=True)
-	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20,validators=[validate_nom], null=True)
-	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20,validators=[validate_prenom], null=True)
+	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20,validators=[validate_carac], null=True)
+	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20,validators=[validate_carac], null=True)
 	adresseMail_Mere 	= models.EmailField(_('Email de la Mère'), null=True)
 	num_Mere			= models.CharField(_('télephone de la Mère'), max_length=10, validators=[validate_tel], null=True)
-	profession_Mere 	= models.CharField(_("Profession de la Mère"), validators=[validate_profession] , max_length=64, null=True)
+	profession_Mere 	= models.CharField(_("Profession de la Mère"), validators=[validate_carac] , max_length=64, null=True)
 	telEmployeur_Mere	= models.CharField(_('telephone de l\'employeur de la Mère'), max_length=10, validators=[validate_tel], null=True)
-	nom_Pere			= models.CharField(_('Nom du Père'),max_length=20, validators=[validate_nom], null=True)
-	prenom_Pere			= models.CharField(_('Prénom du Père'),max_length=20, validators=[validate_prenom], null=True)
+	nom_Pere			= models.CharField(_('Nom du Père'),max_length=20, validators=[validate_carac], null=True)
+	prenom_Pere			= models.CharField(_('Prénom du Père'),max_length=20, validators=[validate_carac], null=True)
 	adresseMail_Pere 	= models.EmailField(_('Email du Père'), null=True)	
 	num_Pere			= models.CharField(_('télephone du Père'), max_length=10, validators=[validate_tel], null=True)	
 	telEmployeur_Pere	= models.CharField(_('telephone de l\'employeur du Père'), max_length=10,  validators=[validate_tel], null=True)	
-	profession_Pere 	= models.CharField(_("Profession du Père"), validators=[validate_profession], max_length=64, null=True)
+	profession_Pere 	= models.CharField(_("Profession du Père"), validators=[validate_carac], max_length=64, null=True)
 	adresse				= models.CharField(_("Adresse"), validators=[validate_adresse], max_length=256, null=True)
-	ville				= models.CharField(_("Ville"),validators=[validate_ville], max_length=50, null=True)
+	ville				= models.CharField(_("Ville"),validators=[validate_carac], max_length=50, null=True)
 	secondeAdresse		= models.CharField(_("Seconde Adresse"),validators=[validate_adresse], max_length=256, blank=True, null=True)
-	villeDeux			= models.CharField(_("Seconde Ville"),validators=[validate_ville], max_length=50,blank=True, null=True)
+	villeDeux			= models.CharField(_("Seconde Ville"),validators=[validate_carac], max_length=50,blank=True, null=True)
 	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)], null=True)
-
+	FactureCreche		= models.FileField(_("Dernière Facture : "), upload_to='appCreche/fichier_import/Factures',blank=True, null=True)
 	
-
-
 
 	class Meta:
 		verbose_name = _('Parent')
@@ -163,12 +101,18 @@ class Parent(models.Model):
 
 class Enfant(models.Model):
 	#INFO PERSO
-	nom				= models.CharField(_('nom'),max_length=20, validators=[validate_nom], null=True)
-	prenom			= models.CharField(_('prenom'),max_length=20, validators=[validate_prenom], null=True)
-	dateDeNaissance = models.DateField(_('Date de Naissance'), null=True)
-	Parents			= models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
-	#WALLAH C'EST LA DOC QUI M'A DIT DE METTRE + A LA FIN
-	
+	nom						= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True)
+	prenom					= models.CharField(_('prenom'),max_length=20, validators=[validate_carac], null=True)
+	dateDeNaissance 		= models.DateField(_('Date de Naissance'), null=True)
+	Parents					= models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
+	certificatMedical 		= models.FileField(_('Certificat Médical de l\'enfant '),upload_to='appCreche/fichier_import/CertificatMedical')
+	AssuranceCivile			= models.FileField(_('Assurance Civile de l\'enfant '),upload_to='appCreche/fichier_import/AssuranceCivile')
+	protocoleDeTemperature 	= models.FileField(_('Protocolde de température de l\'enfant '),upload_to='appCreche/fichier_import/Protocole temp')
+	AutorisationMedicament 	= models.FileField(_('Autorisation de distribution de médicament de l\'enfant '),upload_to='appCreche/fichier_import/Autorisation Medicament')
+	FichePoliceAssurance	= models.FileField(_('Police d\'assurance de l\'enfant '),upload_to='appCreche/fichier_import/Police Assurance')
+	NomDocteur				= models.CharField(_('Nom du Médecin traitant'),max_length=20, validators=[validate_carac], null=True)
+	telDocteur				= models.CharField(_('télephone du Médecin traitant'), max_length=10, validators=[validate_tel], null=True)
+	nomAssurrance			= models.CharField(_('Nom de la compagnie d\'assurance'),max_length=20, validators=[validate_carac], null=True)
 	
 	#HORAIRES DU GAMIN
 	#LUNDI
@@ -245,8 +189,8 @@ class Enfant(models.Model):
 
 
 class Contributeur(models.Model):
-	nom			= models.CharField(_('nom'),max_length=20, validators=[validate_nom], null=True)
-	prenom		= models.CharField(_('prenom'),max_length=20, validators=[validate_prenom],null=True)
+	nom			= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True)
+	prenom		= models.CharField(_('prenom'),max_length=20, validators=[validate_carac],null=True)
 	adresseMail	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
 	num			= models.CharField(_('telephone'), max_length=10, validators=[validate_tel])
 
@@ -269,17 +213,18 @@ class Contributeur(models.Model):
 
 class Employe(models.Model):
 	#INFO PERSONEL
-	nom			= models.CharField(_('nom'),max_length=20, validators=[validate_nom], null=True )
-	prenom		= models.CharField(_('prenom'),max_length=20, validators=[validate_prenom],null=True)
-	adresseMail	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
-	num			= models.CharField(_('telephone'), max_length=10, validators=[validate_tel])
+	nom					= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True )
+	prenom				= models.CharField(_('prenom'),max_length=20, validators=[validate_carac],null=True)
+	adresseMail			= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
+	num					= models.CharField(_('telephone'), max_length=10, validators=[validate_tel])
+	
 	#HORAIRES PERSONEL
 	horaireSemaineJaune = models.CharField(_("Horaires semaine Jaune"), max_length=4, choices=semaineJaune, default='')
 	horaireSemaineRouge = models.CharField(_("Horaires semaine Rouge"), max_length=4, choices=semaineRouge, default='')
 	horaireSemaineBleue = models.CharField(_("Horaires semaine Bleue"), max_length=4, choices=semaineBleue, default='')
 	horaireSemaineVerte = models.CharField(_("Horaires semaine Verte"), max_length=4, choices=semaineVerte, default='')
 	horaireSemaineNoire = models.CharField(_("Horaires semaine Noire"), max_length=4, choices=semaineNoire, default='')
-	horaireSemaineRose = models.CharField(_("Horaires semaine Rose"), max_length=4, choices=semaineRose, default='')
+	horaireSemaineRose 	= models.CharField(_("Horaires semaine Rose"), max_length=4, choices=semaineRose, default='')
 
 	def __str__(self):
 		full_name = '%s %s' % (self.nom, self.prenom)
@@ -320,10 +265,14 @@ class Employe(models.Model):
 class OffreEmploi(models.Model):
 
 	intituleDuPoste = models.CharField(verbose_name="Saisissez l'intitulé du poste", max_length=100, default='')
-	DescriptionDuPoste = models.CharField(verbose_name="Décrivez le poste", max_length=999, default='')
+	DescriptionDuPoste = models.TextField(verbose_name="Décrivez le poste", default='')
 	diplomesRequis = models.CharField(verbose_name="Saisissez quels dîplômes sont requis pour ce poste", max_length=100, default='')
 	Contact = models.EmailField(default='asso.gros.calin@gmail.com')
 
+
+class EnfantPreinscrit(models.Model):
+
+	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
 
 class EnfantEnAttente(models.Model):
 

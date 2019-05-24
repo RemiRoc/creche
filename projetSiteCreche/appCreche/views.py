@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.http import HttpResponseRedirect
 from .forms import CustomUserCreationForm, InscriptionEnfant
-from .models import Parent, Enfant, CustomUser, EnfantEnAttente
+from .models import Parent, Enfant, CustomUser, EnfantPreinscrit
 # Create your views here.
 def index(request):
 	return render(request, 'appCreche/base.html')
@@ -25,25 +25,34 @@ class inscription(generic.CreateView):
 
 def inscriptionEnfant(request):
 	if request.method == 'POST':
-		form = InscriptionEnfant(request.POST)
+		form = InscriptionEnfant(request.POST, request.FILES)
 		
 		if form.is_valid():
+			
 			enfant = Enfant()
 			parent = Parent()
-			Attente = EnfantEnAttente()
-			enfant.nom 				= request.POST.get("nomEnfant")
-			enfant.prenom 			= request.POST.get("prenomEnfant")
-			enfant.dateDeNaissance  = request.POST.get("dateDeNaissance")
-			enfant.arriveLundi 		= request.POST.get("LundiDepos")
-			enfant.partLundi 		= request.POST.get("LundiRepris")
-			enfant.arriveMardi 		= request.POST.get("MardiDepos")
-			enfant.partMardi		= request.POST.get("MardiRepris")
-			enfant.arriveMercredi   = request.POST.get("MercrediDepos")
-			enfant.partMercredi	    = request.POST.get("MercrediRepris")
-			enfant.arriveJeudi 		= request.POST.get("JeudiDepos")
-			enfant.partJeudi 		= request.POST.get("JeudiRepris")
-			enfant.arriveVendredi   = request.POST.get("VendrediDepos")
-			enfant.partVendredi 	= request.POST.get("VendrediRepris")
+			preinscrit = EnfantPreinscrit()
+			enfant.nom 				 		= request.POST.get("nomEnfant")
+			enfant.prenom 			 		= request.POST.get("prenomEnfant")
+			enfant.dateDeNaissance   		= request.POST.get("dateDeNaissance")
+			enfant.arriveLundi 		 		= request.POST.get("LundiDepos")
+			enfant.partLundi 		 		= request.POST.get("LundiRepris")
+			enfant.arriveMardi 		 		= request.POST.get("MardiDepos")
+			enfant.partMardi		 		= request.POST.get("MardiRepris")
+			enfant.arriveMercredi    		= request.POST.get("MercrediDepos")
+			enfant.partMercredi	     		= request.POST.get("MercrediRepris")
+			enfant.arriveJeudi 		 		= request.POST.get("JeudiDepos")
+			enfant.partJeudi 				= request.POST.get("JeudiRepris")
+			enfant.arriveVendredi    		= request.POST.get("VendrediDepos")
+			enfant.partVendredi 			= request.POST.get("VendrediRepris")
+			enfant.certificatMedical 		= request.FILES["certificatMedical"]
+			enfant.AssuranceCivile			= request.FILES["AssuranceCivile"]
+			enfant.protocoleDeTemperature	= request.FILES["protocoleDeTemperature"]
+			enfant.AutorisationMedicament	= request.FILES["AutorisationMedicament"]
+			enfant.FichePoliceAssurance		= request.FILES["FichePoliceAssurance"]
+			enfant.NomDocteur				= request.POST.get("NomDocteur")
+			enfant.telDocteur				= request.POST.get("numTelDocteur")
+			enfant.nomAssurance				= request.POST.get("nomAssurance")
 
 			parent.nom_Mere				 = request.POST.get("nomMere")
 			parent.prenom_Mere			 = request.POST.get("prenomMere")
@@ -63,22 +72,25 @@ def inscriptionEnfant(request):
 			parent.villeDeux			 = request.POST.get("villeDeux")
 			parent.nbEnfantAuFoyer 		 = request.POST.get("nbEnfantFoyer")
 			parent.parentUser			 = request.user
-			
+
 			request.user.is_Parent		 = True
 			
-			if(Enfant.objects.filter(nom = enfant.nom, prenom = enfant.prenom).first() is None or Parent.objects.filter(parentUser = request.user).first() is None):
+
+
+
+			if(Enfant.objects.filter(nom = enfant.nom, prenom = enfant.prenom, dateDeNaissance = enfant.dateDeNaissance).first() is None or Parent.objects.filter(parentUser = request.user).first() is None):
 				if(Parent.objects.filter(parentUser = request.user).first() is None):
 					parent.save()
 					enfant.Parents = parent
 					enfant.save()	
-					Attente.Enfant = enfant
-					Attente.save()
+					preinscrit.Enfant = enfant
+					preinscrit.save()
 					return render(request, 'AppCreche/InscrireEnfant.html')
 				else:
 					enfant.Parents = Parent.objects.filter(parentUser = request.user).first()
 					enfant.save()
-					Attente.Enfant = enfant
-					Attente.save()
+					preinscrit.Enfant = enfant
+					preinscrit.save()
 					return render(request, 'AppCreche/InscrireEnfant.html')
 					
 

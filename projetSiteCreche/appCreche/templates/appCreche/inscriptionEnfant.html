@@ -1,5 +1,5 @@
 {% extends 'appCreche/base.html' %}
-{% block title %}Inscription Enfant{% endblock %}
+{% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
 		{% if user.is_authenticated %}
 	  		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
@@ -10,12 +10,10 @@
 
 			<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
 		<fieldset id="inscriptionEnfant">		
-				<form method="post">
+				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
-  					{{form}}
-			
+  					{{form}}	
  				<button type="submit"> Valider </button>
-
 				</form>
 			</fieldset>
 {% else %}
