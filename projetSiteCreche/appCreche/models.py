@@ -2,12 +2,14 @@ import datetime
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser
 from appCreche.horaires import *
+from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator
 from django.contrib import admin
 from django.db import models
 from .validateurs import *
+from .path import * 
 
 class CustomUser(AbstractUser):
 	# add additional fields in here
@@ -21,8 +23,7 @@ class CustomUser(AbstractUser):
 
 class Parent(models.Model):
 
-	
-	
+		
 	parentUser			= models.ForeignKey( CustomUser ,on_delete=models.CASCADE, null=True)
 	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20,validators=[validate_carac], null=True)
 	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20,validators=[validate_carac], null=True)
@@ -41,8 +42,12 @@ class Parent(models.Model):
 	secondeAdresse		= models.CharField(_("Seconde Adresse"),validators=[validate_adresse], max_length=256, blank=True, null=True)
 	villeDeux			= models.CharField(_("Seconde Ville"),validators=[validate_carac], max_length=50,blank=True, null=True)
 	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)], null=True)
-	FactureCreche		= models.FileField(_("Dernière Facture : "), upload_to='appCreche/fichier_import/Factures',blank=True, null=True)
+	FactureCreche		= models.FileField(_("Dernière Facture : "), upload_to=UploadToPathAndRename(os.path.join('Factures')),blank=True, null=True)
 	
+	def __str__(self):
+		full_name = '%s %s' % (self.nom_Mere, self.prenom_Mere)
+		return full_name.strip()
+
 
 	class Meta:
 		verbose_name = _('Parent')
@@ -105,11 +110,11 @@ class Enfant(models.Model):
 	prenom					= models.CharField(_('prenom'),max_length=20, validators=[validate_carac], null=True)
 	dateDeNaissance 		= models.DateField(_('Date de Naissance'), null=True)
 	Parents					= models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
-	certificatMedical 		= models.FileField(_('Certificat Médical de l\'enfant '),upload_to='appCreche/fichier_import/CertificatMedical')
-	AssuranceCivile			= models.FileField(_('Assurance Civile de l\'enfant '),upload_to='appCreche/fichier_import/AssuranceCivile')
-	protocoleDeTemperature 	= models.FileField(_('Protocolde de température de l\'enfant '),upload_to='appCreche/fichier_import/Protocole temp')
-	AutorisationMedicament 	= models.FileField(_('Autorisation de distribution de médicament de l\'enfant '),upload_to='appCreche/fichier_import/Autorisation Medicament')
-	FichePoliceAssurance	= models.FileField(_('Police d\'assurance de l\'enfant '),upload_to='appCreche/fichier_import/Police Assurance')
+	certificatMedical 		= models.FileField(_('Certificat Médical de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join( 'CertificatMedical')))
+	AssuranceCivile			= models.FileField(_('Assurance Civile de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join('AssuranceCivile')))
+	protocoleDeTemperature 	= models.FileField(_('Protocolde de température de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join('Protocole temp')))
+	AutorisationMedicament 	= models.FileField(_('Autorisation de distribution de médicament de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join('Autorisation Medicament')))
+	FichePoliceAssurance	= models.FileField(_('Police d\'assurance de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join('Police Assurance')))
 	NomDocteur				= models.CharField(_('Nom du Médecin traitant'),max_length=20, validators=[validate_carac], null=True)
 	telDocteur				= models.CharField(_('télephone du Médecin traitant'), max_length=10, validators=[validate_tel], null=True)
 	nomAssurrance			= models.CharField(_('Nom de la compagnie d\'assurance'),max_length=20, validators=[validate_carac], null=True)

@@ -7,7 +7,7 @@ from .models import CustomUser, Enfant, Parent, Contributeur, Employe, OffreEmpl
 from .validateurs import *
 	
 class DetailsEnfant(admin.ModelAdmin):
-
+	
 	list_display = ['nom','prenom', 'Parents']
 	
 

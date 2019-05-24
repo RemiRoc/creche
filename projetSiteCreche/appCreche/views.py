@@ -5,6 +5,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from .forms import CustomUserCreationForm, InscriptionEnfant
 from .models import Parent, Enfant, CustomUser, EnfantPreinscrit
+
 # Create your views here.
 def index(request):
 	return render(request, 'appCreche/base.html')
@@ -45,14 +46,16 @@ def inscriptionEnfant(request):
 			enfant.partJeudi 				= request.POST.get("JeudiRepris")
 			enfant.arriveVendredi    		= request.POST.get("VendrediDepos")
 			enfant.partVendredi 			= request.POST.get("VendrediRepris")
+			enfant.NomDocteur				= request.POST.get("NomDocteur")
+			enfant.telDocteur				= request.POST.get("numTelDocteur")
+			enfant.nomAssurance				= request.POST.get("nomAssurance")
+
 			enfant.certificatMedical 		= request.FILES["certificatMedical"]
 			enfant.AssuranceCivile			= request.FILES["AssuranceCivile"]
 			enfant.protocoleDeTemperature	= request.FILES["protocoleDeTemperature"]
 			enfant.AutorisationMedicament	= request.FILES["AutorisationMedicament"]
 			enfant.FichePoliceAssurance		= request.FILES["FichePoliceAssurance"]
-			enfant.NomDocteur				= request.POST.get("NomDocteur")
-			enfant.telDocteur				= request.POST.get("numTelDocteur")
-			enfant.nomAssurance				= request.POST.get("nomAssurance")
+			
 
 			parent.nom_Mere				 = request.POST.get("nomMere")
 			parent.prenom_Mere			 = request.POST.get("prenomMere")
@@ -72,7 +75,6 @@ def inscriptionEnfant(request):
 			parent.villeDeux			 = request.POST.get("villeDeux")
 			parent.nbEnfantAuFoyer 		 = request.POST.get("nbEnfantFoyer")
 			parent.parentUser			 = request.user
-
 			request.user.is_Parent		 = True
 			
 
