@@ -62,13 +62,23 @@ class InscriptionEnfant(forms.Form):
 	VendrediRepris	= forms.ChoiceField(label='A quelle heure souhaitez vous récupérer votre enfant le Vendredi ? ', choices=FinFrequentationVendredi)
 
 
-	nomAssurrance			= forms.CharField(label='Nom de l\'assurance de l\'enfant  ', validators=[validate_carac],max_length=30)
+	nomAssurance			= forms.CharField(label='Nom de l\'assurance de l\'enfant  ', validators=[validate_carac],max_length=30)
 	certificatMedical 		= forms.FileField(label='Certificat médical de l\'enfant  ')
 	AssuranceCivile			= forms.FileField(label='Assurance civile de l\'enfant  ')
 	protocoleDeTemperature 	= forms.FileField(label='Protocole de température  ')
 	AutorisationMedicament 	= forms.FileField(label='Autorisation de distribution de medicament ')
 	FichePoliceAssurance	= forms.FileField(label='Fiche sur laquelle se situe la police d\'assurance  ')	
 
+
+	def process(self):
+		clean = self.cleaned_data
+
+class deposFacture(forms.Form):
+	prenomPere 		= forms.CharField(label='Prénom du Père', max_length=20, validators=[validate_carac])
+	prenomMere 		= forms.CharField(label='Prénom de la Mère', max_length=20, validators=[validate_carac])
+	nomMere		 	= forms.CharField(label='Nom de la Mère', max_length=30, validators=[validate_carac])
+	nomPere 		= forms.CharField(label='Nom du Père', max_length=30, validators=[validate_carac])
+	Facture 		= forms.FileField(label='Dépos de Facture ')
 
 	def process(self):
 		clean = self.cleaned_data

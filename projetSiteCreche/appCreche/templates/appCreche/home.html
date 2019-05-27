@@ -5,6 +5,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
   <div id="pageindex">
 		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
 
@@ -15,7 +16,12 @@
 			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
 
 			<div id="inscriptionEnfant"><a href="appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
-			 <p><a href="{% url 'password_reset' %}"> Changer le mot de passe </a></p>
+		
+		{% if user.is_superuser %}
+			<div id="deposFacture"><a href="appCreche/deposFacture"> Déposer une Facture </a></div>
+		{% endif %}
+			
+			<div id="moncompte"><a href="appCreche/monCompte"> Vers mon compte </a></div>
 		</div>
   <p><a href="{% url 'logout' %}">Deconnexion</a></p>
 {% else %}

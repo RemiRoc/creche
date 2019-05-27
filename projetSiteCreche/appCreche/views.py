@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.http import HttpResponseRedirect
-from .forms import CustomUserCreationForm, InscriptionEnfant
+from .forms import CustomUserCreationForm, InscriptionEnfant, deposFacture
 from .models import Parent, Enfant, CustomUser, EnfantPreinscrit
 
 # Create your views here.
@@ -29,7 +29,8 @@ def inscriptionEnfant(request):
 		form = InscriptionEnfant(request.POST, request.FILES)
 		
 		if form.is_valid():
-			
+			user = CustomUser()
+			user = request.user
 			enfant = Enfant()
 			parent = Parent()
 			preinscrit = EnfantPreinscrit()
@@ -75,7 +76,7 @@ def inscriptionEnfant(request):
 			parent.villeDeux			 = request.POST.get("villeDeux")
 			parent.nbEnfantAuFoyer 		 = request.POST.get("nbEnfantFoyer")
 			parent.parentUser			 = request.user
-			request.user.is_Parent		 = True
+			user.is_Parent				 = True
 			
 
 
@@ -87,12 +88,14 @@ def inscriptionEnfant(request):
 					enfant.save()	
 					preinscrit.Enfant = enfant
 					preinscrit.save()
+					user.save()
 					return render(request, 'AppCreche/InscrireEnfant.html')
 				else:
 					enfant.Parents = Parent.objects.filter(parentUser = request.user).first()
 					enfant.save()
 					preinscrit.Enfant = enfant
 					preinscrit.save()
+					user.save()
 					return render(request, 'AppCreche/InscrireEnfant.html')
 					
 
@@ -101,11 +104,21 @@ def inscriptionEnfant(request):
 
 	return render(request, 'appCreche/inscriptionEnfant.html',{'form':form})
 
-def InscrireEnfant(request):
+def deposFactures(request):
+	if request.method == 'POST':
+		form = deposFacture(request.POST, request.FILES)
 		
-	
-		return render(request, 'AppCreche/PasInscrireEnfant.html')
+		if form.is_valid():
+			parent = Parent()
+			if(Parent.objects.filter(prenom_Pere = request.POST.get("prenomPere"), nom_Pere = request.POST.get("nomPere"), prenom_Mere = request.POST.get("prenomMere"), nom_Mere = request.POST.get("nomMere")).first()):
+				parent = Parent.objects.filter(prenom_Pere = request.POST.get("prenomPere"), nom_Pere = request.POST.get("nomPere"), prenom_Mere = request.POST.get("prenomMere"), nom_Mere = request.POST.get("nomMere")).first()
+				parent.FactureCreche = request.FILES["Facture"]
+				parent.save()
+				return render(request, 'appCreche/factureDeposee.html')
+	else:
+		form = deposFacture()
 
+	return render(request, 'appCreche/deposFacture.html',{'form':form})			
 
 def connexion(request):
 	return render(request, 'appCreche/connexion.html')

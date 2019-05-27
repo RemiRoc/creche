@@ -1,8 +1,8 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
-		{% if user.is_authenticated %}
-	  		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
+		{% if user.is_superuser %}
+		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
 
 			<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
 			
@@ -16,9 +16,12 @@
  				<button type="submit"> Valider </button>
 				</form>
 			</fieldset>
-{% else %}
-  <p>Vous n'êtes pas connecté</p>
+		{% else %}
+<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
+
   <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}
+
+
 {% endblock %}

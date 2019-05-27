@@ -117,7 +117,7 @@ class Enfant(models.Model):
 	FichePoliceAssurance	= models.FileField(_('Police d\'assurance de l\'enfant '),upload_to=UploadToPathAndRename(os.path.join('Police Assurance')))
 	NomDocteur				= models.CharField(_('Nom du Médecin traitant'),max_length=20, validators=[validate_carac], null=True)
 	telDocteur				= models.CharField(_('télephone du Médecin traitant'), max_length=10, validators=[validate_tel], null=True)
-	nomAssurrance			= models.CharField(_('Nom de la compagnie d\'assurance'),max_length=20, validators=[validate_carac], null=True)
+	nomAssurance			= models.CharField(_('Nom de la compagnie d\'assurance'),max_length=20, validators=[validate_carac], null=True)
 	
 	#HORAIRES DU GAMIN
 	#LUNDI
