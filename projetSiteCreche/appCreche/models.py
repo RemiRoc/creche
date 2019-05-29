@@ -121,20 +121,21 @@ class Enfant(models.Model):
 	
 	#HORAIRES DU GAMIN
 	#LUNDI
-	arriveLundi		= models.CharField(max_length=3, choices=DebutFrequentationLundi, default='', null=True)
-	partLundi		= models.CharField(max_length=4, choices=FinFrequentationLundi, default='', null=True)
+	arriveLundi		= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
+	partLundi		= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
 	#MARDI
-	arriveMardi		= models.CharField(max_length=3, choices=DebutFrequentationMardi, default='', null=True)
-	partMardi		= models.CharField(max_length=4, choices=FinFrequentationMardi, default='', null=True)
+	arriveMardi		= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
+	partMardi		= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
 	#MERCREDI
-	arriveMercredi	= models.CharField(max_length=3, choices=DebutFrequentationMercredi, default='', null=True)
-	partMercredi	= models.CharField(max_length=4, choices=FinFrequentationMercredi, default='', null=True)
+	arriveMercredi	= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
+	partMercredi	= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
 	#JEUDI
-	arriveJeudi		= models.CharField(max_length=3, choices=DebutFrequentationJeudi, default='', null=True)
-	partJeudi		= models.CharField(max_length=4, choices=FinFrequentationJeudi, default='', null=True)
+	arriveJeudi		= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
+	partJeudi		= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
 	#VENDREDI
-	arriveVendredi	= models.CharField(max_length=3, choices=DebutFrequentationVendredi, default='', null=True)
-	partVendredi	= models.CharField(max_length=4, choices=FinFrequentationVendredi, default='', null=True)
+	arriveVendredi	= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
+	partVendredi	= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
+
 
 	def __str__(self):
 		full_name = '%s %s' % (self.nom, self.prenom)
@@ -220,16 +221,45 @@ class Employe(models.Model):
 	#INFO PERSONEL
 	nom					= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True )
 	prenom				= models.CharField(_('prenom'),max_length=20, validators=[validate_carac],null=True)
-	adresseMail			= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
+	adresseMail			= models.EmailField(_('Email de l\'employe'), null=True)
 	num					= models.CharField(_('telephone'), max_length=10, validators=[validate_tel])
-	
+	empUser				= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
 	#HORAIRES PERSONEL
-	horaireSemaineJaune = models.CharField(_("Horaires semaine Jaune"), max_length=4, choices=semaineJaune, default='')
-	horaireSemaineRouge = models.CharField(_("Horaires semaine Rouge"), max_length=4, choices=semaineRouge, default='')
-	horaireSemaineBleue = models.CharField(_("Horaires semaine Bleue"), max_length=4, choices=semaineBleue, default='')
-	horaireSemaineVerte = models.CharField(_("Horaires semaine Verte"), max_length=4, choices=semaineVerte, default='')
-	horaireSemaineNoire = models.CharField(_("Horaires semaine Noire"), max_length=4, choices=semaineNoire, default='')
-	horaireSemaineRose 	= models.CharField(_("Horaires semaine Rose"), max_length=4, choices=semaineRose, default='')
+	horaireLundiSemaineJaune = models.CharField(_("Horaires du Lundi en semaine Jaune"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineJaune = models.CharField(_("Horaires du Mardi en semaine Jaune"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineJaune = models.CharField(_("Horaires du Mercredi en semaine Jaune"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineJaune = models.CharField(_("Horaires du Jeudi en semaine Jaune"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineJaune = models.CharField(_("Horaires du Vendredi en semaine Jaune"), max_length=25, choices=horaireEmpl, default='')
+
+	horaireLundiSemaineRouge = models.CharField(_("Horaires du Lundi en semaine Rouge"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineRouge = models.CharField(_("Horaires du Mardi en semaine Rouge"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineRouge = models.CharField(_("Horaires du Mercredi en semaine Rouge"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineRouge = models.CharField(_("Horaires du Jeudi en semaine Rouge"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineRouge = models.CharField(_("Horaires du Vendredi en semaine Rouge"), max_length=25, choices=horaireEmpl, default='')
+	
+	horaireLundiSemaineBleue = models.CharField(_("Horaires du Lundi en semaine Bleue"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineBleue = models.CharField(_("Horaires du Mardi en semaine Bleue"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineBleue = models.CharField(_("Horaires du Mercredi en semaine Bleue"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineBleue = models.CharField(_("Horaires du Jeudi en semaine Bleue"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineBleue = models.CharField(_("Horaires du Vendredi en semaine Bleue"), max_length=25, choices=horaireEmpl, default='')
+
+	horaireLundiSemaineVerte = models.CharField(_("Horaires du Lundi en semaine Verte"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineVerte = models.CharField(_("Horaires du Mardi en semaine Verte"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineVerte = models.CharField(_("Horaires du Mercredi en semaine Verte"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineVerte = models.CharField(_("Horaires du Jeudi en semaine Verte"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineVerte = models.CharField(_("Horaires du Vendredi en semaine Verte"), max_length=25, choices=horaireEmpl, default='')
+
+	horaireLundiSemaineNoire = models.CharField(_("Horaires du Lundi en semaine Noire"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineNoire = models.CharField(_("Horaires du Mardi en semaine Noire"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineNoire = models.CharField(_("Horaires du Mercredi en semaine Noire"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineNoire = models.CharField(_("Horaires du Jeudi en semaine Noire"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineNoire = models.CharField(_("Horaires du Vendredi en semaine Noire"), max_length=25, choices=horaireEmpl, default='')
+
+	horaireLundiSemaineRose = models.CharField(_("Horaires du Lundi en semaine Rose"), max_length=25, choices=horaireEmpl, default='')
+	horaireMardiSemaineRose = models.CharField(_("Horaires du Mardi en semaine Rose"), max_length=25, choices=horaireEmpl, default='')
+	horaireMercrediSemaineRose = models.CharField(_("Horaires du Mercredi en semaine Rose"), max_length=25, choices=horaireEmpl, default='')
+	horaireJeudiSemaineRose = models.CharField(_("Horaires du Jeudi en semaine Rose"), max_length=25, choices=horaireEmpl, default='')
+	horaireVendrediSemaineRose = models.CharField(_("Horaires du Vendredi en semaine Rose"), max_length=25, choices=horaireEmpl, default='')
 
 	def __str__(self):
 		full_name = '%s %s' % (self.nom, self.prenom)
@@ -286,3 +316,8 @@ class EnfantEnAttente(models.Model):
 class EnfantPresent(models.Model):
 
 	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
+
+class HorairesSoir(models.Model):
+
+	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
+	

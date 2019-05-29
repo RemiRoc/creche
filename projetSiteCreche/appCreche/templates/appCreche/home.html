@@ -19,6 +19,7 @@
 		
 		{% if user.is_superuser %}
 			<div id="deposFacture"><a href="appCreche/deposFacture"> Déposer une Facture </a></div>
+			<div id="inscritEmploye"><a href="appCreche/inscritEmploye"> Inscrire un Employe </a></div>
 		{% endif %}
 			
 			<div id="moncompte"><a href="appCreche/monCompte"> Vers mon compte </a></div>
@@ -32,4 +33,5 @@
   <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
   <a href="{% url 'login' %}">login</a>
 {% endif %}
+
 {% endblock %}

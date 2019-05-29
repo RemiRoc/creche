@@ -14,4 +14,4 @@ class UploadToPathAndRename(object):
         # set filename as random string
         filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
-        return os.path.join(self.sub_path, filename)
+        return os.path.join(self.sub_path, filename)    

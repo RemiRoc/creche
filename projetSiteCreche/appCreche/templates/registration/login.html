@@ -5,11 +5,12 @@
 
 {% block content %}
 <h2>Login</h2>
+<fieldset>	<legend> Se Connecter </legend>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Login</button>
 </form>
-
+</fieldset>
 <div id="accueil"><a href="../../">Retour à l'accueil</a>  
 {% endblock %}

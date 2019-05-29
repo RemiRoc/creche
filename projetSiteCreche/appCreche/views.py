@@ -1,10 +1,10 @@
 
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.http import HttpResponseRedirect
-from .forms import CustomUserCreationForm, InscriptionEnfant, deposFacture
-from .models import Parent, Enfant, CustomUser, EnfantPreinscrit
+from .forms import CustomUserCreationForm, InscriptionEnfant, deposFacture, nouvelEmploye
+from .models import *
 
 # Create your views here.
 def index(request):
@@ -17,7 +17,10 @@ def contribuer(request):
 	return render(request, 'appCreche/contribuer.html')
 
 def recrutement(request):
-	return render(request, 'appCreche/recrutement.html')
+	offres = {
+	'OffreEmploi': OffreEmploi.objects.all(),
+	}
+	return render(request, 'appCreche/recrutement.html', offres)
 
 class inscription(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -120,21 +123,87 @@ def deposFactures(request):
 
 	return render(request, 'appCreche/deposFacture.html',{'form':form})			
 
-def connexion(request):
-	return render(request, 'appCreche/connexion.html')
 
-def deconnexion(request):
-	return render(request, 'appCreche/deconnexion.html')
 
 def petitesAnnonces(request):
 	return render(request, 'appCreche/petitesAnnonces.html')
 
-def modificationEnfantPonctuel(request):
-	return render(request, 'appCreche/modificationEnfantPonctuel.html')
 
-def tableauEmploye(request):
-	return render(request, 'appCreche/tableauEmploye.html')
+
+def inscritEmploye(request):
+
+	if request.method == 'POST':
+		form = nouvelEmploye(request.POST)
+		
+		if form.is_valid():
+
+			emp = Employe()
+
+			emp.nom 							= request.POST.get("nom")
+			emp.prenom 							= request.POST.get("prenom")
+			emp.num 							= request.POST.get("num")
+			emp.adresseMail 					= request.POST.get("adresseMail")
+			emp.horaireLundiSemaineJaune		= request.POST.get("horaireLundiSemaineJaune")
+			emp.horaireMardiSemaineJaune		= request.POST.get("horaireMardiSemaineJaune")
+			emp.horaireMercrediSemaineJaune		= request.POST.get("horaireMercrediSemaineJaune")
+			emp.horaireJeudiSemaineJaune		= request.POST.get("horaireJeudiSemaineJaune")
+			emp.horaireVendrediSemaineJaune		= request.POST.get("horaireVendrediSemaineJaune")
+			emp.horaireLundiSemaineRouge		= request.POST.get("horaireLundiSemaineRouge")
+			emp.horaireMardiSemaineRouge		= request.POST.get("horaireMardiSemaineRouge") 
+			emp.horaireMercrediSemaineRouge		= request.POST.get("horaireMercrediSemaineRouge")
+			emp.horaireJeudiSemaineRouge		= request.POST.get("horaireJeudiSemaineRouge")
+			emp.horaireVendrediSemaineRouge		= request.POST.get("horaireVendrediSemaineRouge")
+			emp.horaireLundiSemaineBleue		= request.POST.get("horaireLundiSemaineBleue") 
+			emp.horaireMardiSemaineBleue		= request.POST.get("horaireMardiSemaineBleue")
+			emp.horaireMercrediSemaineBleue		= request.POST.get("horaireMercrediSemaineBleue") 
+			emp.horaireJeudiSemaineBleue		= request.POST.get("horaireJeudiSemaineBleue")
+			emp.horaireVendrediSemaineBleue		= request.POST.get("horaireVendrediSemaineBleue")
+			emp.horaireLundiSemaineVerte		= request.POST.get("horaireLundiSemaineVerte")
+			emp.horaireMardiSemaineVerte		= request.POST.get("horaireMardiSemaineVerte")
+			emp.horaireMercrediSemaineVerte		= request.POST.get("horaireMercrediSemaineVerte")
+			emp.horaireJeudiSemaineVerte		= request.POST.get("horaireJeudiSemaineVerte")
+			emp.horaireVendrediSemaineVerte		= request.POST.get("horaireVendrediSemaineVerte")
+			emp.horaireLundiSemaineNoire		= request.POST.get("horaireLundiSemaineNoire")
+			emp.horaireMardiSemaineNoire		= request.POST.get("horaireMardiSemaineNoire")
+			emp.horaireMercrediSemaineNoire		= request.POST.get("horaireMercrediSemaineNoire")
+			emp.horaireJeudiSemaineNoire		= request.POST.get("horaireJeudiSemaineNoire")
+			emp.horaireVendrediSemaineNoire		= request.POST.get("horaireVendrediSemaineNoire")
+			emp.horaireLundiSemaineRose			= request.POST.get("horaireLundiSemaineRose")
+			emp.horaireMardiSemaineRose			= request.POST.get("horaireMardiSemaineRose")
+			emp.horaireMercrediSemaineRose		= request.POST.get("horaireMercrediSemaineRose")
+			emp.horaireJeudiSemaineRose			= request.POST.get("horaireJeudiSemaineRose")
+			emp.horaireVendrediSemaineRose		= request.POST.get("horaireVendrediSemaineRose")
+
+			
+			user = CustomUser.objects.filter(email = emp.adresseMail).first()
+			emp.empUser = user
+			emp.save()
+			user.is_Employe	= True
+			user.save()
+			return render(request, 'appCreche/employeInscrit.html')
+
+	else:
+		form = nouvelEmploye()
+
+	return render(request, 'appCreche/inscritEmploye.html',{'form':form})
+
+
 
 def monCompte(request):
-	return render(request, 'appCreche/monCompte.html')
+
+	context = {
+		'parent': Parent.objects.filter(parentUser = request.user).first(),
+		'enfant': Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first(),
+		'employe': Employe.objects.filter(empUser = request.user).first(),
+		'EnfantPreinscrit': EnfantPreinscrit.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
+		'EnfantEnAttente': EnfantEnAttente.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
+		'EnfantPresent': EnfantPresent.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
+		'nbEnfant': EnfantPresent.objects.count(),
+		'placeSoirLundi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partLundi = "16h30")).count(),
+		'placeSoirMardi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partMardi = "16h30")).count(),
+		'placeSoirMercredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partMercredi = "16h30")).count(),
+		'placeSoirJeudi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partJeudi = "16h30")).count(),
+		'placeSoirVendredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partVendredi = "16h30")).count(),
+	}
+	return render(request, 'appCreche/monCompte.html', context)
 
