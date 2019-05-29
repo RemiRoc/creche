@@ -3,35 +3,9 @@
 
 {% block title %}Home{% endblock %}
 
+
+
 {% block content %}
-{% if user.is_authenticated %}
-
-  <div id="pageindex">
-		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-			<div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
-			
-			<div id="recrutement"><a href="appCreche/recrutement"> Recrutement </a></div>
-
-			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
-
-			<div id="inscriptionEnfant"><a href="appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
-		
-		{% if user.is_superuser %}
-			<div id="deposFacture"><a href="appCreche/deposFacture"> Déposer une Facture </a></div>
-			<div id="inscritEmploye"><a href="appCreche/inscritEmploye"> Inscrire un Employe </a></div>
-		{% endif %}
-			
-			<div id="moncompte"><a href="appCreche/monCompte"> Vers mon compte </a></div>
-		</div>
-  <p><a href="{% url 'logout' %}">Deconnexion</a></p>
-{% else %}
-<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-<div id="Equipe"><a href="appCreche/equipe"> L'équipe </a></div>
-
-  <p>Vous n'êtes pas connecté</p>
-  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
+lol
 
 {% endblock %}

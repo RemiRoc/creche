@@ -1,26 +1,8 @@
 
 {% extends 'appCreche/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Employe Inscrit{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <div id="pageindex">
-		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a></div>
-
-			<div id=""><a href="appCreche/contribuer"> Contribuer </a></div>
-			
-			<div id="recrutement"><a href="appCreche/recrutement"> Recrutement </a></div>
-
-			<div id="Annonces"><a href="appCreche/petitesAnnonces"> Petites Annonces </a></div>
-		<p><a href="{% url 'logout' %}">logout</a></p>
-	</div>
-{% else %}
-<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
-
-
+L'employe a bien été inscrit, cliquez <a href="../../"> ici</a>. pour etre redirigé sur le menu.
 {% endblock %}

@@ -1,29 +1,7 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Mon Compte{% endblock %}
 {% block content %}
-	{% if user.is_authenticated %}
-
-		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-		<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
-			
-		<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
-
-		<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
 		
-		<div id="moncompte"><a href="../monCompte"> Vers mon compte </a></div>
-		
-		
-		<div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
-		<div id="pagerecrutement">
-	
-	{% else %}
-				<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-				<div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-				<a href="{% url 'login' %}">login</a>
-	{% endif %}
-	
 		{% for OffreEmploi in OffreEmploi %}
 		<div id="emploi">
     			<h4>{{ OffreEmploi.intituleDuPoste }}</h4>

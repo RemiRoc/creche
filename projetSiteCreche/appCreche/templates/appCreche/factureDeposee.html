@@ -1,15 +1,9 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
+
 		{% if user.is_superuser %}
-			<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-			<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
-			
-			<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
-
-			<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
-		La facture a bien été déposée. 
+			La facture a bien été déposée. 
 
 		{% else %}
 		<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  

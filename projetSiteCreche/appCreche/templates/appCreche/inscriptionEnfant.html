@@ -2,13 +2,7 @@
 {% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
 		{% if user.is_authenticated %}
-	  		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-			<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
-			
-			<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
-
-			<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
+	  		
 		<fieldset id="fieldset">	<legend> Inscrire son Enfant </legend>
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}

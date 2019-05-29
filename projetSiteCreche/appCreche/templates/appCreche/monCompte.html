@@ -1,20 +1,7 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Mon Compte{% endblock %}
 {% block content %}
-	{% if user.is_authenticated %}
-
-		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-		<div id="Equipe"><a href="../equipe"> L'équipe </a></div>
 			
-		<div id="recrutement"><a href="../recrutement"> Recrutement </a></div>
-
-		<div id="Annonces"><a href="../petitesAnnonces"> Petites Annonces </a></div>
-		
-		<div id="password"><a href="{% url 'password_reset' %}"> Changer le mot de passe </a> </div>
-
-		<div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
-		
 		{% if user.is_Parent %}
 
 			{% if EnfantPreinscrit is not None %}
@@ -27,132 +14,137 @@
 		
 			{% elif EnfantPresent is not None %}
 
-			<h3>Votre fils {{enfant}} est autiste </h3>
+				<h3>Votre fils {{enfant}} est autiste </h3>
 
-			{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  <p>	Le Lundi, votre enfant doit arriver à <b> {{enfant.arriveLundi}} </b> et repartir à <b> {{enfant.partLundi}} </b> </p> {% else %}
-				<p> Votre enfant ne viens pas le Lundi </p>
-			{% endif %}
+				{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  
+					<p>Le Lundi, votre enfant doit arriver à <b> {{enfant.arriveLundi}} </b> et repartir à <b> {{enfant.partLundi}} </b> </p>
+				{% else %}
+					<p> Votre enfant ne viens pas le Lundi </p>
+				{% endif %}
 
-			{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} 
-				<p>	Le Mardi, votre enfant doit arriver à <b> {{enfant.arriveMardi}} </b> et repartir à <b> {{enfant.partMardi}} </b> </p> 
-			{% else %}
-				<p> Votre enfant ne viens pas le Mardi </p>
-			{% endif %}
-
-
-			{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}
-				<p>	Le Mercredi, votre enfant doit arriver à <b> {{enfant.arriveMercredi}} </b> et repartir à <b> {{enfant.partMercredi}} </b> </p>
-			{% else %}
-				<p> Votre enfant ne viens pas le Mercredi </p>
-			{% endif %}
+				{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} 
+					<p>	Le Mardi, votre enfant doit arriver à <b> {{enfant.arriveMardi}} </b> et repartir à <b> {{enfant.partMardi}} </b> </p> 
+				{% else %}
+					<p> Votre enfant ne viens pas le Mardi </p>
+				{% endif %}
 
 
-			{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} 
-				<p>	Le Jeudi, votre enfant doit arriver à <b> {{enfant.arriveJeudi}} </b> et repartir à <b> {{enfant.partJeudi}} </b> </p>	
-			{% else %}
-				<p> Votre enfant ne viens pas le Jeudi </p>
-			{% endif %}
+				{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}
+					<p>	Le Mercredi, votre enfant doit arriver à <b> {{enfant.arriveMercredi}} </b> et repartir à <b> {{enfant.partMercredi}} </b> </p>
+				{% else %}
+					<p> Votre enfant ne viens pas le Mercredi </p>
+				{% endif %}
+
+
+				{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} 
+					<p>	Le Jeudi, votre enfant doit arriver à <b> {{enfant.arriveJeudi}} </b> et repartir à <b> {{enfant.partJeudi}} </b> </p>	
+				{% else %}
+					<p> Votre enfant ne viens pas le Jeudi </p>
+				{% endif %}
 
 
 
-			{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}
-				<p>	Le Vendredi, votre enfant doit arriver à <b> {{enfant.arriveVendredi}} </b> et repartir à <b> {{enfant.partVendredi}} </b> </p> 
-			{% else %} 
-				<p> Votre enfant ne viens pas le Vendredi </p>		<p> inscrire tempandairement votre enfant </p>
-			{% endif %}
+				{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}
+					<p>	Le Vendredi, votre enfant doit arriver à <b> {{enfant.arriveVendredi}} </b> et repartir à <b> {{enfant.partVendredi}} </b> </p> 
+				{% else %} 
+					<p> Votre enfant ne viens pas le Vendredi </p>		<p> inscrire tempandairement votre enfant </p>
+				{% endif %}
 
-			<table>
-			<thead>
-				<tr>
-					<th colspan="5"> Emploi du temps </th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><a href="">Lundi</a></td>
-					<td><a href="">Mardi</a></td>
-					<td><a href="">Mercredi</a></td>
-					<td><a href="">Jeudi</a></td>
-					<td><a href="">Vendredi</a></td>
-					
-				</tr>
-				<tr>
-					<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.arriveLundi}} {% else %} Ne viens pas 
-						{% if nbEnfant < 24 %}
-						pétanque
-						{% endif %}
-						
-					{% endif %} </td>
+				<table>
+					<thead>
+						<tr>
+							<th colspan="5"> Emploi du temps </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a href="">Lundi</a></td>
+							<td><a href="">Mardi</a></td>
+							<td><a href="">Mercredi</a></td>
+							<td><a href="">Jeudi</a></td>
+							<td><a href="">Vendredi</a></td>
+							
+						</tr>
+						<tr>
+							<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.arriveLundi}} {% else %} Ne viens pas 
+								{% if nbEnfant < 24 %}
+								pétanque
+								{% endif %}
+								
+							{% endif %} </td>
 
-					<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} {{enfant.arriveMardi}} {% else %} Ne viens pas {% endif %} </td>
+							<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} {{enfant.arriveMardi}} {% else %} Ne viens pas {% endif %} </td>
 
-					<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %} {{enfant.arriveMercredi}} {% else %} Ne viens pas
+							<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %} {{enfant.arriveMercredi}} {% else %} Ne viens pas
 
-					{% if nbEnfant < 24 %}
-						pétanque
-						{% endif %} 
-					{% endif %} </td>
+							{% if nbEnfant < 24 %}
+								pétanque
+								{% endif %} 
+							{% endif %} </td>
 
-					<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} {{enfant.arriveJeudi}} {% else %} Ne viens pas 
+							<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} {{enfant.arriveJeudi}} {% else %} Ne viens pas 
 
-					{% if nbEnfant < 24 %}
-						pétanque
-						{% endif %}
-					{% endif %} </td>
+							{% if nbEnfant < 24 %}
+								pétanque
+								{% endif %}
+							{% endif %} </td>
 
-					<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %} {{enfant.arriveVendredi}} {% else %} Ne viens pas
+							<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %} 
+									{{enfant.arriveVendredi}} {% else %} Ne viens pas
 
-					{% if nbEnfant < 24 %}
-						pétanque
-					{% endif %}
-				{% endif %} </td>
+									{% if nbEnfant < 24 %}
+										pétanque
+									{% endif %}
+								{% endif %} 
+							</td>
 
-				</tr>
+						</tr>
 
-				<tr>
-					<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.partLundi}} {% else %} Ne viens pas {% endif %} </td>
-					<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %}  {{enfant.partMardi}} {% else %} Ne viens pas {% endif %} </td>
-					<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}  {{enfant.partMercredi}} {% else %} Ne viens pas {% endif %} </td>
-					<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %}  {{enfant.partJeudi}} {% else %} Ne viens pas {% endif %} </td>
-					<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}  {{enfant.partVendredi}} {% else %} Ne viens pas {% endif %} </td>
-				</tr>
-			</tbody>
-		</table>
- 
+					<tr>
+						<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.partLundi}} {% else %} Ne viens pas {% endif %} </td>
+						<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %}  {{enfant.partMardi}} {% else %} Ne viens pas {% endif %} </td>
+						<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}  {{enfant.partMercredi}} {% else %} Ne viens pas {% endif %} </td>
+						<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %}  {{enfant.partJeudi}} {% else %} Ne viens pas {% endif %} </td>
+						<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}  {{enfant.partVendredi}} {% else %} Ne viens pas {% endif %} </td>
+					</tr>
+				</tbody>
+			</table>
+
 			
 			{% if placeSoirLundi < 15 %}
-				{% elif enfant.partLundi = "16h30" %}
-					<p>	il y a {{placeSoirLundi}} places le Lundi soir entre 16h30 et 18h30. </p>
+			{% elif enfant.partLundi = "16h30" %}
+					<p>	il y a {{{nbEnfant - placeSoirLundi}} places le Lundi soir entre 16h30 et 18h30. </p>
 			{% endif %}
 			{% endif %}
 
 			{% if placeSoirMardi < 15 %}
 			{% if enfant.partMardi = "16h30" %}
-					<p>	il y a {{placeSoirMardi}} places le Mardi soir entre 16h30 et 18h30. </p>
+					<p>	il y a {{nbEnfant - placeSoirMardi}} places le Mardi soir entre 16h30 et 18h30. </p>
 			{% endif %}
 			{% endif %}
 
 			{% if placeSoirMercredi < 15 %}
 			{% if enfant.partMercredi = "16h30" %}
-					<p>	il y a {{placeSoirMercredi}} places le Mercredi soir entre 16h30 et 18h30. </p>
+					<p>	il y a {{{nbEnfant - placeSoirMercredi}} places le Mercredi soir entre 16h30 et 18h30. </p>
 			{% endif %}
 			{% endif %}
 
-			{% if placeSoirJeudi < 15 %}
+			{% if placeSoirJeudi < 15%}
 			{% if enfant.partJeudi = "16h30" %}
-					<p>	il y a {{placeSoirJeudi}} places le Jeudi soir entre 16h30 et 18h30. </p>
+					<p>	il y a {{{nbEnfant - placeSoirJeudi}} places le Jeudi soir entre 16h30 et 18h30. </p>
 			{% endif %}
 			{% endif %}
 
 			{% if placeSoirVendredi < 15 %}
 			{% if enfant.partVendredi = "16h30" %}
-					<p>	il y a {{placeSoirVendredi}} places le Vendredi soir entre 16h30 et 18h30. </p>
+					<p>	il y a {{{nbEnfant - placeSoirVendredi}} places le Vendredi soir entre 16h30 et 18h30. </p>
 			{% endif %}
 			{% endif %}
 
 			<a href="/"> Je souhaite faire une modification de temporaire </a>
+			{% if parent.FactureCreche is not None %}
 			<p>	Pour voir votre dernière facture : <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </p>
-
+			{% endif %}
 
 			Pour tous changements, veuillez contacter la crèche 
 			{% endif %}
@@ -231,12 +223,5 @@
 
 		{% endif %}
 	
-		{% else %}
-		<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-		<div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-		<a href="{% url 'login' %}">login</a>
-	{% endif %}
-
-
+		 
 {% endblock %}
