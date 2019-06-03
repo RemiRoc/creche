@@ -4,8 +4,9 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
-<fieldset>	<legend> Se Connecter </legend>
+
+<fieldset>
+<legend><h2> Se Connecter </h2></legend>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}

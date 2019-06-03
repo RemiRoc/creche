@@ -1,0 +1,32 @@
+fieldset{
+	display: flex;
+	flex-direction: column;
+	width:50vw;
+	align-self: center;
+	margin-left:7.5%;
+}
+
+form{
+	display flex;
+	flex-direction: column;
+	justify-content: space-between;	
+}
+
+label{
+	display: inline-block;
+}
+input{
+	margin-right: 100%;
+	display: inline-block;
+	margin-bottom: 2%;
+}
+
+select{
+	margin-right: 100%;
+	display: inline-block;
+	margin-bottom: 2%;
+}
+
+button{
+	width: 100%;
+}

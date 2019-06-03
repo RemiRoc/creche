@@ -1,0 +1,76 @@
+body{
+	display: flex;
+	justify-content: center;
+}
+
+div#header{
+	
+	display:flex;
+	flex-direction: row;
+	border-radius: 10px;
+	border: 2px solid black;
+	background-image: linear-gradient(lightpink, darkblue);
+	justify-content: center;
+	width:60vw;
+	height: 15vh;
+}
+
+div#headerHautBasPre{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width:80%;
+}
+div#Connexion{
+	border-radius: 30px;
+	background-color: green;
+	border: 2px solid white;
+	padding: 10px;
+}
+div#Projet{
+	border-radius: 30px;
+	background-color: blue;
+	border: 2px solid white;
+	padding: 10px;
+}
+
+div#Projet>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#Connexion>a{
+	color:white;
+	text-decoration: none;
+}
+div#recrutement{
+	border-radius: 30px;
+	background-color: orange;
+	border: 2px solid white;
+	padding: 10px;
+}
+div#Sign{
+	display:flex;
+	flex-direction: row;
+
+}
+img#logo{
+	height: 150px;
+}
+div#recrutement>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#Inscription{
+	border-radius: 30px;
+	background-color: grey;
+	border: 2px solid white;
+	padding: 10px;
+	
+}
+div#Inscription>a{
+	color:white;
+	text-decoration: none;
+}

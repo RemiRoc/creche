@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 MEDIA_ROOT = 'Media/fichier_import'
 MEDIA_URL = "/media/"
-
+STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

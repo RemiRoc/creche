@@ -1,227 +1,253 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Mon Compte{% endblock %}
+{% block header %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/postconnexion.css' %}">
+{% if user.is_authenticated %}
+<div id="header">
+    <a href="../../"><img src="../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
+    <div id="headerHautBas">
+        <div id="headerhaut">
+            
+            <div id="moncompte"><a href="{% url 'password_reset' %}"> Changer le mot de passe </a> </div>
+            <div id="Projet"><a href="../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
+            <div id="inscriptionEnfant"><a href="../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
+        </div>
+        <div id="headerbas">
+            {% if user.is_superuser %}
+            <div id="deposFacture"><a href="../../appCreche/deposFacture"> Déposer une Facture </a></div>
+            <div id="inscritEmploye"><a href="../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
+            {% endif %}
+            <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
+            <div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div id="header">
+    <div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a> </div>
+    
+    <div id="Projet"><a href="../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
+    <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
+    <p>Vous n'êtes pas connecté</p>
+    <div id="Inscription"><a href="../../appCreche/inscription"> S'inscrire à la crèche </a></div>
+    <a href="{% url 'login' %}">login</a>
+</div>
+</div>
+{% endif %}
+{% endblock header %}
 {% block content %}
-			
-		{% if user.is_Parent %}
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/tableau.css' %}">
+{% if user.is_Parent %}
 
-			{% if EnfantPreinscrit is not None %}
+	{% if EnfantPreinscrit is not None %}
 
-				<p>Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
+		<p>Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
 
-			{% elif EnfantEnAttente is not None %}
+	{% elif EnfantEnAttente is not None %}
 
-				<p>Votre enfant est sur liste d'attente, recontactez la crèche tous les 3 mois environ pour la tenir informée de votre situation. </p>
-		
-			{% elif EnfantPresent is not None %}
-
-				<h3>Votre fils {{enfant}} est autiste </h3>
-
-				{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  
-					<p>Le Lundi, votre enfant doit arriver à <b> {{enfant.arriveLundi}} </b> et repartir à <b> {{enfant.partLundi}} </b> </p>
-				{% else %}
-					<p> Votre enfant ne viens pas le Lundi </p>
-				{% endif %}
-
-				{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} 
-					<p>	Le Mardi, votre enfant doit arriver à <b> {{enfant.arriveMardi}} </b> et repartir à <b> {{enfant.partMardi}} </b> </p> 
-				{% else %}
-					<p> Votre enfant ne viens pas le Mardi </p>
-				{% endif %}
-
-
-				{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}
-					<p>	Le Mercredi, votre enfant doit arriver à <b> {{enfant.arriveMercredi}} </b> et repartir à <b> {{enfant.partMercredi}} </b> </p>
-				{% else %}
-					<p> Votre enfant ne viens pas le Mercredi </p>
-				{% endif %}
-
-
-				{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} 
-					<p>	Le Jeudi, votre enfant doit arriver à <b> {{enfant.arriveJeudi}} </b> et repartir à <b> {{enfant.partJeudi}} </b> </p>	
-				{% else %}
-					<p> Votre enfant ne viens pas le Jeudi </p>
-				{% endif %}
-
-
-
-				{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}
-					<p>	Le Vendredi, votre enfant doit arriver à <b> {{enfant.arriveVendredi}} </b> et repartir à <b> {{enfant.partVendredi}} </b> </p> 
-				{% else %} 
-					<p> Votre enfant ne viens pas le Vendredi </p>		<p> inscrire tempandairement votre enfant </p>
-				{% endif %}
-
-				<table>
-					<thead>
-						<tr>
-							<th colspan="5"> Emploi du temps </th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><a href="">Lundi</a></td>
-							<td><a href="">Mardi</a></td>
-							<td><a href="">Mercredi</a></td>
-							<td><a href="">Jeudi</a></td>
-							<td><a href="">Vendredi</a></td>
-							
-						</tr>
-						<tr>
-							<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.arriveLundi}} {% else %} Ne viens pas 
-								{% if nbEnfant < 24 %}
-								pétanque
-								{% endif %}
-								
-							{% endif %} </td>
-
-							<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} {{enfant.arriveMardi}} {% else %} Ne viens pas {% endif %} </td>
-
-							<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %} {{enfant.arriveMercredi}} {% else %} Ne viens pas
-
-							{% if nbEnfant < 24 %}
-								pétanque
-								{% endif %} 
-							{% endif %} </td>
-
-							<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} {{enfant.arriveJeudi}} {% else %} Ne viens pas 
-
-							{% if nbEnfant < 24 %}
-								pétanque
-								{% endif %}
-							{% endif %} </td>
-
-							<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %} 
-									{{enfant.arriveVendredi}} {% else %} Ne viens pas
-
-									{% if nbEnfant < 24 %}
-										pétanque
-									{% endif %}
-								{% endif %} 
-							</td>
-
-						</tr>
-
-					<tr>
-						<td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.partLundi}} {% else %} Ne viens pas {% endif %} </td>
-						<td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %}  {{enfant.partMardi}} {% else %} Ne viens pas {% endif %} </td>
-						<td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}  {{enfant.partMercredi}} {% else %} Ne viens pas {% endif %} </td>
-						<td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %}  {{enfant.partJeudi}} {% else %} Ne viens pas {% endif %} </td>
-						<td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}  {{enfant.partVendredi}} {% else %} Ne viens pas {% endif %} </td>
-					</tr>
-				</tbody>
-			</table>
-
-			
-			{% if placeSoirLundi < 15 %}
-			{% elif enfant.partLundi = "16h30" %}
-					<p>	il y a {{{nbEnfant - placeSoirLundi}} places le Lundi soir entre 16h30 et 18h30. </p>
-			{% endif %}
-			{% endif %}
-
-			{% if placeSoirMardi < 15 %}
-			{% if enfant.partMardi = "16h30" %}
-					<p>	il y a {{nbEnfant - placeSoirMardi}} places le Mardi soir entre 16h30 et 18h30. </p>
-			{% endif %}
-			{% endif %}
-
-			{% if placeSoirMercredi < 15 %}
-			{% if enfant.partMercredi = "16h30" %}
-					<p>	il y a {{{nbEnfant - placeSoirMercredi}} places le Mercredi soir entre 16h30 et 18h30. </p>
-			{% endif %}
-			{% endif %}
-
-			{% if placeSoirJeudi < 15%}
-			{% if enfant.partJeudi = "16h30" %}
-					<p>	il y a {{{nbEnfant - placeSoirJeudi}} places le Jeudi soir entre 16h30 et 18h30. </p>
-			{% endif %}
-			{% endif %}
-
-			{% if placeSoirVendredi < 15 %}
-			{% if enfant.partVendredi = "16h30" %}
-					<p>	il y a {{{nbEnfant - placeSoirVendredi}} places le Vendredi soir entre 16h30 et 18h30. </p>
-			{% endif %}
-			{% endif %}
-
-			<a href="/"> Je souhaite faire une modification de temporaire </a>
-			{% if parent.FactureCreche is not None %}
-			<p>	Pour voir votre dernière facture : <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </p>
-			{% endif %}
-
-			Pour tous changements, veuillez contacter la crèche 
-			{% endif %}
-		{% endif %}
-		
-		{% if user.is_Employe %}
-
-			Bonjour {{employe.prenom}} {{employe.nom}}
-		<table>
-			<thead>
-				<tr>
-					<th colspan="6"> Emploi du temps </th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Semaines</td>
-					<td>Lundi</td>
-					<td>Mardi</td>
-					<td>Mercredi</td>
-					<td>Jeudi</td>
-					<td>Vendredi</td>
-					
-				</tr>
-
-				<tr id="jaune">
-					<td>Jaune</td>
-					<td>{%if handaireLundiSemaineJaune != "no" %} {{employe.handaireLundiSemaineJaune}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineJaune != "no" %} {{employe.handaireMardiSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineJaune != "no" %} {{employe.handaireMercrediSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineJaune != "no" %} {{employe.handaireJeudiSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineJaune != "no" %} {{employe.handaireVendrediSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-				<tr id="rouge">
-					<td>Rouge</td>
-					<td>{%if handaireLundiSemaineRouge != "no" %} {{employe.handaireLundiSemaineRouge}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineRouge != "no" %} {{employe.handaireMardiSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineRouge != "no" %} {{employe.handaireMercrediSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineRouge != "no" %} {{employe.handaireJeudiSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineRouge != "no" %} {{employe.handaireVendrediSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-				<tr id="bleu">
-					<td>Bleue</td>
-					<td>{%if handaireLundiSemaineBleue != "no" %} {{employe.handaireLundiSemaineBleue}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineBleue != "no" %} {{employe.handaireMardiSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineBleue != "no" %} {{employe.handaireMercrediSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineBleue != "no" %} {{employe.handaireJeudiSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineBleue != "no" %} {{employe.handaireVendrediSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-				<tr id="vert">
-					<td>Verte</td>
-					<td>{%if handaireLundiSemaineVerte != "no" %} {{employe.handaireLundiSemaineVerte}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineVerte != "no" %} {{employe.handaireMardiSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineVerte != "no" %} {{employe.handaireMercrediSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineVerte != "no" %} {{employe.handaireJeudiSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineVerte != "no" %} {{employe.handaireVendrediSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-				<tr id="noir">
-					<td>Noire</td>
-					<td>{%if handaireLundiSemaineNoire != "no" %} {{employe.handaireLundiSemaineNoire}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineNoire != "no" %} {{employe.handaireMardiSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineNoire != "no" %} {{employe.handaireMercrediSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineNoire != "no" %} {{employe.handaireJeudiSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineNoire != "no" %} {{employe.handaireVendrediSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-				<tr id="rose">
-					<td>Rose</td>
-					<td>{%if handaireLundiSemaineRose != "no" %} {{employe.handaireLundiSemaineRose}} {% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMardiSemaineRose != "no" %} {{employe.handaireMardiSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireMercrediSemaineRose != "no" %} {{employe.handaireMercrediSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireJeudiSemaineRose != "no" %} {{employe.handaireJeudiSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
-					<td>{%if handaireVendrediSemaineRose != "no" %} {{employe.handaireVendrediSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
-				</tr>
-			</tbody>
-
-
-		{% endif %}
+		<p>Votre enfant est sur liste d'attente, recontactez la crèche tous les 3 mois environ pour la tenir informée de votre situation. </p>
 	
-		 
+	{% elif EnfantPresent is not None %}
+		<h3>Votre fils {{enfant}} est autiste </h3>
+
+		
+<table id="enfant">
+    <thead>
+        <tr>
+            <th colspan="5"> Emploi du temps de votre Enfant </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Lundi</td>
+            <td>Mardi</td>
+            <td>Mercredi</td>
+            <td>Jeudi</td>
+            <td>Vendredi</td>
+        </tr>
+        <tr>
+            <td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.arriveLundi}} {% else %} Ne viens pas 
+                {% endif %} 
+            </td>
+            <td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %} {{enfant.arriveMardi}} {% else %} Ne viens pas {% endif %} </td>
+            <td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %} {{enfant.arriveMercredi}} {% else %} Ne viens pas
+                {% endif %} 
+            </td>
+            <td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %} {{enfant.arriveJeudi}} {% else %} Ne viens pas 
+                {% endif %} 
+            </td>
+            <td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %} 
+                {{enfant.arriveVendredi}} {% else %} Ne viens pas
+                {% endif %} 
+            </td>
+        </tr>
+        <tr>
+            <td>{%if enfant.arriveLundi != "no" and enfant.partLundi != "no" %}  {{enfant.partLundi}} {% else %} Ne viens pas {% endif %} </td>
+            <td>{%if enfant.arriveMardi != "no" and enfant.partMardi != "no" %}  {{enfant.partMardi}} {% else %} Ne viens pas {% endif %} </td>
+            <td>{%if enfant.arriveMercredi != "no" and enfant.partMercredi != "no" %}  {{enfant.partMercredi}} {% else %} Ne viens pas {% endif %} </td>
+            <td>{%if enfant.arriveJeudi != "no" and enfant.partJeudi != "no" %}  {{enfant.partJeudi}} {% else %} Ne viens pas {% endif %} </td>
+            <td>{%if enfant.arriveVendredi != "no" and enfant.partVendredi != "no" %}  {{enfant.partVendredi}} {% else %} Ne viens pas {% endif %} </td>
+        </tr>
+    </tbody>
+</table>
+
+{% if parent.FactureCreche is not None %}
+<p>	Pour voir votre dernière facture : <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </p>
+{% endif %}
+Pour tous changements, veuillez contacter la crèche 
+{% endif %}
+{% endif %}
+
+
+{% if user.is_Employe %}
+
+<h3> Bonjour {{employe.prenom}} {{employe.nom}} </h3>
+
+<table id="Jaune">
+<thead>
+    <tr>
+        <th colspan="5"> Emploi du temps semaine Jaune </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    </tr>
+    <tr id="jaune">
+        <td>{%if horaireLundiSemaineJaune != "no" %} {{employe.horaireLundiSemaineJaune}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineJaune != "no" %} {{employe.horaireMardiSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineJaune != "no" %} {{employe.horaireMercrediSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineJaune != "no" %} {{employe.horaireJeudiSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineJaune != "no" %} {{employe.horaireVendrediSemaineJaune}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+
+</tbody>
+</table>
+
+<table id="Rouge">
+<thead>
+    <tr>
+       <th colspan="5"> Emploi du temps semaine Rouge </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    <tr>
+       	
+        <td>{%if horaireLundiSemaineRouge != "no" %} {{employe.horaireLundiSemaineRouge}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineRouge != "no" %} {{employe.horaireMardiSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineRouge != "no" %} {{employe.horaireMercrediSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineRouge != "no" %} {{employe.horaireJeudiSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineRouge != "no" %} {{employe.horaireVendrediSemaineRouge}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+</tbody>
+</table>
+
+<table id="Bleu">
+<thead>
+    <tr>
+       <th colspan="5"> Emploi du temps semaine Bleue </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    <tr id="bleu">
+        <td>{%if horaireLundiSemaineBleue != "no" %} {{employe.horaireLundiSemaineBleue}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineBleue != "no" %} {{employe.horaireMardiSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineBleue != "no" %} {{employe.horaireMercrediSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineBleue != "no" %} {{employe.horaireJeudiSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineBleue != "no" %} {{employe.horaireVendrediSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+</tbody>
+</table>
+
+<table id="Vert">
+<thead>
+    <tr>
+       <th colspan="5"> Emploi du temps semaine Verte </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    <tr id="vert">
+        <td>{%if horaireLundiSemaineVerte != "no" %} {{employe.horaireLundiSemaineVerte}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineVerte != "no" %} {{employe.horaireMardiSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineVerte != "no" %} {{employe.horaireMercrediSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineVerte != "no" %} {{employe.horaireJeudiSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineVerte != "no" %} {{employe.horaireVendrediSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+</tbody>
+</table>
+
+<table id="Noir">
+<thead>
+    <tr>
+       <th colspan="5"> Emploi du temps semaine Noire </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    <tr id="noir">
+        <td>{%if horaireLundiSemaineNoire != "no" %} {{employe.horaireLundiSemaineNoire}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineNoire != "no" %} {{employe.horaireMardiSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineNoire != "no" %} {{employe.horaireMercrediSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineNoire != "no" %} {{employe.horaireJeudiSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineNoire != "no" %} {{employe.horaireVendrediSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table id="Rose">
+<thead>
+    <tr>
+       <th colspan="5"> Emploi du temps semaine Rose </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Lundi</td>
+        <td>Mardi</td>
+        <td>Mercredi</td>
+        <td>Jeudi</td>
+        <td>Vendredi</td>
+    <tr id="rose">
+        <td>{%if horaireLundiSemaineRose != "no" %} {{employe.horaireLundiSemaineRose}} {% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMardiSemaineRose != "no" %} {{employe.horaireMardiSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireMercrediSemaineRose != "no" %} {{employe.horaireMercrediSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireJeudiSemaineRose != "no" %} {{employe.horaireJeudiSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
+        <td>{%if horaireVendrediSemaineRose != "no" %} {{employe.horaireVendrediSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
+    </tr>
+</tbody>
+
+{% else %}
+Vous n'avez pas inscrit d'enfant à la crèche.
+{% endif %}
 {% endblock %}

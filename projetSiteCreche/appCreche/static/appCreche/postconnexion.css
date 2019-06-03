@@ -1,0 +1,128 @@
+body{
+	display: flex;
+	justify-content: center;
+}
+
+div#header{
+	align-self: center;
+	display:flex;
+	flex-direction: row;
+	border-radius: 10px;
+	border: 2px solid black;
+	background-image: linear-gradient(#4434, #1678);
+	justify-content: center;
+	width:60vw;
+	height: 15vh;
+}
+div#headerHautBas{
+
+	display: flex;
+
+	flex-direction: column;
+	align-items: center;
+	width:80%;
+}
+
+div#recrutement{
+	border-radius: 30px;
+	background-color: orange;
+	border: 2px solid white;
+	padding: 10px;
+}
+img#logo{
+	height: 150px;
+}
+div#recrutement>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#Projet{
+	border-radius: 30px;
+	background-color: blue;
+	border: 2px solid white;
+	padding: 10px;
+}
+
+div#Projet>a{
+	color:white;
+	text-decoration: none;
+}
+
+
+div#inscriptionEnfant{
+	border-radius: 30px;
+	background-color: grey;
+	border: 2px solid white;
+	padding: 10px;
+}
+div#inscriptionEnfant>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#deposFacture{
+	border-radius: 30px;
+	background-color: red;
+	border: 2px solid white;
+	padding: 10px;
+}
+div#deposFacture>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#inscritEmploye{
+	border-radius: 30px;
+	background-color: purple;
+	border: 2px solid white;
+	padding: 10px;
+}
+div#inscritEmploye>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#moncompte{
+	border-radius: 30px;
+	background-color: green;
+	border: 2px solid white;
+	padding: 10px;
+}
+
+div#moncompte>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#Deconnexion{
+	border-radius: 30px;
+	background-color: black;
+	border: 2px solid white;
+	padding: 10px;
+}
+
+div#Deconnexion>a{
+	color:white;
+	text-decoration: none;
+}
+
+div#logo{		
+	display: inline;
+}
+div#headerhaut{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 2%;
+	width:100%;
+}
+
+div#headerbas{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 2%;
+	width:100%;
+}
+

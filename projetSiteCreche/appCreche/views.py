@@ -10,12 +10,6 @@ from .models import *
 def index(request):
 	return render(request, 'appCreche/base.html')
 	
-def equipe(request):
-	return render(request, 'appCreche/equipe.html')
-
-def contribuer(request):
-	return render(request, 'appCreche/contribuer.html')
-
 def recrutement(request):
 	offres = {
 	'OffreEmploi': OffreEmploi.objects.all(),
@@ -125,8 +119,8 @@ def deposFactures(request):
 
 
 
-def petitesAnnonces(request):
-	return render(request, 'appCreche/petitesAnnonces.html')
+def projetPedagogique(request):
+	return render(request, 'appCreche/projetPedagogique.html')
 
 
 
@@ -204,6 +198,9 @@ def monCompte(request):
 		'placeSoirMercredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partMercredi = "16h30")).count(),
 		'placeSoirJeudi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partJeudi = "16h30")).count(),
 		'placeSoirVendredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partVendredi = "16h30")).count(),
+		
+
+
 	}
 	return render(request, 'appCreche/monCompte.html', context)
 

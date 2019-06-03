@@ -1,52 +1,59 @@
-
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %} Menu d'accueil{% endblock %}</title>
-</head>
-<body>
-  <main>
-  	{% block header %}
-		{% if user.is_authenticated %}
-		
-
-  <div id="header">
-		<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-			<div id="Equipe"><a href="../../appCreche/equipe"> L'équipe </a></div>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        <title>{% block title %} Menu d'accueil{% endblock %}</title>
+    </head>
+    <body>
+    	{% block nav %}
+            <link rel="stylesheet" type="text/css" href="{% static 'appCreche/nav.css' %}">
+            {%endblock nav%}
+        <main>
+            {% block header %}
+            {% if user.is_authenticated %}
+            <link rel="stylesheet" type="text/css" href="{% static 'appCreche/postconnexion.css' %}">
+            <div id="header">
+                <a href="../../"><img src="../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
+                <div id="headerHautBas">
+                    <div id="headerhaut">
+                    	<div id="moncompte"><a href="../../appCreche/monCompte"> Vers mon compte </a></div>
+                        
+                        <div id="Projet"><a href="../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
+                        <div id="inscriptionEnfant"><a href="../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
+                    </div>
+                    <div id="headerbas">
+                        {% if user.is_superuser %}
+                        <div id="deposFacture"><a href="../../appCreche/deposFacture"> Déposer une Facture </a></div>
+                        <div id="inscritEmploye"><a href="../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
+                        {% endif %}
+                        <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
+                        <div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <link rel="stylesheet" type="text/css" href="{% static 'appCreche/preconnexion.css' %}">
+            <div id="header">
+                <div id="headerHautBasPre">
+                    <div id="accueil"><a href="../../"><img src="../../static/appCreche/images/logo.png" alt="le logo" id="logo"></a> </div>
+                    <div id="Projet"><a href="../../appCreche/projetPedagogique">
+                    Notre Projet Pédagogique </a></div>
+                    <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
+                    Vous n'êtes pas connecté : 
+                    <div id="Sign">
+                        <div id="Connexion"> <a href="{% url 'login' %}">Se Connecter</a></div>
+                        <div id="Inscription"><a href="../../appCreche/inscription"> S'inscrire à la crèche </a></div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endblock header %}
 			
-			<div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
-
-			<div id="Annonces"><a href="../../appCreche/petitesAnnonces"> Petites Annonces </a></div>
-
-			<div id="inscriptionEnfant"><a href="../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
-		
-		{% if user.is_superuser %}
-			<div id="deposFacture"><a href="../../appCreche/deposFacture"> Déposer une Facture </a></div>
-			<div id="inscritEmploye"><a href="../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
-		{% endif %}
-			
-			<div id="moncompte"><a href="../../appCreche/monCompte"> Vers mon compte </a></div>
-		
-  	<div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
-  	</div>
-{% else %}
-	<div id="accueil"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-	<div id="Equipe"><a href="../../appCreche/equipe"> L'équipe </a></div>
-				
- 	<div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
-
-	<div id="Annonces"><a href="../../appCreche/petitesAnnonces"> Petites Annonces </a></div>
-  <p>Vous n'êtes pas connecté</p>
-  <div id="Inscription"><a href="../../appCreche/inscription"> S'inscrire à la crèche </a></div> 
-  <a href="{% url 'login' %}">login</a>
-  
-{% endif %}
-{% endblock header %}
-    {% block content %}
-    {% endblock content %}
-  </main>
-</body>
+            {% block content %}
+            	
+            {% endblock content %}
+        </main>
+    </body>
 </html>

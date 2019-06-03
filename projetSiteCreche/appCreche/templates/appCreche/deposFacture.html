@@ -1,20 +1,16 @@
 {% extends 'appCreche/base.html' %}
+{% load static %}
 {% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
 		{% if user.is_superuser %}
-		
-		<fieldset id="fieldset"><legend> Déposer une facture </legend>	
+		<link rel="stylesheet" type="text/css" href="{% static 'appCreche/forms.css' %}">
+		<fieldset id="fieldset"><legend><h2>  Déposer une facture</h2> </legend>	
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	
  				<button type="submit"> Valider </button>
 				</form>
 			</fieldset>
-		{% else %}
-<div id="header"><a href="../../"><img src="logo.png" alt="le logo" id="logo"></a>  
-
-  <div id="Inscription"><a href="appCreche/inscription"> S'inscrire à la crèche </a></div> 
-  <a href="{% url 'login' %}">login</a>
 {% endif %}
 
 

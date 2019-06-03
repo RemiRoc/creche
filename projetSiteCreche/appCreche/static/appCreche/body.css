@@ -1,0 +1,55 @@
+body{
+	margin-left: 20vw;
+	width:60vw;
+	text-align: left;
+	display: flex;
+	justify-content: center;
+}
+
+h1, h2, h3{
+	text-align: center;
+	text-decoration: underline;
+}
+
+p{
+	text-indent: 3%;
+}
+
+div#famille{
+	background-color: #d5ff80;
+	box-shadow: 15px 10px lightgrey;
+	border-radius: 5%;
+	padding: 2%;
+}
+
+div#projet{
+	background-color: #80aaff;
+	box-shadow: 15px 10px lightgrey;
+	border-radius: 5%;
+	padding: 2%;
+}
+div#activite{
+	background-color: #ff944d;
+	box-shadow: 15px 10px lightgrey;
+	border-radius: 5%;
+	padding: 2%;
+}
+
+div#pourtous{
+	background-color: #d580ff;
+	box-shadow: 15px 10px lightgrey;
+	border-radius: 5%;
+	padding: 2%;
+}
+
+div#important{
+	background-color: lightyellow;
+	box-shadow: 15px 10px lightgrey;
+	border-radius: 15%;
+	padding: 10%;
+	text-align: center;
+}
+
+html{
+	background-color: ivory;
+}

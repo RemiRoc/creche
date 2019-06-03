@@ -1,8 +1,10 @@
 {% extends 'appCreche/base.html' %}
+{% load static %}
 {% block title %}Inscription Employe{% endblock %}
 {% block content %}
 		{% if user.is_superuser %}
-			<fieldset id="fieldset">	<legend> Inscrire un Employe </legend>		
+		<link rel="stylesheet" type="text/css" href="{% static 'appCreche/forms.css' %}">
+			<fieldset id="fieldset">	<legend><h2>  Inscrire un Employe</h2> </legend>		
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	
