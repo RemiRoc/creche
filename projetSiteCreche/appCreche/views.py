@@ -167,14 +167,15 @@ def inscritEmploye(request):
 			emp.horaireMercrediSemaineRose		= request.POST.get("horaireMercrediSemaineRose")
 			emp.horaireJeudiSemaineRose			= request.POST.get("horaireJeudiSemaineRose")
 			emp.horaireVendrediSemaineRose		= request.POST.get("horaireVendrediSemaineRose")
-
-			
 			user = CustomUser.objects.filter(email = emp.adresseMail).first()
 			emp.empUser = user
-			emp.save()
-			user.is_Employe	= True
-			user.save()
-			return render(request, 'appCreche/employeInscrit.html')
+			
+			if(Employe.objects.filter(nom = emp.nom, prenom = emp.prenom).first() is None or Employe.objects.filter(adresseMail = emp.adresseMail).first() is None or Employe.objects.filter(empUser = emp.empUser).first() is None):
+				
+				emp.save()
+				user.is_Employe	= True
+				user.save()
+				return render(request, 'appCreche/employeInscrit.html')
 
 	else:
 		form = nouvelEmploye()

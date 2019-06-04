@@ -8,9 +8,10 @@ div#header{
 	display:flex;
 	flex-direction: row;
 	border-radius: 10px;
-	border: 2px solid black;
-	background-image: linear-gradient(lightpink, darkblue);
+	border: 5px outset;
+	background-image: linear-gradient(#4434, #1678);
 	justify-content: center;
+
 	width:60vw;
 	height: 15vh;
 }

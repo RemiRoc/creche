@@ -1,0 +1,66 @@
+
+table#Jaune{
+	
+	background-color: yellow;
+	
+}
+
+table#Rouge{
+	
+	background-color: #ff4d4d;
+	
+}
+
+table#Bleu{
+	
+	background-color: lightblue;
+	
+}
+
+table#Vert{
+	
+	background-color: lightgreen;
+	
+}
+
+table#Noir{
+	
+	background-color: grey;
+	
+}
+
+table#Rose{
+	
+	background-color: #df80ff;
+	
+}
+
+table#enfant{
+	
+	background-color: #8585ad;
+	
+}
+
+th{
+	border-radius: 20px;
+}
+
+td{
+	text-align: center;
+	padding: 1vh;
+}
+
+table{
+	border: 2px solid purple;
+	margin-bottom: 5%;
+	border-radius: 20px;
+	table-layout: auto;
+	width: 100%;
+	height: 15%;
+	box-shadow: 15px 15px lightgrey;
+}
+
+th{
+	text-align: center;
+	text-decoration: underline;
+}

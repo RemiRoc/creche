@@ -1,11 +1,12 @@
 <!-- templates/signup.html -->
 {% extends 'appCreche/base.html' %}
-
+{% load static %}
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+
 <fieldset>
-	<legend><h2>S'inscrire</h2></legend>
+	<h2>S'inscrire</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

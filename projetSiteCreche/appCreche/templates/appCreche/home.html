@@ -4,7 +4,20 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'appCreche/body.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/bandeau.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/texte.css' %}">
+
+<div id="baniere">
+	
+	<img id="1" class="img_baniere visible" alt="bandeau1" src="static/appCreche/images/bandeau/creche_1.jpg">
+	<img id="2" class="img_baniere cachee" alt="bandeau2" src="static/appCreche/images/bandeau/creche_2.jpg">
+	<img id="3" class="img_baniere cachee" alt="bandeau3" src="static/appCreche/images/bandeau/creche_3.jpg">
+	<img id="4" class="img_baniere cachee" alt="bandeau4" src="static/appCreche/images/bandeau/creche_4.jpg">
+	<img id="5" class="img_baniere cachee" alt="bandeau5" src="static/appCreche/images/bandeau/creche_5.jpg">
+	
+</div>
+
+
 <div id="home">
 <h1> Crèche Gros Calin </h1>
 
@@ -45,6 +58,8 @@ aussi de veiller à l’application des règles d’hygiène.</li>
 <li>Trois agents techniques petite enfance : elles sont chargées de l’encadrent des enfants,
 ainsi que des repas (remise en température des plats, courses, préparation du goûter),
 du nettoyage des jouets... </li>
-<li>Un agent d'entretien est employée à temps partiel pour le ménage.</li> </div>
+<li>Un agent d'entretien est employée à temps partiel pour le ménage.</li></ul> </div>
+
+<script type="text/javascript" src="static/appCreche/js/bandeau.js"></script>
 
 {% endblock %}

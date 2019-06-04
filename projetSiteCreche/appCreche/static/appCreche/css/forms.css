@@ -3,7 +3,12 @@ fieldset{
 	flex-direction: column;
 	width:50vw;
 	align-self: center;
-	margin-left:7.5%;
+	margin-left:5vw;
+	margin-top:5vh;
+	background-color: lightgreen;
+	box-shadow: 15px 15px lightgrey;
+	border-radius: 2vw;
+
 }
 
 form{
@@ -14,6 +19,7 @@ form{
 
 label{
 	display: inline-block;
+	margin-bottom: .5%;
 }
 input{
 	margin-right: 100%;
@@ -29,4 +35,9 @@ select{
 
 button{
 	width: 100%;
+}
+
+h2{
+	text-align: center;
+	text-decoration: underline;	
 }

@@ -2,7 +2,10 @@
 {% block title %}Mon Compte{% endblock %}
 {% block header %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'appCreche/postconnexion.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
+
+
 {% if user.is_authenticated %}
 <div id="header">
     <a href="../../"><img src="../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
@@ -37,7 +40,8 @@
 {% endif %}
 {% endblock header %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'appCreche/tableau.css' %}">
+<div id="MonCompte">
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/tableau.css' %}">
 {% if user.is_Parent %}
 
 	{% if EnfantPreinscrit is not None %}
@@ -47,6 +51,11 @@
 	{% elif EnfantEnAttente is not None %}
 
 		<p>Votre enfant est sur liste d'attente, recontactez la crèche tous les 3 mois environ pour la tenir informée de votre situation. </p>
+		<ul>
+			<li><a href="sendTo:asso.gros.calin@gmail.com"> asso.gros.calin@gmail.com </a></li>
+			<br>
+			<li> 05.61.85.19.93	</li>
+			</ul>
 	
 	{% elif EnfantPresent is not None %}
 		<h3>Votre fils {{enfant}} est autiste </h3>
@@ -95,7 +104,16 @@
 {% if parent.FactureCreche is not None %}
 <p>	Pour voir votre dernière facture : <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </p>
 {% endif %}
-Pour tous changements, veuillez contacter la crèche 
+
+<h3>Pour tous changements, veuillez contacter la crèche :</h3>
+<ul>
+
+
+<li><a href="sendTo:asso.gros.calin@gmail.com"> asso.gros.calin@gmail.com </a></li>
+<br>
+<li> 05.61.85.19.93
+</li>
+</ul>
 {% endif %}
 {% endif %}
 
@@ -144,6 +162,7 @@ Pour tous changements, veuillez contacter la crèche
         <td>Mercredi</td>
         <td>Jeudi</td>
         <td>Vendredi</td>
+    </tr>
     <tr>
        	
         <td>{%if horaireLundiSemaineRouge != "no" %} {{employe.horaireLundiSemaineRouge}} {% else %} Ne travaille pas {% endif %} </td>
@@ -168,6 +187,7 @@ Pour tous changements, veuillez contacter la crèche
         <td>Mercredi</td>
         <td>Jeudi</td>
         <td>Vendredi</td>
+    </tr>
     <tr id="bleu">
         <td>{%if horaireLundiSemaineBleue != "no" %} {{employe.horaireLundiSemaineBleue}} {% else %} Ne travaille pas {% endif %} </td>
         <td>{%if horaireMardiSemaineBleue != "no" %} {{employe.horaireMardiSemaineBleue}}{% else %} Ne travaille pas {% endif %} </td>
@@ -191,6 +211,7 @@ Pour tous changements, veuillez contacter la crèche
         <td>Mercredi</td>
         <td>Jeudi</td>
         <td>Vendredi</td>
+    </tr>
     <tr id="vert">
         <td>{%if horaireLundiSemaineVerte != "no" %} {{employe.horaireLundiSemaineVerte}} {% else %} Ne travaille pas {% endif %} </td>
         <td>{%if horaireMardiSemaineVerte != "no" %} {{employe.horaireMardiSemaineVerte}}{% else %} Ne travaille pas {% endif %} </td>
@@ -214,6 +235,7 @@ Pour tous changements, veuillez contacter la crèche
         <td>Mercredi</td>
         <td>Jeudi</td>
         <td>Vendredi</td>
+    </tr>
     <tr id="noir">
         <td>{%if horaireLundiSemaineNoire != "no" %} {{employe.horaireLundiSemaineNoire}} {% else %} Ne travaille pas {% endif %} </td>
         <td>{%if horaireMardiSemaineNoire != "no" %} {{employe.horaireMardiSemaineNoire}}{% else %} Ne travaille pas {% endif %} </td>
@@ -238,6 +260,7 @@ Pour tous changements, veuillez contacter la crèche
         <td>Mercredi</td>
         <td>Jeudi</td>
         <td>Vendredi</td>
+    </tr>
     <tr id="rose">
         <td>{%if horaireLundiSemaineRose != "no" %} {{employe.horaireLundiSemaineRose}} {% else %} Ne travaille pas {% endif %} </td>
         <td>{%if horaireMardiSemaineRose != "no" %} {{employe.horaireMardiSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
@@ -246,8 +269,12 @@ Pour tous changements, veuillez contacter la crèche
         <td>{%if horaireVendrediSemaineRose != "no" %} {{employe.horaireVendrediSemaineRose}}{% else %} Ne travaille pas {% endif %} </td>
     </tr>
 </tbody>
+</table>
+
 
 {% else %}
 Vous n'avez pas inscrit d'enfant à la crèche.
+
 {% endif %}
+</div>
 {% endblock %}

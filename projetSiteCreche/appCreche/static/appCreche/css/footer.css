@@ -1,0 +1,37 @@
+.wrapper {
+  min-height: 49vh;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+}
+#footer, .push {
+	min-height: 12vh;
+}
+
+#footer{
+	background-color: #FCC;
+	
+	border: 5px outset;
+}
+
+#footer>h2{
+	text-decoration: underline;
+	text-align: center;
+}
+div#englobe{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+div#renseignements{
+
+	width:30vw;
+	background-color: #FAA;
+}
+
+div#decharges{
+
+	width:30vw;
+	background-color: #FAA;
+}

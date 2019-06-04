@@ -3,8 +3,8 @@
 {% block title %}Préinscription Enfant{% endblock %}
 {% block content %}
 		{% if user.is_superuser %}
-		<link rel="stylesheet" type="text/css" href="{% static 'appCreche/forms.css' %}">
-		<fieldset id="fieldset"><legend><h2>  Déposer une facture</h2> </legend>	
+		
+		<fieldset id="fieldset"><h2>  Déposer une facture</h2>
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	

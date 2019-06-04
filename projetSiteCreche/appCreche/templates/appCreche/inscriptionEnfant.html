@@ -4,9 +4,9 @@
 {% block content %}
 
 		{% if user.is_authenticated %}
-	  	<link rel="stylesheet" type="text/css" href="{% static 'appCreche/forms.css' %}">
+	  	
 
-		<fieldset id="fieldset">	<legend><h2> Inscrire son Enfant </h2></legend>
+		<fieldset id="fieldset">	<h2> Inscrire son Enfant </h2>
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	

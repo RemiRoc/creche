@@ -63,11 +63,11 @@ class InscriptionEnfant(forms.Form):
 
 
 	nomAssurance			= forms.CharField(label='Nom de l\'assurance de l\'enfant  ', validators=[validate_carac],max_length=30)
-	certificatMedical 		= forms.FileField(label='Certificat médical de l\'enfant  ')
-	AssuranceCivile			= forms.FileField(label='Assurance civile de l\'enfant  ')
-	protocoleDeTemperature 	= forms.FileField(label='Protocole de température  ')
-	AutorisationMedicament 	= forms.FileField(label='Autorisation de distribution de medicament ')
-	FichePoliceAssurance	= forms.FileField(label='Fiche sur laquelle se situe la police d\'assurance  ')	
+	certificatMedical 		= forms.FileField(label='Certificat médical de l\'enfant ', validators=[validate_file_size])
+	AssuranceCivile			= forms.FileField(label='Assurance civile de l\'enfant ', validators=[validate_file_size])
+	protocoleDeTemperature 	= forms.FileField(label='Protocole de température ', validators=[validate_file_size])
+	AutorisationMedicament 	= forms.FileField(label='Autorisation de distribution de medicament ', validators=[validate_file_size])
+	FichePoliceAssurance	= forms.FileField(label='Fiche sur laquelle se situe la police d\'assurance  ', validators=[validate_file_size])	
 
 
 	def process(self):

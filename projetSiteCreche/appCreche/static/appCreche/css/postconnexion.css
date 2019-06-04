@@ -1,6 +1,7 @@
-body{
+html,body{
 	display: flex;
 	justify-content: center;
+	
 }
 
 div#header{
@@ -8,7 +9,7 @@ div#header{
 	display:flex;
 	flex-direction: row;
 	border-radius: 10px;
-	border: 2px solid black;
+	border: 5px outset;
 	background-image: linear-gradient(#4434, #1678);
 	justify-content: center;
 	width:60vw;
@@ -100,11 +101,12 @@ div#Deconnexion{
 	background-color: black;
 	border: 2px solid white;
 	padding: 10px;
+
 }
 
 div#Deconnexion>a{
 	color:white;
-	text-decoration: none;
+	text-decoration: none;	
 }
 
 div#logo{		
@@ -121,8 +123,11 @@ div#headerhaut{
 div#headerbas{
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-around; ;
 	margin-top: 2%;
 	width:100%;
 }
 
+p.inscrit{
+	text-align: center;
+}

@@ -32,3 +32,13 @@ def validate_adresse(value):
 	else:
 		return value
 
+from django.core.exceptions import ValidationError
+
+
+def validate_file_size(value):
+    filesize= value.size
+    
+    if filesize > 5242880:
+        raise ValidationError("La taille maximum d'un fichier ne peut dépasser 5MB")
+    else:
+        return value

@@ -1,9 +1,11 @@
 /* The side navigation menu */
 .sidebar {
   width: 10%;
-  background-color: #f1f1f1;
+  background-color: #4d79ff;
   position: fixed;
   left:0;
+  bottom:0;
+  top:0;
   height: auto;
   overflow: auto;
 }
@@ -16,11 +18,7 @@
   text-decoration: none;
 }
 
-/* Active/current link */
-.sidebar a.active {
-  background-color: #4CAF50;
-  color: white;
-}
+
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
@@ -32,7 +30,7 @@
 div.content {
   
   padding: 1px 16px;
-  height: 1000px;
+  height: auto;
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */

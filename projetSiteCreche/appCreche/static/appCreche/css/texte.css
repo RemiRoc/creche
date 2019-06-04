@@ -1,9 +1,18 @@
-body{
-	margin-left: 20vw;
+div#home{
+	
 	width:60vw;
 	text-align: left;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+}
+
+div#projetPedag{
+
+	width:60vw;
+	text-align: justify;
+	display: flex;
+	flex-direction: column;
+
 }
 
 h1, h2, h3{
@@ -50,6 +59,3 @@ div#important{
 	text-align: center;
 }
 
-html{
-	background-color: ivory;
-}
