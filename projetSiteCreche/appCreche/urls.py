@@ -10,7 +10,6 @@ urlpatterns = [
     path('inscriptionEnfant/', views.inscriptionEnfant, name='inscriptionEnfant'),
     path('deposFacture/', views.deposFactures, name='deposFacture'),
     path('projetPedagogique/',views.projetPedagogique, name='projetPedagogique'),
-   
     path('inscritEmploye/', views.inscritEmploye, name='inscritEmploye'),
     path('monCompte/',views.monCompte, name='monCompte'),
 ]
