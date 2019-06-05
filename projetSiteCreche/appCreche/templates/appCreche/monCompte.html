@@ -4,7 +4,7 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
-
+<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
 
 {% if user.is_authenticated %}
 <div id="header">
@@ -51,7 +51,7 @@
 		
 	{% if EnfantPreinscrit is not None %}
 		
-		<p>Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
+		<p class="inscrit"> Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
 
 	{% elif EnfantEnAttente is not None %}
 
@@ -121,7 +121,7 @@
 </ul>
 {% endif %}
 {% else %}
-Vous n'avez pas inscrit d'enfant à la crèche.
+<p class="inscrit"> Vous n'avez pas inscrit d'enfant à la crèche. </p>
 
 {% endif %}
 

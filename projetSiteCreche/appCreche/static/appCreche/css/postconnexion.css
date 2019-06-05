@@ -141,6 +141,13 @@ div#headerbasadmin{
 	width:100%;
 }
 p.inscrit{
+	align-items: center;
 	text-align: center;
+	margin-top: 10vh;
+	margin-left:20vw;
+	border: 2px outset;
+	background-color: lightgrey;
+	width:20vw;
+	border-radius:2vw;
 }
 
