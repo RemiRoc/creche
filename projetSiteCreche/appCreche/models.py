@@ -152,14 +152,6 @@ class Enfant(models.Model):
 	def get_date_de_naissance(self):
 		return self.dateDeNaissance
 	
-	def get_parent1(self):
-		p = Parent.objects.get(pk=self.parent1)
-		return p
-	
-	def get_parent2(self):
-		p = Parent.objects.get(pk=self.parent2)
-		return p
-
 	def get_a_lundi(self):
 		return self.arriveLundi
 
@@ -190,33 +182,8 @@ class Enfant(models.Model):
 	def get_p_vendredi(self):
 		return self.PartVendredi
 
-	#POUR EVITER LE BULLSHIT DU MEME PARENT
+
 	
-
-
-class Contributeur(models.Model):
-	nom			= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True)
-	prenom		= models.CharField(_('prenom'),max_length=20, validators=[validate_carac],null=True)
-	adresseMail	= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name=_('Utilisateur+'), null=True)
-	num			= models.CharField(_('telephone'), max_length=10, validators=[validate_tel])
-
-	def __str__(self):
-		full_name = '%s %s' % (self.nom, self.prenom)
-		return full_name.strip()
-
-	#GETTERS
-	def get_nom(self):
-		return self.nom
-
-	def get_prenom(self):
-		return self.prenom
-
-	def get_adresse_mail(self):
-		return self.adresseMail
-
-	def get_num(self):
-		return self.num
-
 class Employe(models.Model):
 	#INFO PERSONEL
 	nom					= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True )

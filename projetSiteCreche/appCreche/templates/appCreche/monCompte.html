@@ -11,24 +11,22 @@
     <a href="../../../"><img src="../../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
     <div id="headerHautBas">
         <div id="headerhaut">
-            
             <div id="moncompte"><a href="{% url 'password_reset' %}"> Changer le mot de passe </a> </div>
             <div id="Projet"><a href="../../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
             <div id="inscriptionEnfant"><a href="../../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
         </div>
-        		{% if user.is_superuser %}
-                        <div id="headerbasadmin">
-                        <div id="deposFacture"><a href="../../../appCreche/deposFacture"> Déposer une Facture </a></div>
-                        <div id="inscritEmploye"><a href="../../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
-                        <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
-                        <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
-                        {% else %}
-                        <div id="headerbas">
-                        <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
-                        <div id="vide"></div>
-                        <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
-                        {% endif %}
-
+        	{% if user.is_superuser %}
+            	<div id="headerbasadmin">
+                <div id="deposFacture"><a href="../../../appCreche/deposFacture"> Déposer une Facture </a></div>
+                <div id="inscritEmploye"><a href="../../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
+                <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
+                <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+            {% else %}
+	            <div id="headerbas">
+                <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
+                <div id="vide"></div>
+                <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -50,8 +48,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/tableau.css' %}">
 {% if user.is_Parent %}
 
+		
 	{% if EnfantPreinscrit is not None %}
-
+		
 		<p>Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
 
 	{% elif EnfantEnAttente is not None %}
@@ -121,6 +120,9 @@
 </li>
 </ul>
 {% endif %}
+{% else %}
+Vous n'avez pas inscrit d'enfant à la crèche.
+
 {% endif %}
 
 
@@ -279,7 +281,7 @@
 
 
 {% else %}
-Vous n'avez pas inscrit d'enfant à la crèche.
+
 
 {% endif %}
 </div>

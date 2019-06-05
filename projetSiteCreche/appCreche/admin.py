@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserChangeForm, CustomUserCreationForm
-from .models import CustomUser, Enfant, Parent, Contributeur, Employe, OffreEmploi, EnfantEnAttente, EnfantPresent,  EnfantPreinscrit
+from .models import CustomUser, Enfant, Parent, Employe, OffreEmploi, EnfantEnAttente, EnfantPresent,  EnfantPreinscrit
 from .validateurs import *
 	
 class DetailsEnfant(admin.ModelAdmin):
@@ -41,7 +41,6 @@ class DetailEmploye(admin.ModelAdmin):
 
 admin.site.register(Enfant, DetailsEnfant)
 admin.site.register(Parent, DetailParent)
-
 admin.site.register(Employe, DetailEmploye)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(OffreEmploi, DetailOffres)

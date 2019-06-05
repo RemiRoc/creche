@@ -18,10 +18,11 @@ div#home{
 }
 
 div#projetPedag{
-	font-family:MaSuperPolice;
+	font-family:MPolice;
+	src: url('Je n'aime pas le lundi.ttf) format('truetype');
 	width:60vw;
 	text-align: justify;
-	font-size: x-large;
+	font-size: large;
 	display: flex;
 	flex-direction: column;
 
@@ -37,27 +38,27 @@ p{
 }
 
 div#famille{
-	background-color: #d5ff80;
+	background-color: #eeffcc;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#projet{
-	background-color: lightblue;
+	background-color: #d8ebf3;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
 }
 div#activite{
-	background-color:  #ffdb4d	;
+	background-color:  #fff0b3;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#pourtous{
-	background-color: pink;
+	background-color: #ffe6ea;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
