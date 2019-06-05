@@ -5,10 +5,9 @@ fieldset{
 	align-self: center;
 	margin-left:5vw;
 	margin-top:5vh;
-	background-color: lightgreen;
 	box-shadow: 15px 15px lightgrey;
 	border-radius: 2vw;
-
+	border-style: outset;
 }
 
 form{
@@ -34,10 +33,39 @@ select{
 }
 
 button{
-	width: 100%;
+	margin-left: 2.5%;
+	width: 95%;
+	border-radius: 10px;
+	
 }
 
 h2{
 	text-align: center;
 	text-decoration: underline;	
+}
+
+
+fieldset#facture{
+	background-color: #FF6666;
+	border: 2px outset red;
+}
+
+fieldset#Employe{
+	background-color: pink;
+	border: 2px outset purple;
+}
+
+fieldset.MotDePasse{
+	background-color: lightgreen;
+	border: 2px outset green;
+}
+
+fieldset#signup{
+	background-color: pink;
+	border: 2px outset purple;
+}
+
+fieldset#enfant{
+	background-color: #e0e0eb;
+	border: 2px outset;
 }

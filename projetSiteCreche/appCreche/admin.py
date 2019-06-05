@@ -22,12 +22,29 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['username','email','is_Parent', 'is_Employe', 'is_Contrib']
 
+class DetailOffres(admin.ModelAdmin):
+	list_display=['intituleDuPoste']
+
+class DetailEnfantEnAttente(admin.ModelAdmin):
+	list_display=['Enfant']
+
+class DetailEnfantPresent(admin.ModelAdmin):
+	list_display=['Enfant']
+
+class DetailEnfantPreinscrit(admin.ModelAdmin):
+	list_display=['Enfant']
+
+class DetailEmploye(admin.ModelAdmin):
+	list_display=['nom','prenom']
+
+
+
 admin.site.register(Enfant, DetailsEnfant)
 admin.site.register(Parent, DetailParent)
-admin.site.register(Contributeur)
-admin.site.register(Employe)
+
+admin.site.register(Employe, DetailEmploye)
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(OffreEmploi)
-admin.site.register(EnfantEnAttente)
-admin.site.register(EnfantPresent)
-admin.site.register(EnfantPreinscrit)
+admin.site.register(OffreEmploi, DetailOffres)
+admin.site.register(EnfantEnAttente, DetailEnfantEnAttente)
+admin.site.register(EnfantPresent,DetailEnfantPresent)
+admin.site.register(EnfantPreinscrit,DetailEnfantPreinscrit)

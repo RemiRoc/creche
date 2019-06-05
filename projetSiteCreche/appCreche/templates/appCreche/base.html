@@ -6,17 +6,21 @@
         {% load static %}
         <title>{% block title %} Menu d'accueil{% endblock %}</title>
     </head>
+
     <body>
+    	
     	{% block nav %}
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/nav.css' %}">
             {%endblock nav%}
         <main>
+
             {% block header %}
+
             {% if user.is_authenticated %}
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/forms.css' %}">
             <div id="header">
-                <a href="../../"><img src="../../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
+                <a href="../../../"><img src="../../../static/appCreche/images/logo.png"  alt="le logo" id="logo"></a> 
                 <div id="headerHautBas">
                     <div id="headerhaut">
                     	<div id="moncompte"><a href="../../../appCreche/monCompte"> Vers mon compte </a></div>
@@ -24,13 +28,20 @@
                         <div id="Projet"><a href="../../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
                         <div id="inscriptionEnfant"><a href="../../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
                     </div>
-                    <div id="headerbas">
+                    
                         {% if user.is_superuser %}
+                        <div id="headerbasadmin">
                         <div id="deposFacture"><a href="../../../appCreche/deposFacture"> Déposer une Facture </a></div>
                         <div id="inscritEmploye"><a href="../../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
-                        {% endif %}
                         <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
                         <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+                        {% else %}
+                        <div id="headerbas">
+                        <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
+                        <div id="vide"></div>
+                        <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -52,8 +63,12 @@
             </div>
             {% endif %}
             {% endblock header %}
+
+
 			<div class="wrapper">   <!-- Sers a coller le footer en bas -->
+
             {% block content %}
+
             {% endblock content %}
      	   </div>
      	   <div class="push">
@@ -61,24 +76,41 @@
             {% block footer %}
              <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/footer.css' %}">
             
-            	<footer id="footer">
-            	<h2> Fichiers utiles : </h2>
+            <footer id="footer">
+            	
             <div id="englobe">
+            	<h2> Fichiers utiles :</h2>
+            	
+            	<div id="RD">
+            	
+
             <div id="renseignements">
             	
             	
             	<p>	Pour télécharger la CDAP : <a href="../../media/fichier_utiles/cdap.odt"> cliquez ici. </a></p>
-            	<p> Pour voir la Loi RGPD : <a href="../../media/fichier_utiles/Loi RGPD.odt"> cliquez ici. </a></p> 
+            	<p> Pour voir la Loi RGPD : <a href="../../media/fichier_utiles/RGPD.odt"> cliquez ici. </a></p> 
             	</div>
             <div id="decharges">
             	
-            	<p> Pour télécharger la décharge du collier dentaire : <a href="../../media/fichier_utiles/décharge collier dentaire.doc"> cliquez ici. </a></p>
-            	<p> Pour télécharger la décharge pour le don du Doliprane : <a href="../../media/fichier_utiles/décharge don doliprane.odt"> cliquez ici. </a></p>
-            	<p> Pour télécharger la décharge pour la position ventrale : <a href="../../media/fichier_utiles/décharge position ventrale.doc"> cliquez ici. </a></p>
+            	<p> Pour télécharger la décharge du collier dentaire : <a href="../../media/fichier_utiles/dechargecollierdentaire.doc"> cliquez ici. </a></p>
+            	<p> Pour télécharger la décharge pour le don du Doliprane : <a href="../../media/fichier_utiles/dechargedondoliprane.odt"> cliquez ici. </a></p>
+            	<p> Pour télécharger la décharge pour la position ventrale : <a href="../../media/fichier_utiles/dechargepositionventrale.doc"> cliquez ici. </a></p>
             
 			</div>
+		</div>
+	</div>
+			<div id="Ctt">
+			<h2> Contact : </h2>
+				<div id="contact">
+					<ul>
+					<li><a href="sendTo:asso.gros.calin@gmail.com"> asso.gros.calin@gmail.com </a></li>
+					<br>
+					<li> 05.61.85.19.93	</li>
+					</ul>
+				</div>
             </div>
-        </footer>
+           
+        </footer>	
        
 
             {% endblock footer%}

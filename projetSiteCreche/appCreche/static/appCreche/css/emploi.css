@@ -1,0 +1,14 @@
+#emploi{
+	border: 3px outset orange;
+	max-width:60vw;
+	margin-top: 5vh;
+}
+p{
+margin-left:10vw;
+width: 40vw;
+}
+
+h3{
+	text-align: center;
+	text-decoration: underline;
+}

@@ -1,15 +1,27 @@
-div#home{
+@font-face {
+    font-family: 'MaSuperPolice';
+    src: url('PlumNAL.ttf') format('truetype');
+}
 	
-	width:60vw;
+
+div#home{
+	border-style: inset;
+	padding: 2vw;
+	font-family:MaSuperPolice;
+	width:56vw;
 	text-align: left;
+	font-size: x-large;
 	display: flex;
 	flex-direction: column;
+	background-color: white;
+	margin-top: 5vh;
 }
 
 div#projetPedag{
-
+	font-family:MaSuperPolice;
 	width:60vw;
 	text-align: justify;
+	font-size: x-large;
 	display: flex;
 	flex-direction: column;
 
@@ -32,20 +44,20 @@ div#famille{
 }
 
 div#projet{
-	background-color: #80aaff;
+	background-color: lightblue;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
 }
 div#activite{
-	background-color: #ff944d;
+	background-color:  #ffdb4d	;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#pourtous{
-	background-color: #d580ff;
+	background-color: pink;
 	box-shadow: 15px 10px lightgrey;
 	border-radius: 5%;
 	padding: 2%;

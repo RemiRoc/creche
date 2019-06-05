@@ -1,11 +1,12 @@
 /* The side navigation menu */
 .sidebar {
-  width: 10%;
-  background-color: #4d79ff;
+  width: 15vw;
+  background-color: lightblue;
   position: fixed;
   left:0;
   bottom:0;
   top:0;
+  padding-top: 20vh;
   height: auto;
   overflow: auto;
 }
@@ -22,7 +23,7 @@
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-  background-color: #F00;
+  background-color: #ff6666;
   color: white;
 }
 

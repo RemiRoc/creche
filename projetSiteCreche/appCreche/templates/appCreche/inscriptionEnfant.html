@@ -6,7 +6,7 @@
 		{% if user.is_authenticated %}
 	  	
 
-		<fieldset id="fieldset">	<h2> Inscrire son Enfant </h2>
+		<fieldset id="enfant">	<h2> Inscrire son Enfant </h2>
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	

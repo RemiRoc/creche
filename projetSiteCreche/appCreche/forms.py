@@ -78,7 +78,7 @@ class deposFacture(forms.Form):
 	prenomMere 		= forms.CharField(label='Prénom de la Mère', max_length=20, validators=[validate_carac])
 	nomMere		 	= forms.CharField(label='Nom de la Mère', max_length=30, validators=[validate_carac])
 	nomPere 		= forms.CharField(label='Nom du Père', max_length=30, validators=[validate_carac])
-	Facture 		= forms.FileField(label='Dépos de Facture ')
+	Facture 		= forms.FileField(label='Dépos de Facture ',validators=[validate_file_size] )
 
 	def process(self):
 		clean = self.cleaned_data

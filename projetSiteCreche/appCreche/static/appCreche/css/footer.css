@@ -9,29 +9,47 @@
 }
 
 #footer{
-	background-color: #FCC;
-	
-	border: 5px outset;
-}
-
-#footer>h2{
-	text-decoration: underline;
-	text-align: center;
-}
-div#englobe{
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	background-color: #b3b3ff;
+	border: 5px outset;
+	width:60vw;
+}
+
+
+#footer>h2{
+
+	text-decoration: underline;
+}
+
+div#englobe{
+	margin-left: 3vw;
+	display: flex;
+	width:40vw;
+	flex-direction: column;
+	
+}
+div#RD{
+	display: flex;
+	flex-direction: row;
 }
 
 div#renseignements{
 
-	width:30vw;
-	background-color: #FAA;
+	width:15vw;
+	height:15vh;
+	background-color: ;
 }
+div#contact{
+	width:13vw;
+	height:15vh;
+	background-color: ;
+}
+
 
 div#decharges{
 
-	width:30vw;
-	background-color: #FAA;
+	width:24vw;
+	height:15vh;
+	background-color: ;
 }

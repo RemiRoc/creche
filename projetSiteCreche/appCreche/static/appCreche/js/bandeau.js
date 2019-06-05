@@ -9,7 +9,7 @@
       }
 
       function suivant(n){
-        if(n<5){
+        if(n<10){
           n++;
         }
         else{n=1;

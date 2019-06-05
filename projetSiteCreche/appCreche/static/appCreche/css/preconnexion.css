@@ -1,17 +1,16 @@
 body{
 	display: flex;
 	justify-content: center;
+	background-color: #ccffe6;
 }
-
 div#header{
 	
 	display:flex;
 	flex-direction: row;
 	border-radius: 10px;
 	border: 5px outset;
-	background-image: linear-gradient(#4434, #1678);
+	background-color: #ffffcc;
 	justify-content: center;
-
 	width:60vw;
 	height: 15vh;
 }
@@ -23,33 +22,40 @@ div#headerHautBasPre{
 	justify-content: space-between;
 	width:80%;
 }
+
 div#Connexion{
 	border-radius: 30px;
-	background-color: green;
+	background-color: lightgreen;
 	border: 2px solid white;
 	padding: 10px;
 }
+
+div#Connexion>a{
+	color:black;
+	text-decoration: none;
+}
+
 div#Projet{
 	border-radius: 30px;
-	background-color: blue;
+	background-color: lightblue;
 	border: 2px solid white;
 	padding: 10px;
 }
 
 div#Projet>a{
-	color:white;
+	color:black;
 	text-decoration: none;
 }
 
-div#Connexion>a{
-	color:white;
-	text-decoration: none;
-}
 div#recrutement{
 	border-radius: 30px;
-	background-color: orange;
+	background-color: #ffdb4d;
 	border: 2px solid white;
 	padding: 10px;
+}
+div#recrutement>a{
+	color:black;
+	text-decoration: none;
 }
 div#Sign{
 	display:flex;
@@ -59,19 +65,18 @@ div#Sign{
 img#logo{
 	height: 150px;
 }
-div#recrutement>a{
-	color:white;
-	text-decoration: none;
-}
+
 
 div#Inscription{
 	border-radius: 30px;
-	background-color: grey;
+	background-color: pink;
 	border: 2px solid white;
 	padding: 10px;
 	
 }
+
 div#Inscription>a{
-	color:white;
+	color:black;
 	text-decoration: none;
 }
+

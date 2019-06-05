@@ -4,7 +4,7 @@
 {% block content %}
 		{% if user.is_superuser %}
 		
-		<fieldset id="fieldset"><h2>  Déposer une facture</h2>
+		<fieldset id="facture"><h2>  Déposer une facture</h2>
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	

@@ -8,21 +8,27 @@
 
 {% if user.is_authenticated %}
 <div id="header">
-    <a href="../../"><img src="../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
+    <a href="../../../"><img src="../../../static/appCreche/images/logo.png"   alt="le logo" id="logo"></a> 
     <div id="headerHautBas">
         <div id="headerhaut">
             
             <div id="moncompte"><a href="{% url 'password_reset' %}"> Changer le mot de passe </a> </div>
-            <div id="Projet"><a href="../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
-            <div id="inscriptionEnfant"><a href="../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
+            <div id="Projet"><a href="../../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
+            <div id="inscriptionEnfant"><a href="../../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
         </div>
-        <div id="headerbas">
-            {% if user.is_superuser %}
-            <div id="deposFacture"><a href="../../appCreche/deposFacture"> Déposer une Facture </a></div>
-            <div id="inscritEmploye"><a href="../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
-            {% endif %}
-            <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
-            <div id="Deconnexion"><a href="{% url 'logout' %}">Deconnexion</a></div>
+        		{% if user.is_superuser %}
+                        <div id="headerbasadmin">
+                        <div id="deposFacture"><a href="../../../appCreche/deposFacture"> Déposer une Facture </a></div>
+                        <div id="inscritEmploye"><a href="../../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
+                        <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
+                        <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+                        {% else %}
+                        <div id="headerbas">
+                        <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
+                        <div id="vide"></div>
+                        <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
+                        {% endif %}
+
         </div>
     </div>
 </div>
@@ -58,7 +64,7 @@
 			</ul>
 	
 	{% elif EnfantPresent is not None %}
-		<h3>Votre fils {{enfant}} est autiste </h3>
+		<h3>Votre enfant, {{enfant}}, est incrit.e à la Crèche. </h3>
 
 		
 <table id="enfant">

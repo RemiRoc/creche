@@ -4,7 +4,7 @@
 {% block content %}
 		{% if user.is_superuser %}
 		
-			<fieldset id="fieldset">	<h2>  Inscrire un Employe</h2> 	
+			<fieldset id="Employe">	<h2>  Inscrire un Employe</h2> 	
 				<form method="post" enctype="multipart/form-data">
   					{% csrf_token %}
   					{{form}}	

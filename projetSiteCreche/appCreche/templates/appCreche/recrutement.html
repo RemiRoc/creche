@@ -1,21 +1,22 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Mon Compte{% endblock %}
+{% load static %}
 {% block content %}
-		
+		<link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/emploi.css' %}">
 		{% for OffreEmploi in OffreEmploi %}
 		<div id="emploi">
-    			<h4>{{ OffreEmploi.intituleDuPoste }}</h4>
+    			<h3>{{ OffreEmploi.intituleDuPoste }}</h3>
     			<p>{{ OffreEmploi.DescriptionDuPoste }} </p>
     			<p>{{ OffreEmploi.diplomesRequis }} </p>
     			<p>{{ OffreEmploi.Contact }} </p>
     	</div>
 		{% empty %}
     
-    <div id="emploi"> Il n'y a pas d'offres d'emploi de disponibles </div>
+    <p class="inscrit"> Il n'y a pas d'offres d'emploi de disponibles </p>
 
 {% endfor %}
 
 	{% if user.is_superuser %}
-	<a href="../../admin/appCreche/offreemploi/add/"> Ajouter une Offre d'emploi </a>
+	<a href="../../admin/appCreche/offreemploi/"> Modifier, Ajouter ou Retirer une Offre d'emploi. </a>
 	{% endif %}
 {% endblock %}

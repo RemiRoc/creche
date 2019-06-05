@@ -299,7 +299,7 @@ class Employe(models.Model):
 
 class OffreEmploi(models.Model):
 
-	intituleDuPoste = models.CharField(verbose_name="Saisissez l'intitulé du poste", max_length=100, default='')
+	intituleDuPoste = models.CharField(verbose_name="Intitulé du poste", max_length=100, default='')
 	DescriptionDuPoste = models.TextField(verbose_name="Décrivez le poste", default='')
 	diplomesRequis = models.CharField(verbose_name="Saisissez quels dîplômes sont requis pour ce poste", max_length=100, default='')
 	Contact = models.EmailField(default='asso.gros.calin@gmail.com')
@@ -317,7 +317,3 @@ class EnfantPresent(models.Model):
 
 	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
 
-class HorairesSoir(models.Model):
-
-	Enfant = models.ForeignKey(Enfant, on_delete=models.CASCADE, null=True)
-	
