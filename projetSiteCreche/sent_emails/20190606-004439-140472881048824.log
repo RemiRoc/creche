@@ -1,0 +1,39 @@
+Content-Type: multipart/alternative;
+ boundary="===============2903894995085778386=="
+MIME-Version: 1.0
+Subject: Please activate your account
+From: asso.gros.calin@gmail.com
+To: ['Lo@gmail.com']
+Date: Wed, 05 Jun 2019 22:44:39 -0000
+Message-ID: 
+ =?utf-8?q?=3C155977467956=2E816=2E8656776003378762852=40Pc-de-R=C3=A9mi=3E?=
+
+--===============2903894995085778386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<h2> Confirmez votre compte </h2>
+<p>
+	Veuillez confirmer votre email en cliquant sur le lien ci-dessous.	
+	<br/>
+	<a href="http://127.0.0.1:8000/appCreche/account/activate/TG9AZ21haWwuY29t/56y-a923b5bb016e3a973a08"> http://127.0.0.1:8000/appCreche/account/activate/TG9AZ21haWwuY29t/56y-a923b5bb016e3a973a08</a> 
+</p>
+
+
+--===============2903894995085778386==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<h2> Confirmez votre compte </h2>
+<p>
+	Veuillez confirmer votre email en cliquant sur le lien ci-dessous.	
+	<br/>
+	<a href="http://127.0.0.1:8000/appCreche/account/activate/TG9AZ21haWwuY29t/56y-a923b5bb016e3a973a08"> http://127.0.0.1:8000/appCreche/account/activate/TG9AZ21haWwuY29t/56y-a923b5bb016e3a973a08</a> 
+</p>
+
+
+--===============2903894995085778386==--
+
+-------------------------------------------------------------------------------

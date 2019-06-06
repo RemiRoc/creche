@@ -1,9 +1,17 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .forms import CustomUserCreationForm, InscriptionEnfant, deposFacture, nouvelEmploye
 from .models import *
+from appCreche.token import account_activation_token
+from appCreche.mail import sendConfirmationMail, createLink
+
 
 # Create your views here.
 def index(request):
@@ -15,10 +23,42 @@ def recrutement(request):
 	}
 	return render(request, 'appCreche/recrutement.html', offres)
 
-class inscription(generic.CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'signup.html'
+
+
+
+
+def inscription(request):
+	"""Register view"""
+
+	if request.user.is_authenticated:
+		return  HttpResponseRedirect(reverse('home'))
+	if not request.method == "POST":
+		return render(request, 'signup.html', {'form': CustomUserCreationForm()})
+	form = CustomUserCreationForm(request.POST)
+
+	if not form.is_valid():
+		return render(request, 'signup.html', {'form': form})
+
+	
+	to_email = form.cleaned_data.get('email')
+	if(CustomUser.objects.filter(email= to_email).first() is None):
+		username = form.cleaned_data.get('username')
+		password = form.cleaned_data.get('password1')
+		print(password)
+		user = CustomUser(email=to_email, username=username, password=password)
+		user.set_password(password)
+		user.is_active = False
+		user.save()
+		user = CustomUser.objects.get(email=to_email)
+		current_site = get_current_site(request)
+		activation_link = createLink(user)
+		activation_link = "http://{0}{1}".format(current_site, activation_link)
+		message = render_to_string('register_email_template.html', {'link': activation_link, })
+		email = sendConfirmationMail(message=message, to=[to_email])
+		return HttpResponseRedirect(reverse('login'))
+	else:
+		return render(request, 'signup.html', {'form': form})
+
 
 def inscriptionEnfant(request):
 	if request.method == 'POST':
@@ -204,3 +244,23 @@ def monCompte(request):
 	}
 	return render(request, 'appCreche/monCompte.html', context)
 
+def activate(request, uid, token):
+	"""Account activation view"""
+	print("vod")
+	try:
+		print("catastrophe")
+		uid = urlsafe_base64_decode(uid).decode()
+		print("youpi")
+		user = CustomUser.objects.get(email=uid)
+		print("uid")
+	except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+		user = None
+		print("uad")
+	if user is not None and account_activation_token.check_token(user, token):
+      # activate user and login:
+		user.is_active = True
+		user.save()
+		return index(request)
+
+	else:
+		return HttpResponse('Le lien d\'activation est invalide ! ')
