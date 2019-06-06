@@ -1,7 +1,8 @@
 {% extends 'appCreche/base.html' %}
 {% block title %}Mon Compte{% endblock %}
-{% block header %}
 {% load static %}
+{% block header %}
+<!-- le block header est redéclaré ici car il y a une modification par rapport au block header de base, ici la balise MonCompte est changée en Changer le mot de passe -->
 
 <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
@@ -44,6 +45,7 @@
 {% endif %}
 {% endblock header %}
 {% block content %}
+<!-- On a récupéré les données dans views, et on peut donc faire des vérifications a travers des blocks if , et récupérer les variables a travers les {{ ma.variable }}.-->
 <div id="MonCompte">
 <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/tableau.css' %}">
 {% if user.is_Parent %}
@@ -54,7 +56,9 @@
 		<p class="inscrit"> Votre enfant est préinscrit, la directrice de la crèche analyse votre dossier. </p>
 
 	{% elif EnfantEnAttente is not None %}
-
+<!--
+	Si l'enfant est en attente, affiche un rappel pour aider a l'inscription finale.
+ -->
 		<p>Votre enfant est sur liste d'attente, recontactez la crèche tous les 3 mois environ pour la tenir informée de votre situation. </p>
 		<ul>
 			<li><a href="sendTo:asso.gros.calin@gmail.com"> asso.gros.calin@gmail.com </a></li>
@@ -64,7 +68,9 @@
 	
 	{% elif EnfantPresent is not None %}
 		<h3>Votre enfant, {{enfant}}, est incrit.e à la Crèche. </h3>
-
+<!--
+	Si l'enfant est présent, affiche son emploi du temps
+ -->
 		
 <table id="enfant">
     <thead>
@@ -125,7 +131,10 @@
 
 {% endif %}
 
+<!-- 
+	Si l'utilisateur est un employé, cela affiche son emploi du temps ( 6 tableaux, un de chanque couleurs ) comme utilisé dans l'enceinte de la crèche
 
+--> 
 {% if user.is_Employe %}
 
 <h3> Bonjour {{employe.prenom}} {{employe.nom}} </h3>
@@ -278,10 +287,6 @@
     </tr>
 </tbody>
 </table>
-
-
-{% else %}
-
 
 {% endif %}
 </div>

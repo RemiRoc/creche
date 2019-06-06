@@ -1,23 +1,26 @@
+ //Change la classe css de l'image pour la cacher.
       function cacher(im){
         im.classList.remove('visible');
         im.classList.add('cachee');
       }
-      
+//Change la classe css de l'image pour l'afficher.
       function afficher(im){
         im.classList.remove('cachee');
         im.classList.add('visible');
       }
 
-      function suivant(n){
-        if(n<10){
-          n++;
+// Selectionne la photo suivante
+      function suivant(id){
+        if(id<10){
+          id++;
         }
-        else{n=1;
+        else{id=1;
         }
-        return n;
+        return id;
       }
 
 
+//La fonction change automatiquement la photo en appelant les fonctions ci dessus.
       function change_baniere(){
 
         var tab = document.getElementsByClassName('visible');

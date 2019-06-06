@@ -51,7 +51,8 @@ class InscriptionEnfant(forms.Form):
 	ville			= forms.CharField(label='Ville de résidence de l\'Enfant ', max_length=50, validators=[validate_carac])
 	adresseDeux		= forms.CharField(label='Saisissez la deuxieme adresse de résidence de l\'enfant ( si il y en a une )', max_length=256,validators=[validate_adresse], required=False)
 	villeDeux		= forms.CharField(label='Seconde ville de résidence de l\'Enfant ', max_length=50, validators=[validate_carac], required=False)
-	nbEnfantFoyer	= forms.IntegerField(label='Nombre d\'enfant au Foyer')
+	nbEnfantFoyer	= forms.CharField(label='Nombre d\'enfant au Foyer', max_length=1,validators=[validate_nombre] )
+	nomAssurance	= forms.CharField(label='Nom de l\'assurance de l\'enfant  ', validators=[validate_carac],max_length=30)
 	LundiDepos		= forms.ChoiceField(label='A quelle heure souhaitez vous déposer votre enfant le Lundi ? ', choices=DebutFrequentation)
 	LundiRepris		= forms.ChoiceField(label='A quelle heure souhaitez vous récupérer votre enfant le Lundi ? ', choices=FinFrequentation)
 	MardiDepos		= forms.ChoiceField(label='A quelle heure souhaitez vous déposer votre enfant le Mardi ? ', choices=DebutFrequentation)
@@ -64,7 +65,7 @@ class InscriptionEnfant(forms.Form):
 	VendrediRepris	= forms.ChoiceField(label='A quelle heure souhaitez vous récupérer votre enfant le Vendredi ? ', choices=FinFrequentation)
 
 
-	nomAssurance			= forms.CharField(label='Nom de l\'assurance de l\'enfant  ', validators=[validate_carac],max_length=30)
+	
 	certificatMedical 		= forms.FileField(label='Certificat médical de l\'enfant ', validators=[validate_file_size])
 	AssuranceCivile			= forms.FileField(label='Assurance civile de l\'enfant ', validators=[validate_file_size])
 	protocoleDeTemperature 	= forms.FileField(label='Protocole de température ', validators=[validate_file_size])

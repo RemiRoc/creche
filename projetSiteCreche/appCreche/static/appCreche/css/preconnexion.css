@@ -3,8 +3,8 @@ body{
 	justify-content: center;
 	background-color: #368bb0;
 }
+/* div permettant de placer le header en haut au centre du site. */
 div#header{
-	
 	display:flex;
 	flex-direction: row;
 	border-radius: 10px;
@@ -57,13 +57,19 @@ div#recrutement>a{
 	color:black;
 	text-decoration: none;
 }
+
+/* div comprennant se connexter et s'inscrire */
 div#Sign{
 	display:flex;
 	flex-direction: row;
 
 }
+
+/* colle le logo sur le coté du header. */
 img#logo{
-	height: 150px;
+
+	height: 15vh;
+	margin-left: -6vw;
 }
 
 
@@ -80,3 +86,15 @@ div#Inscription>a{
 	text-decoration: none;
 }
 
+p.inscrit{
+	
+	text-align: center;
+	margin-top: 10vh;
+	margin-left:15vw;
+	border: 2px outset;
+	background-color: lightgrey;
+	width:30vw;
+	height: 6vh;
+	padding-top: 3vh;
+	border-radius:2vw;
+}

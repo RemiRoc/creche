@@ -17,13 +17,18 @@ class CustomUser(AbstractUser):
 		return self.email
 	is_Parent = models.BooleanField(default=False)
 	is_Employe = models.BooleanField(default=False)
-	is_Contrib = models.BooleanField(default=False)
-		
+
+	"""
+	ici nous créons un utilisateur personnalisé , qui aura tous les champs d'un utilisateur de base de Django, 
+	mais aura également un champ email
+	is_Parent ( pour vérifier si l'utilisateur a inscrit un enfant ) 
+	is_Employe ( pour vérifier si l'utilisateur est un employe de la crèche )
+	"""
 
 
 class Parent(models.Model):
-
-		
+	#INFO PARENTS
+	#parentUser permet de lier l'utilisateur au parent.		
 	parentUser			= models.ForeignKey( CustomUser ,on_delete=models.CASCADE, null=True)
 	nom_Mere			= models.CharField(_('Nom de la Mère'),max_length=20,validators=[validate_carac], null=True)
 	prenom_Mere			= models.CharField(_('Prénom de la Mère'),max_length=20,validators=[validate_carac], null=True)
@@ -41,7 +46,7 @@ class Parent(models.Model):
 	ville				= models.CharField(_("Ville"),validators=[validate_carac], max_length=50, null=True)
 	secondeAdresse		= models.CharField(_("Seconde Adresse"),validators=[validate_adresse], max_length=256, blank=True, null=True)
 	villeDeux			= models.CharField(_("Seconde Ville"),validators=[validate_carac], max_length=50,blank=True, null=True)
-	nbEnfantAuFoyer		= models.PositiveIntegerField(_("Nombre d'enfant au foyer"), validators=[MaxValueValidator(20)], null=True)
+	nbEnfantAuFoyer		= models.CharField(_("Nombre d'enfant au foyer"), validators=[validate_nombre], max_length=1, null=True)
 	FactureCreche		= models.FileField(_("Dernière Facture : "), upload_to=UploadToPathAndRename(os.path.join('Factures')), validators=[validate_file_size],blank=True, null=True)
 	
 	def __str__(self):
@@ -105,7 +110,7 @@ class Parent(models.Model):
 		return self.nbEnfantAuFoyer
 
 class Enfant(models.Model):
-	#INFO PERSO
+	#INFO ENFANT
 	nom						= models.CharField(_('nom'),max_length=20, validators=[validate_carac], null=True)
 	prenom					= models.CharField(_('prenom'),max_length=20, validators=[validate_carac], null=True)
 	dateDeNaissance 		= models.DateField(_('Date de Naissance'), null=True)
@@ -119,7 +124,7 @@ class Enfant(models.Model):
 	telDocteur				= models.CharField(_('télephone du Médecin traitant'), max_length=10, validators=[validate_tel], null=True)
 	nomAssurance			= models.CharField(_('Nom de la compagnie d\'assurance'),max_length=20, validators=[validate_carac], null=True)
 	
-	#HORAIRES DU GAMIN
+	#HORAIRES DE L'ENFANT
 	#LUNDI
 	arriveLundi		= models.CharField(max_length=4, choices=DebutFrequentation, default='', null=True)
 	partLundi		= models.CharField(max_length=5, choices=FinFrequentation, default='', null=True)
@@ -265,12 +270,22 @@ class Employe(models.Model):
 
 
 class OffreEmploi(models.Model):
-
+	# Informations requises pour la création d'une offre sur le Site.
+	
 	intituleDuPoste = models.CharField(verbose_name="Intitulé du poste", max_length=100, default='')
 	DescriptionDuPoste = models.TextField(verbose_name="Décrivez le poste", default='')
 	diplomesRequis = models.CharField(verbose_name="Saisissez quels dîplômes sont requis pour ce poste", max_length=100, default='')
 	Contact = models.EmailField(default='asso.gros.calin@gmail.com')
 
+	#L'email par default est asso.gros.calin@gmail.com mais peut etre modifié lors de la création d'une offre.
+
+
+"""
+Les trois classes suivantes sont faites pour différencier les enfants entre eux :
+Preinscrit : Le parent viens de remplir le Formulaire, la directrice doit examiner les informations et contacter le parent
+En Attente : Le parent a eu un RDV téléphonique avec la Directrice de la creche, et elle a supprimé l'enfant du champ préinscrit et l'a placé en Attente.
+Present : Ce sont les enfants qui sont inscrit a la crèche et qui s'y rendent. 
+"""
 
 class EnfantPreinscrit(models.Model):
 

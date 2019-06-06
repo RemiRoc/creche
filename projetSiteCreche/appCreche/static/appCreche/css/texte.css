@@ -1,13 +1,15 @@
+/* Récupère la police PlumNAL.ttf */
+
 @font-face {
-    font-family: 'MaSuperPolice';
+    font-family: 'PoliceMenu';
     src: url('PlumNAL.ttf') format('truetype');
 }
 	
-
+/* La grande page blanche qui "ressemble" a une feuille manuscrite dans l'acceuil */
 div#home{
 	border-style: inset;
 	padding: 2vw;
-	font-family:MaSuperPolice;
+	font-family:Policemenu;
 	width:56vw;
 	text-align: left;
 	font-size: x-large;
@@ -17,9 +19,8 @@ div#home{
 	margin-top: 5vh;
 }
 
+
 div#projetPedag{
-	font-family:MPolice;
-	src: url('Je n'aime pas le lundi.ttf) format('truetype');
 	width:60vw;
 	text-align: justify;
 	font-size: large;
@@ -32,43 +33,46 @@ h1, h2, h3{
 	text-align: center;
 	text-decoration: underline;
 }
-
+/* indente le texte de 3% sur le coté  */
 p{
 	text-indent: 3%;
 }
 
+/* Spécifications des div de la page projet pedagogique */
 div#famille{
 	background-color: #eeffcc;
-	box-shadow: 15px 10px lightgrey;
+	box-shadow: 15px 10px #245b75;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#projet{
 	background-color: #d8ebf3;
-	box-shadow: 15px 10px lightgrey;
+	box-shadow: 15px 10px #245b75;
 	border-radius: 5%;
 	padding: 2%;
 }
 div#activite{
 	background-color:  #fff0b3;
-	box-shadow: 15px 10px lightgrey;
+	box-shadow: 15px 10px #245b75;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#pourtous{
 	background-color: #ffe6ea;
-	box-shadow: 15px 10px lightgrey;
+	box-shadow: 15px 10px #245b75;
 	border-radius: 5%;
 	padding: 2%;
 }
 
 div#important{
 	background-color: lightyellow;
-	box-shadow: 15px 10px lightgrey;
+	box-shadow: 15px 10px #245b75;
 	border-radius: 15%;
 	padding: 10%;
 	text-align: center;
 }
+
+
 

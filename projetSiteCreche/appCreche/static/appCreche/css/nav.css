@@ -11,7 +11,7 @@
   overflow: auto;
 }
 
-/* Sidebar links */
+/* Liens de la sidebar*/
 .sidebar a {
   display: block;
   color: white;
@@ -21,34 +21,18 @@
 
 
 
-/* Links on mouse-over */
+/* Liens qui se colorent au survol de la souris  */
 .sidebar a:hover:not(.active) {
   background-color: #ff6666;
   color: white;
 }
 
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+
 div.content {
   
   padding: 1px 16px;
   height: auto;
 }
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-} 
+

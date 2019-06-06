@@ -32,8 +32,15 @@ def validate_adresse(value):
 	else:
 		return value
 
-from django.core.exceptions import ValidationError
-
+def validate_nombre(value):
+	adresse = re.match("(?:[1-9])", str(value))
+	if(adresse is None):
+		raise ValidationError(
+			_('%(value)s n\'est pas une adresse valide (Exemple : 1248 bis route du Soleil )'),
+			params={'value': value},
+		)
+	else:
+		return value
 
 def validate_file_size(value):
     filesize= value.size

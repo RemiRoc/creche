@@ -1,9 +1,14 @@
+/* Défini la couleur de fond de la page sur toutes les pages lorsque l'utilisateur est connecté */
 body{
 	display: flex;
 	justify-content: center;
 	background-color: #368bb0;
 }
 
+
+
+/* Sers à formater tous les divs du header pour les rendre ovales et de couleurs pastel. */
+/* div permettant de placer le header en haut au centre du site. */
 div#header{
 	align-self: center;
 	display:flex;
@@ -17,9 +22,7 @@ div#header{
 }
 
 div#headerHautBas{
-
 	display: flex;
-
 	flex-direction: column;
 	align-items: center;
 	width:80%;
@@ -110,9 +113,12 @@ div#Deconnexion>a{
 	text-decoration: none;	
 }
 
-div#logo{		
-	display: inline;
+/* colle le logo sur le coté du header. */
+img#logo{
+	height: 15vh;
+	margin-left: -6vw;
 }
+
 div#headerhaut{
 	display: flex;
 	flex-direction: row;
@@ -132,7 +138,7 @@ div#headerbas{
 div#vide{
 	padding: 0 6.5vw; 
 }
-
+/* affiche les liens admin */
 div#headerbasadmin{
 	display: flex;
 	flex-direction: row;
@@ -140,14 +146,17 @@ div#headerbasadmin{
 	margin-top: 2%;
 	width:100%;
 }
+
+/* Permet d'afficher les validations au centre de l'écran */
 p.inscrit{
-	align-items: center;
 	text-align: center;
 	margin-top: 10vh;
-	margin-left:20vw;
+	margin-left:15vw;
 	border: 2px outset;
 	background-color: lightgrey;
-	width:20vw;
+	width:30vw;
+	height: 6vh;
+	padding-top: 3vh;
 	border-radius:2vw;
 }
 

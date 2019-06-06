@@ -27,7 +27,7 @@ div#englobe{
 	display: flex;
 	width:40vw;
 	flex-direction: column;
-	
+	border-right: 2px dotted darkblue;
 }
 div#RD{
 	display: flex;
@@ -35,21 +35,23 @@ div#RD{
 }
 
 div#renseignements{
-
+	margin-top: 1.5vh;
 	width:15vw;
 	height:15vh;
-	background-color: ;
+
 }
 div#contact{
+	margin-top: 5vh;
 	width:13vw;
 	height:15vh;
-	background-color: ;
+
 }
 
 
 div#decharges{
-
 	width:24vw;
 	height:15vh;
-	background-color: ;
 }
+
+
+/* Feuille css permettant de coller le footer en bas de la page, ainsi qu'à le mettre en plusieurs boites */

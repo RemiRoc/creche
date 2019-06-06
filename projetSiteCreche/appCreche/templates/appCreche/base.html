@@ -8,19 +8,25 @@
     </head>
 
     <body>
-    	
+    	<!--
+    		Les blocs ( Nav, Header, Content et Footer ) permettent de récupérer le code html entré dans le site et les situer dans entre ces bornes
+    		lorsque le fichier ( ici base.html ) est étendu ( extends base.html )
+    	 -->
     	{% block nav %}
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/nav.css' %}">
             {%endblock nav%}
         <main>
 
             {% block header %}
-
+            <!--
+            Si l'utilisateur est connecté,  
+            affiche le header avec les options d'utilisateur connecté ( inscrire un enfant, voir son compte ou se déconnecter )
+            -->
             {% if user.is_authenticated %}
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/postconnexion.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/forms.css' %}">
             <div id="header">
-                <a href="../../../"><img src="../../../static/appCreche/images/logo.png"  alt="le logo" id="logo"></a> 
+                <a href="../../../"><img src="../../../static/appCreche/images/logo.png"  alt="Menu" id="logo"></a> 
                 <div id="headerHautBas">
                     <div id="headerhaut">
                     	<div id="moncompte"><a href="../../../appCreche/monCompte"> Vers mon compte </a></div>
@@ -28,14 +34,21 @@
                         <div id="Projet"><a href="../../../appCreche/projetPedagogique"> Notre Projet Pédagogique</a></div>
                         <div id="inscriptionEnfant"><a href="../../../appCreche/inscriptionEnfant"> Inscrire son Enfant </a></div>
                     </div>
-                    
+
                         {% if user.is_superuser %}
+                         <!--
+                    	Si l'utilisateur est un super Utilisateur, 
+                    	Affiche un menu complet avec possibilité de déposer une facture ou d'inscrire un employe.
+                    -->
                         <div id="headerbasadmin">
                         <div id="deposFacture"><a href="../../../appCreche/deposFacture"> Déposer une Facture </a></div>
                         <div id="inscritEmploye"><a href="../../../appCreche/inscritEmploye"> Inscrire un Employe </a></div>
                         <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
                         <div id="Deconnexion"><a href="{% url 'logout' %}">Déconnexion</a></div>
                         {% else %}
+                        <!-- 
+                        	sinon affiche le menu normalement, la div "vide" permettant de séparer les lien pour rendre le menu plus esthétique.
+                        -->
                         <div id="headerbas">
                         <div id="recrutement"><a href="../../../appCreche/recrutement"> Recrutement </a></div>
                         <div id="vide"></div>
@@ -46,11 +59,12 @@
                 </div>
             </div>
             {% else %}
+            <!-- Si l'utilisateur n'est pas connecté, affiche ce menu, avec l'accès au projet pédagogique, a la page de recutrement ( affiche les offres d'emplois ainsi qu'a deux formulaires : se connecter / s'inscrire ) -->
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/forms.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/preconnexion.css' %}">
             <div id="header">
                 <div id="headerHautBasPre">
-                    <div id="accueil"><a href="../../"><img src="../../static/appCreche/images/logo.png" alt="le logo" id="logo"></a> </div>
+                    <div id="accueil"><a href="../../"><img src="../../../static/appCreche/images/logo.png" alt="Menu" id="logo"></a> </div>
                     <div id="Projet"><a href="../../appCreche/projetPedagogique">
                     Notre Projet Pédagogique </a></div>
                     <div id="recrutement"><a href="../../appCreche/recrutement"> Recrutement </a></div>
@@ -77,7 +91,9 @@
              <link rel="stylesheet" type="text/css" href="{% static 'appCreche/css/footer.css' %}">
             
             <footer id="footer">
-            	
+            	<!-- Le footer contient des fichiers téléchargeables se situant dans Media/fichier_import/fichier_utiles. 
+            		le "media" avec un m minuscule est le lien de base vers ces fichiers.
+            	-->
             <div id="englobe">
             	<h2> Fichiers utiles :</h2>
             	
@@ -85,17 +101,13 @@
             	
 
             <div id="renseignements">
-            	
-            	
             	<p>	Pour télécharger la CDAP : <a href="../../media/fichier_utiles/cdap.odt"> cliquez ici. </a></p>
             	<p> Pour voir la Loi RGPD : <a href="../../media/fichier_utiles/RGPD.odt"> cliquez ici. </a></p> 
             	</div>
             <div id="decharges">
-            	
             	<p> Pour télécharger la décharge du collier dentaire : <a href="../../media/fichier_utiles/dechargecollierdentaire.doc"> cliquez ici. </a></p>
             	<p> Pour télécharger la décharge pour le don du Doliprane : <a href="../../media/fichier_utiles/dechargedondoliprane.odt"> cliquez ici. </a></p>
             	<p> Pour télécharger la décharge pour la position ventrale : <a href="../../media/fichier_utiles/dechargepositionventrale.doc"> cliquez ici. </a></p>
-            
 			</div>
 		</div>
 	</div>
@@ -111,8 +123,6 @@
             </div>
            
         </footer>	
-       
-
             {% endblock footer%}
         </main>
         

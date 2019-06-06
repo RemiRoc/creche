@@ -1,3 +1,4 @@
+/* Défini les couleurs de chaque tableau */
 
 table#Jaune{
 	
@@ -50,6 +51,9 @@ td{
 	padding: 1vh;
 }
 
+
+/* Défini la taille et largeur des tableaux */
+
 table{
 	border: 2px outset purple;
 	margin-bottom: 5%;
@@ -57,10 +61,11 @@ table{
 	table-layout: auto;
 	width: 100%;
 	height: 15%;
-	box-shadow: 15px 15px lightgrey;
+	box-shadow: 15px 15px #245b75;
 }
 
 th{
 	text-align: center;
 	text-decoration: underline;
 }
+

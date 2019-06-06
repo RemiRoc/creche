@@ -1,5 +1,5 @@
 """
-    Horaires dépot/retrait des mioches
+    Horaires dépot/retrait des enfants
 """
 
 DebutFrequentation = (
@@ -33,3 +33,5 @@ horaireEmpl = (
     ('11h30 18h30', '11h30 - 18h30'),
 )
 
+# La colonne de gauche permet de définir la valeur dans la BDD 
+# Celle de droite est celle qui est affiché a l'utilisateur

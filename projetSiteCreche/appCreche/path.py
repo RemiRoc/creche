@@ -10,8 +10,9 @@ class UploadToPathAndRename(object):
 
     def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        # get filename
-        # set filename as random string
+        # récupère le fichier
+        # défini le nom du fichier avec une chaine de caractère aléatoire
         filename = '{}.{}'.format(uuid4().hex, ext)
-        # return the whole path to the file
+        # renvoie tout le chemin jusqu'au fichier.
         return os.path.join(self.sub_path, filename)    
+

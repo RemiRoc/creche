@@ -5,7 +5,7 @@ fieldset{
 	align-self: center;
 	margin-left:5vw;
 	margin-top:5vh;
-	box-shadow: 15px 15px lightgrey;
+	box-shadow: 15px 15px #245b75;
 	border-radius: 2vw;
 	border-style: outset;
 }
@@ -68,3 +68,6 @@ fieldset#enfant{
 	background-image:linear-gradient( #e0e0eb, darkgrey);
 	border: 2px outset;
 }
+
+
+/* Permet de formater les fieldsets pour qu'ils soient chacun différents. */

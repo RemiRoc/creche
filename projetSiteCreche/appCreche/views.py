@@ -15,7 +15,9 @@ from appCreche.mail import sendConfirmationMail, createLink
 
 # Create your views here.
 def index(request):
-	return render(request, 'appCreche/base.html')
+	return render(request, 'appCreche/home.html')
+
+
 	
 def recrutement(request):
 	offres = {
@@ -23,7 +25,7 @@ def recrutement(request):
 	}
 	return render(request, 'appCreche/recrutement.html', offres)
 
-
+#Récupère toutes les offres d'emploi et les renvoies vers la page html
 
 
 
@@ -44,7 +46,6 @@ def inscription(request):
 	if(CustomUser.objects.filter(email= to_email).first() is None):
 		username = form.cleaned_data.get('username')
 		password = form.cleaned_data.get('password1')
-		print(password)
 		user = CustomUser(email=to_email, username=username, password=password)
 		user.set_password(password)
 		user.is_active = False
@@ -58,7 +59,12 @@ def inscription(request):
 		return HttpResponseRedirect(reverse('login'))
 	else:
 		return render(request, 'signup.html', {'form': form})
-
+"""
+Cette fonction permet de vérifier que l'utilisateur n'est pas connecté,
+que le formulaire est bien en méthode POST 
+et que l'utilisateur n'existe pas déjà. 
+si ces trois conditions sont réunies, cela envoie un mail de validation a l'utilisateur.
+"""
 
 def inscriptionEnfant(request):
 	if request.method == 'POST':
@@ -140,6 +146,16 @@ def inscriptionEnfant(request):
 
 	return render(request, 'appCreche/inscriptionEnfant.html',{'form':form})
 
+
+"""
+Cette fonction réécupère toutes les entrées POST du formulaire d'inscription d'un enfant, vérifie s'il n'y a pas un enfant ayant le même nom et prenom et date de naissance
+cela regarde aussi l'utilisateur, si c'est un nouvel utilisateur cela créé un nouveau parent et attribue la valeur True a is_Parent de l'utilisateur, 
+sinon cela ajoute un enfant au parent possedant le champ parentUSer correspondant a l'utilisateur actuel. 
+"""
+
+
+
+
 def deposFactures(request):
 	if request.method == 'POST':
 		form = deposFacture(request.POST, request.FILES)
@@ -156,11 +172,14 @@ def deposFactures(request):
 
 	return render(request, 'appCreche/deposFacture.html',{'form':form})			
 
-
+"""
+Formulaire permettant de déposer une facture pour un Parent donné.
+"""
 
 def projetPedagogique(request):
 	return render(request, 'appCreche/projetPedagogique.html')
 
+#retourne la page projet pedagogique.
 
 
 def inscritEmploye(request):
@@ -221,7 +240,9 @@ def inscritEmploye(request):
 
 	return render(request, 'appCreche/inscritEmploye.html',{'form':form})
 
-
+#Cette fonction vérifie que l'utilisateur que l'on veut passer en Employé existe,
+#Elle récupère ensuite toutes les entrées du formulaire et enregistre l'employe.
+#Cela modifie également la valeur is_Employe de l'utilisateur, pour la passer en True
 
 def monCompte(request):
 
@@ -232,35 +253,31 @@ def monCompte(request):
 		'EnfantPreinscrit': EnfantPreinscrit.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
 		'EnfantEnAttente': EnfantEnAttente.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
 		'EnfantPresent': EnfantPresent.objects.filter(Enfant = Enfant.objects.filter(Parents = Parent.objects.filter(parentUser = request.user).first()).first()).first(),
-		'nbEnfant': EnfantPresent.objects.count(),
-		'placeSoirLundi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partLundi = "16h30")).count(),
-		'placeSoirMardi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partMardi = "16h30")).count(),
-		'placeSoirMercredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partMercredi = "16h30")).count(),
-		'placeSoirJeudi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partJeudi = "16h30")).count(),
-		'placeSoirVendredi': EnfantPresent.objects.filter(Enfant__in = Enfant.objects.exclude(partVendredi = "16h30")).count(),
 		
-
-
-	}
+		}
 	return render(request, 'appCreche/monCompte.html', context)
+"""
+retourne vers la page MonCompte, en renvoyant les informations des parents et enfants ( en fonction des utilisateurs )
+Renvoie également les employe.
+"""
 
 def activate(request, uid, token):
 	"""Account activation view"""
-	print("vod")
+	
 	try:
-		print("catastrophe")
 		uid = urlsafe_base64_decode(uid).decode()
-		print("youpi")
+		#Décode l'uid qui se trouve dans l'url, l'uid correspondant a une adresse Mail
 		user = CustomUser.objects.get(email=uid)
-		print("uid")
+		#Vérifie que l'adresse Mail correspond a un utilisateur
+		#si cela ne correpond pas , cela retourne une erreur et renvoie le message " Le lien d\'activation est invalide ! "
 	except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
 		user = None
-		print("uad")
 	if user is not None and account_activation_token.check_token(user, token):
-      # activate user and login:
+      # active l'utilisateur pour qu'il puisse se connecter:
 		user.is_active = True
+
 		user.save()
 		return index(request)
-
 	else:
 		return HttpResponse('Le lien d\'activation est invalide ! ')
+

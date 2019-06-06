@@ -20,7 +20,7 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['username','email','is_Parent', 'is_Employe', 'is_Contrib']
+    list_display = ['username','email','is_Parent', 'is_Employe']
 
 class DetailOffres(admin.ModelAdmin):
 	list_display=['intituleDuPoste']

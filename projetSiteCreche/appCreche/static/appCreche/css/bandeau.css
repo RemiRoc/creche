@@ -1,12 +1,13 @@
+/* Rends la photo visible */
 .visible {
   opacity: 1;
-  
 }
 
+/* cache la photo */
 .cachee {
   opacity: 0;
-  
 }
+
 #baniere{
 	margin-top:3vh;
 	margin-bottom: 2vh;
@@ -19,7 +20,9 @@
 	width: 50vw;
 	border-style: dotted;
 	border-radius: 20px;
-	box-shadow: 10px 10px lightgrey;
+	box-shadow: 10px 10px #245b75;
 	position: absolute;
 }	
 
+
+/* Cette feuille permet de définir les regles que doivent suivre les images ainsi que la div servant de banière. */ 

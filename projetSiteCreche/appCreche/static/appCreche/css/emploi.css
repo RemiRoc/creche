@@ -3,12 +3,15 @@
 	max-width:60vw;
 	margin-top: 5vh;
 }
-p{
+#emploi>p{
 margin-left:10vw;
 width: 40vw;
 }
 
-h3{
+#emploi>h3{
 	text-align: center;
 	text-decoration: underline;
 }
+
+
+/*  Feuille css servant a afficher les emplois */ 

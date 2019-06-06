@@ -10,13 +10,15 @@
     			<p>{{ OffreEmploi.diplomesRequis }} </p>
     			<p>{{ OffreEmploi.Contact }} </p>
     	</div>
+    	<!-- Récupère toutes les offres d'emploi et les place chacune dans une Div différente. elle s'afficherons les unes sous les autres. -->
 		{% empty %}
     
     <p class="inscrit"> Il n'y a pas d'offres d'emploi de disponibles </p>
-
+    	<!-- affiche ce message lorsqu'il n'y a pas d'offre d'emploi disponible -->
 {% endfor %}
 
 	{% if user.is_superuser %}
 	<a href="../../admin/appCreche/offreemploi/"> Modifier, Ajouter ou Retirer une Offre d'emploi. </a>
+	<!-- Si l'utilisateur est considéré comme superuser, il a accès a un lien permettant l'edition des offres d'emploi sur django.admin   -->
 	{% endif %}
 {% endblock %}
