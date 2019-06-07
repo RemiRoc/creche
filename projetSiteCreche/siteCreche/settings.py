@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'siteCreche.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crechepetitcalin',
-        'USER': 'remi-dev-34',
-        'PASSWORD': 'Simpson34',
-        'HOST': 'crechepetitcalin.alwaysdata.net',
-        'PORT': '',
+        'NAME': 'crechepetitcalin_donnee',
+        'USER': 'crechepetitcalin',
+        'PASSWORD': 'Simpsons_343',
+        'HOST': 'postgresql-crechepetitcalin.alwaysdata.net',
+        'PORT': '5432',
     }
 }
 

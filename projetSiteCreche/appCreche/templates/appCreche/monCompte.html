@@ -111,9 +111,9 @@
         </tr>
     </tbody>
 </table>
-
+<div id="pts">
 {% if parent.FactureCreche is not None %}
-<p>	Pour voir votre dernière facture : <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </p>
+<h3>	Pour voir votre dernière facture :  <a href="../../media/{{parent.FactureCreche}}"> Cliquez ici</a> </h3>
 {% endif %}
 
 <h3>Pour tous changements, veuillez contacter la crèche :</h3>
@@ -125,6 +125,7 @@
 <li> 05.61.85.19.93
 </li>
 </ul>
+</div>
 {% endif %}
 {% else %}
 <p class="inscrit"> Vous n'avez pas inscrit d'enfant à la crèche. </p>
