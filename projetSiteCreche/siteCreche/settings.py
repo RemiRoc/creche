@@ -21,12 +21,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = '-z6ec2%pt^tc3ap$zj1wg95%$57hfz2%^^p^*4z*)-t&)n_8#z'
+SECRET_KEY = '2lt0#6(5y4@b&)+wq#nv3-#6d2i_3+5ilw8y(b$j*+=k4^xmey'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "crechepetitcalin.alwaysdata.net"
+]
 
 
 # Application definition
@@ -80,8 +82,12 @@ WSGI_APPLICATION = 'siteCreche.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'crechepetitcalin',
+        'USER': 'remi-dev-34',
+        'PASSWORD': 'Simpson34',
+        'HOST': 'crechepetitcalin.alwaysdata.net',
+        'PORT': '',
     }
 }
 
