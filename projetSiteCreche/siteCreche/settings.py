@@ -81,10 +81,9 @@ WSGI_APPLICATION = 'siteCreche.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'mydatabase',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -104,16 +103,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-MEDIA_ROOT = 'Media/fichier_import'
-MEDIA_URL = "/media/"
-STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-DEFAULT_FROM_EMAIL = "remi.rochet34@gmail.com"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+DEFAULT_FROM_EMAIL = "asso.gros.calin@gmail.com'"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 AUTH_USER_MODEL = 'appCreche.CustomUser'
+
 # Internationalization
 
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -133,3 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Media files 
+#Tous les fichiers téléversés
+
+MEDIA_ROOT = 'Media/fichier_import'
+MEDIA_URL = "/media/"

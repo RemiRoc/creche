@@ -58,56 +58,6 @@ class Parent(models.Model):
 		verbose_name = _('Parent')
 		verbose_name_plural = _('Parents')
 
-#GETTERS
-	def get_Parent(self):
-		return Parent
-
-	def get_parentUser(self):
-		return self.parentUser
-
-	def get_nomMere(self):
-		return self.nom_Mere
-
-	def get_prenomMere(self):
-		return self.prenom_Mere
-
-	def get_adresse_mail_Mere(self):
-		return self.adresseMail_Mere
-
-	def get_num_Mere(self):
-		return self.num_Mere
-
-	def get_tel_employeur_Mere(self):
-		return self.telEmployeur_Mere
-
-	def get_profession_Mere(self):
-		return self.profession_Mere
-	def get_nom_Pere(self):
-		return self.nom_Pere
-
-	def get_prenom_Pere(self):
-		return self.prenom_Pere
-
-	def get_adresse_mail_Pere(self):
-		return self.adresseMail_Pere
-
-	def get_num_Pere(self):
-		return self.num_Pere
-
-	def get_tel_employeur_Pere(self):
-		return self.telEmployeur_Pere
-
-	def get_profession_Pere(self):
-		return self.profession_Pere
-
-	def get_adresse(self):
-		return self.adresse
-
-	def get_seconde_adresse(self):
-		return self.secondeAdresse or "Il n'y a pas de seconde adresse"
-
-	def get_nb_enfant_au_foyer(self):
-		return self.nbEnfantAuFoyer
 
 class Enfant(models.Model):
 	#INFO ENFANT
@@ -146,46 +96,6 @@ class Enfant(models.Model):
 		full_name = '%s %s' % (self.nom, self.prenom)
 		return full_name.strip()
 
-	#GETTERS
-	
-	def get_nom(self):
-		return self.nom 
-		
-	def get_prenom(self):
-		return self.prenom
-
-	def get_date_de_naissance(self):
-		return self.dateDeNaissance
-	
-	def get_a_lundi(self):
-		return self.arriveLundi
-
-	def get_p_lundi(self):
-		return self.partLundi
-
-	def get_a_mardi(self):
-		return self.arriveMardi
-
-	def get_p_mardi(self):
-		return self.partMardi
-	
-	def get_a_mercredi(self):
-		return self.arriveMercredi
-	
-	def get_p_mercredi(self):
-		return self.partMercredi
-
-	def get_a_jeudi(self):
-		return self.arriveJeudi
-
-	def get_p_jeudi(self):
-		return self.partJeudi
-
-	def get_a_vendredi(self):
-		return self.arriveVendredi
-
-	def get_p_vendredi(self):
-		return self.PartVendredi
 
 
 	
@@ -237,37 +147,6 @@ class Employe(models.Model):
 		full_name = '%s %s' % (self.nom, self.prenom)
 		return full_name.strip()
 
-	#GETTERS
-	def get_nom(self):
-		return self.nom
-
-	def get_prenom(self):
-		return self.prenom
-
-	def get_adresse_mail(self):
-		return self.adresseMail
-
-	def get_num(self):
-		return self.num
-
-	def get_hs_jaune(self):
-		return self.horaireSemaineJaune
-
-	def get_hs_rouge(self):
-		return self.horaireSemaineRouge
-
-	def get_hs_bleue(self):
-		return self.horaireSemaineBleue
-
-	def get_hs_verte(self):
-		return self.horaireSemaineVerte
-
-	def get_hs_noire(self):
-		return self.horaireSemaineNoire
-
-	def get_hs_rose(self):
-		return self.horaireSemaineRose
-
 
 class OffreEmploi(models.Model):
 	# Informations requises pour la création d'une offre sur le Site.
@@ -277,6 +156,10 @@ class OffreEmploi(models.Model):
 	diplomesRequis = models.CharField(verbose_name="Saisissez quels dîplômes sont requis pour ce poste", max_length=100, default='')
 	Contact = models.EmailField(default='asso.gros.calin@gmail.com')
 
+
+	def __str__(self):
+		full_name = '%s' % (self.intituleDuPoste)
+		return full_name.strip()
 	#L'email par default est asso.gros.calin@gmail.com mais peut etre modifié lors de la création d'une offre.
 
 
