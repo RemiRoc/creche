@@ -160,3 +160,10 @@ p.inscrit{
 	border-radius:2vw;
 }
 
+div#pts{
+	padding: 3%;
+	background-color: lightgrey;
+	border: 2px outset;
+	border-radius: 20px;
+	box-shadow: 10px 10px #245b75;
+}
