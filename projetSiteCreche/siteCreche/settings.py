@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = '2lt0#6(5y4@b&)+wq#nv3-#6d2i_3+5ilw8y(b$j*+=k4^xmey'
+SECRET_KEY = 'Bah, elle est secrete'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'crechepetitcalin_donnee',
         'USER': 'crechepetitcalin',
-        'PASSWORD': 'Simpsons_343',
+        'PASSWORD': 'Mot de passe (fin, c\'est un mot de passe quoi)',
         'HOST': 'postgresql-crechepetitcalin.alwaysdata.net',
         'PORT': '5432',
     }
